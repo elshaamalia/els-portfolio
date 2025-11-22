@@ -1,37 +1,60 @@
 "use client"
 
 import TypingText from "@/components/animations/typing-text"
+import { Quicksand, Caveat } from "next/font/google"
+import Particles from "../animations/Particles"
+import DecryptedText from "../animations/DecryptedText"
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  weight: ['400', '700']
+})
+
+const quicksand = Quicksand({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700']
+})
 
 export default function HomePage() {
   return (
-    <div className="flex items-center h-full pl-64">
+    <div className="relative flex items-center h-full w-full pl-64">
+      {/* Particles fullscreen background */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <Particles 
+          particleColors={['#8fdd86', '#d578c4']}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
+
+      {/* Konten di foreground - ALIGN LEFT */}
       <div className="max-w-4xl space-y-6 relative z-10">
         <div className="space-y-4">
-          <p className="text-slate-400 font-mono text-sm">
-            <TypingText text="Hello. I Am" speed={50} />
-          </p>
-          <h1 className="text-6xl font-bold text-white tracking-tight">
-            <TypingText text="ELSHA AMALIA PUSPONEGORO" speed={80} cursor={false} />
-          </h1>
-          <p className="text-2xl text-slate-400 font-mono">{">"} Full Stack Developer</p>
-        </div>
+          <p className={`text-slate-400 text-2xl ${quicksand.className}`}>
+            <TypingText text="Welcome To" speed={50} />
+          </p> 
+          <h1 className="text-8xl font-semibold text-white tracking-tight flex gap-2">
+            <span className={quicksand.className}>
+              <DecryptedText text="ELSHA'S" speed={90} />
+            </span>
 
-        <div className="space-y-3 pt-6 font-mono text-sm">
-          <p className="text-slate-500">
-            {"// "}
-            <span className="text-slate-400">Explore my work and connect with me</span>
+            <span className={caveat.className}>
+              <DecryptedText text="Portfolio" speed={90} />
+            </span>
+          </h1>
+
+          <p className={`text-2xl text-slate-400 ${quicksand.className}`}>
+            {">"} Software Engineer
           </p>
-          <div className="text-green-400">
-            <span className="text-red-400">const</span> portfolio = {`{'{}'}`}
-            <span className="block pl-4">{`website: 'https://elshaamalia.com',`}</span>
-            <span className="block pl-4">{`github: 'https://github.com/elshaamalia',`}</span>
-            <span className="block pl-4">{`linkedin: 'https://linkedin.com/in/elshaamalia'`}</span>
-            {`{'}'}`}
-          </div>
         </div>
 
         <div className="pt-12">
-          <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded text-white font-semibel transition">
+          <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded text-white font-semibold transition">
             View My Work
           </button>
         </div>

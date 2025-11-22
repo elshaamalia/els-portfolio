@@ -17,7 +17,7 @@ export default function StatusBar() {
   }, [])
 
   return (
-    <div className="bg-slate-900 border-t border-slate-800 px-8 py-3 flex items-center justify-between font-mono text-sm text-slate-400">
+    <div className="bg-black border-t border-slate-800 px-8 py-3 flex items-center justify-between font-mono text-sm text-slate-400">
       <div className="flex items-center gap-4">
         <span className="text-blue-400">▶</span>
         <span>main</span>

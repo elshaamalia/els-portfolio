@@ -28,7 +28,7 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
               onClick={() => onPageChange(item.id)}
               className={`p-3 rounded transition ${
                 currentPage === item.id
-                  ? "bg-blue-500 text-white"
+                  ? "bg-slate-800/50 text-white"
                   : "text-slate-400 hover:text-white hover:bg-slate-800/50"
               }`}
               title={item.label}
