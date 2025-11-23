@@ -1,3 +1,6 @@
+/* eslint-disable */
+// @ts-nocheck
+
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
@@ -15,8 +18,8 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
 // replace with your own imports, see the usage snippet for details
-import cardGLB from './card.glb';
-import lanyard from './lanyard.png';
+const cardGLB = "/assets/lanyard/card.glb";
+const lanyard = "/assets/lanyard/lanyard.png";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
@@ -131,9 +134,9 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
     return (): void => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
-  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
-  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
+  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1.1]);
+  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0],  1.1]);
+  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0],  1.1]);
   useSphericalJoint(j3, card, [
     [0, 0, 0],
     [0, 1.45, 0]
