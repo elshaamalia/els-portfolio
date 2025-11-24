@@ -37,7 +37,7 @@ export default function HomePage() {
       <div className="max-w-4xl space-y-6 relative z-10">
         <div className="space-y-4">
           <p className={`text-slate-400 text-2xl ${quicksand.className}`}>
-            <TypingText text="Welcome To" speed={50} />
+            <TypingText text="Hello, Welcome To" speed={50} />
           </p> 
           <h1 className="text-8xl font-semibold text-white tracking-tight flex gap-2">
             <span className={quicksand.className}>
@@ -45,7 +45,7 @@ export default function HomePage() {
             </span>
 
             <span className={caveat.className}>
-              <DecryptedText text="Portfolio" speed={90} />
+              <DecryptedText text=" Portfolio" speed={90} />
             </span>
           </h1>
 

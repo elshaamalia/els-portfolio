@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import HomePage from '@/components/pages/home-page'
+import AboutPage from '@/components/pages/about'  // Tambahkan import ini
 import Sidebar from '@/components/sidebar'
 import SocialSidebar from '@/components/social-sidebar'
 import StatusBar from '@/components/status-bar'
@@ -20,7 +21,10 @@ export default function Page() {
           onPageChange={setCurrentPage} 
         />
         <main className="flex-1 overflow-y-auto">
-          <HomePage />
+          {/* Render halaman sesuai state currentPage */}
+          {currentPage === 'home' && <HomePage />}
+          {currentPage === 'about' && <AboutPage />}
+          {/* Tambahkan halaman lainnya di sini */}
         </main>
         <SocialSidebar />
       </div>

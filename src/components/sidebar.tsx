@@ -1,5 +1,5 @@
 "use client"
-import { Home, User, Briefcase, ImageIcon, Send } from "lucide-react"
+import { Home, User, Briefcase, ImageIcon} from "lucide-react"
 
 interface SidebarProps {
   currentPage: string
@@ -12,7 +12,6 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
     { id: "about", icon: User, label: "About" },
     { id: "projects", icon: Briefcase, label: "Projects" },
     { id: "activity", icon: ImageIcon, label: "Activity" },
-    { id: "contact", icon: Send, label: "Contact" },
   ]
 
   return (
@@ -33,7 +32,7 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
               }`}
               title={item.label}
             >
-              <Icon size={32} />
+              <Icon size={30} />
             </button>
           )
         })}

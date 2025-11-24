@@ -54,7 +54,7 @@ export default function SocialSidebar() {
               className={`p-3 rounded transition text-slate-400 ${item.color}`}
               title={item.label}
             >
-              <Icon size={32} />
+              <Icon size={30} />
             </a>
           )
         })}
