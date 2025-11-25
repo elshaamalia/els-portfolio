@@ -1,88 +1,59 @@
-'use client'
+"use client"
 
-import { useState } from 'react'
+import TypingText from "@/components/animations/typing-text"
+import { Quicksand, Caveat } from "next/font/google"
+import DecryptedText from "../animations/DecryptedText"
+import Lanyard from "../Lanyard"
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  weight: ['400', '700']
+})
+
+const quicksand = Quicksand({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700']
+})
 
 export default function AboutPage() {
-  const [activeTab, setActiveTab] = useState('personal')
-
   return (
-    <div className="max-w-4xl mx-auto grid grid-cols-3 gap-8 bg-black">
-      {/* Sidebar Menu */}
-      <div className="col-span-1 space-y-2">
-        <h3 className="text-white font-bold mb-4">About Me</h3>
-        <button
-          onClick={() => setActiveTab('personal')}
-          className={`block w-full text-left px-4 py-2 rounded font-mono text-sm transition ${
-            activeTab === 'personal'
-              ? 'bg-blue-600 text-white'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
-        >
-          👤 personal.js
-        </button>
-        <button
-          onClick={() => setActiveTab('tech')}
-          className={`block w-full text-left px-4 py-2 rounded font-mono text-sm transition ${
-            activeTab === 'tech'
-              ? 'bg-blue-600 text-white'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
-        >
-          ⚙️ tech-stack.js
-        </button>
+    <div className="relative flex items-center justify-between h-full w-full pl-60 pr-20 bg-black overflow-hidden">
+      {/* Particles fullscreen background - FIXED dan SELALU AKTIF */}
+      <div className="fixed inset-0 w-screen h-screen z-0">
       </div>
 
-      {/* Content */}
-      <div className="col-span-2 font-mono text-sm space-y-4">
-        {activeTab === 'personal' && (
-          <>
-            <div>
-              <span className="text-red-400">const</span> <span className="text-cyan-400">NAME</span> = <span className="text-green-400">&apos;Elsha Amalia&apos;</span>
-            </div>
-            <div>
-              <span className="text-red-400">let</span> <span className="text-cyan-400">location</span> = <span className="text-green-400">&apos;Indonesia&apos;</span>
-            </div>
-            <div>
-              <span className="text-red-400">let</span> <span className="text-cyan-400">hobbies</span> = [
-              <div className="pl-4">
-                <span className="text-green-400">&apos;Coding&apos;</span>,<br/>
-                <span className="text-green-400">&apos;Reading Tech Articles&apos;</span>,<br/>
-                <span className="text-green-400">&apos;Contributing to Open Source&apos;</span>,<br/>
-                <span className="text-green-400">&apos;Coffee & Development&apos;</span>
-              </div>
-              ]
-            </div>
-            <div>
-              <span className="text-red-400">let</span> <span className="text-cyan-400">status</span> = <span className="text-green-400">&apos;Available for freelance projects&apos;</span>
-            </div>
-          </>
-        )}
+      {/* Konten kiri - Text Content */}
+      <div className="max-w-4xl space-y-6 relative z-10">
+        <div className="space-y-4">
+          <p className={`text-slate-400 text-2xl tracking-wide ${quicksand.className}`}>
+            <TypingText text="ABOUT ME" speed={50} />
+          </p> 
+          <h1 className="text-8xl font-semibold text-white tracking-tight flex gap-2">
+            <span className={quicksand.className}>
+              <DecryptedText text="" speed={90} />
+            </span>
 
-        {activeTab === 'tech' && (
-          <>
-            <div className="text-slate-500">
-              {'//'} <span>Skills Information</span>
-            </div>
-            <div className="text-slate-500">
-              {'//'} <span>Most important skills</span>
-            </div>
-            <div>
-              <span className="text-red-400">let</span> <span className="text-cyan-400">languages</span> = [<span className="text-green-400">&apos;JavaScript&apos;, &apos;TypeScript&apos;, &apos;PHP&apos;, &apos;Python&apos;</span>]
-            </div>
-            <div>
-              <span className="text-red-400">let</span> <span className="text-cyan-400">frontend</span> = [<span className="text-green-400">&apos;React&apos;, &apos;Next.js&apos;, &apos;Tailwind CSS&apos;, &apos;Vue.js&apos;</span>]
-            </div>
-            <div>
-              <span className="text-red-400">let</span> <span className="text-cyan-400">backend</span> = [<span className="text-green-400">&apos;Node.js&apos;, &apos;Laravel&apos;, &apos;Express&apos;</span>]
-            </div>
-            <div>
-              <span className="text-red-400">let</span> <span className="text-cyan-400">databases</span> = [<span className="text-green-400">&apos;PostgreSQL&apos;, &apos;MongoDB&apos;, &apos;MySQL&apos;</span>]
-            </div>
-            <div>
-              <span className="text-red-400">let</span> <span className="text-cyan-400">tools</span> = [<span className="text-green-400">&apos;Git&apos;, &apos;Docker&apos;, &apos;AWS&apos;, &apos;Vercel&apos;</span>]
-            </div>
-          </>
-        )}
+            <span className={caveat.className}>
+              <DecryptedText text=" Software Engineer" speed={90} />
+            </span>
+          </h1>
+
+          <p className={`text-2xl text-slate-400 ${quicksand.className}`}>
+            {">"}
+          </p>
+        </div>
+      </div>
+
+      {/* Konten kanan - Lanyard Component*/}
+      <div className="absolute right -translate-y-1/2 z-50 w-full h-[600px] pl-90 pointer-events-none">
+        <div className="pointer-events-auto">
+          <Lanyard 
+            position={[0, 0, 18]}
+            gravity={[0, -40, 0]}
+            fov={20}
+            transparent={true}
+          />
+        </div>
       </div>
     </div>
   )
