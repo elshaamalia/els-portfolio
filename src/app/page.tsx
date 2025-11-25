@@ -5,7 +5,7 @@ import HomePage from '@/components/pages/home-page'
 import AboutPage from '@/components/pages/about'  // Tambahkan import ini
 import Sidebar from '@/components/sidebar'
 import SocialSidebar from '@/components/social-sidebar'
-import StatusBar from '@/components/status-bar'
+// import StatusBar from '@/components/status-bar'
 import SplashCursor from '@/components/animations/SplashCursor'
 
 
@@ -28,7 +28,7 @@ export default function Page() {
         </main>
         <SocialSidebar />
       </div>
-      <StatusBar />
+      {/* <StatusBar /> */}
     </div>
   )
 }
