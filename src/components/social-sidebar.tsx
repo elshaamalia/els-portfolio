@@ -7,14 +7,14 @@ export default function SocialSidebar() {
       id: "linkedin",
       icon: Linkedin,
       label: "LinkedIn",
-      url: "https://linkedin.com/in/elshaammalia",
+      url: "https://linkedin.com/in/elshaamalia",
       color: "hover:text-blue-600",
     },
     {
       id: "github",
       icon: Github,
       label: "GitHub",
-      url: "https://github.com/elshaammalia",
+      url: "https://github.com/elshaamalia",
       color: "hover:text-gray-400",
     },
     {
@@ -28,14 +28,14 @@ export default function SocialSidebar() {
       id: "instagram",
       icon: Instagram,
       label: "Instagram",
-      url: "https://instagram.com/elshaammalia",
+      url: "https://instagram.com/abcdelsssss",
       color: "hover:text-pink-500",
     },
     {
       id: "email",
       icon: Mail,
       label: "Email",
-      url: "mailto:elsha.amalia@email.com",
+      url: "mailto:elshaaml14@gmail.com",
       color: "hover:text-red-500",
     },
   ]

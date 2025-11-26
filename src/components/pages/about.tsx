@@ -1,19 +1,14 @@
 "use client"
 
 import TypingText from "@/components/animations/typing-text"
-import { Quicksand, Caveat } from "next/font/google"
-import DecryptedText from "../animations/DecryptedText"
+import { Montserrat } from "next/font/google"
 import Lanyard from "../Lanyard"
 
-const caveat = Caveat({
+const montserrat = Montserrat({
   subsets: ['latin'],
-  weight: ['400', '700']
-})
+  weight: ['400', '500', '600', '700', '800', '900']
+})  
 
-const quicksand = Quicksand({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700']
-})
 
 export default function AboutPage() {
   return (
@@ -25,22 +20,28 @@ export default function AboutPage() {
       {/* Konten kiri - Text Content */}
       <div className="max-w-4xl space-y-6 relative z-10">
         <div className="space-y-4">
-          <p className={`text-slate-400 text-2xl tracking-wide ${quicksand.className}`}>
-            <TypingText text="ABOUT ME" speed={50} />
-          </p> 
-          <h1 className="text-8xl font-semibold text-white tracking-tight flex gap-2">
-            <span className={quicksand.className}>
-              <DecryptedText text="" speed={90} />
-            </span>
+          <h1 className={`text-white text-9xl font-black tracking-wide ${montserrat.className}`}>
+            <TypingText text="PROFILE" speed={50} />
+          </h1> 
+          <div className="space-y-6 mt-10">
+            {/* Kalimat kecil */}
+            <p className={`text-slate-300 text-lg leading-relaxed ${montserrat.className}`}>
+              My name is Elsha Amalia Pusponegoro, and i&apos;m a Software Engineer.
+            </p>
 
-            <span className={caveat.className}>
-              <DecryptedText text=" Software Engineer" speed={90} />
-            </span>
-          </h1>
+            {/* Paragraf biru besar */}
+            <h2 className={`text-sky-400 text-3xl font-light leading-snug ${montserrat.className}`}>
+              I blend artwork with cutting-edge technology, <br />
+              designing immersive visual and functional user <br />
+              interfaces and experiences
+            </h2>
 
-          <p className={`text-2xl text-slate-400 ${quicksand.className}`}>
-            {">"}
-          </p>
+            {/* Paragraf bawah */}
+            <p className={`text-slate-300 text-base leading-relaxed max-w-2xl ${montserrat.className}`}>
+              With over five years of experience in programming, I specialize in frontend development,
+              creating dynamic and responsive web and mobile applications.
+            </p>
+          </div>
         </div>
       </div>
 

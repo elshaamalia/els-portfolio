@@ -10,7 +10,7 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
   const navItems = [
     { id: "home", icon: Home, label: "Home" },
     { id: "about", icon: User, label: "About" },
-    { id: "projects", icon: Briefcase, label: "Projects" },
+    { id: "project", icon: Briefcase, label: "Project" },
     { id: "activity", icon: ImageIcon, label: "Activity" },
   ]
 

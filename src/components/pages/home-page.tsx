@@ -16,7 +16,7 @@ export default function HomePage() {
       <div className="fixed inset-0 w-screen h-screen z-0">
         <Particles
           particleColors={["#d1d1d1", "#410235"]}
-          particleCount={200}
+          particleCount={300}
           particleSpread={10}
           speed={0.1}
           particleBaseSize={70}
@@ -32,7 +32,7 @@ export default function HomePage() {
           <p className={`text-slate-300 text-2xl tracking-[0.3em] text-left pl-3 ${quicksand.className}`}>HELLO! WELCOME TO</p>
 
           <h1
-            className="text-[230px] font-extrabold bg-clip-text tracking-tight leading-none -mt-4 "
+            className="text-[220px] font-black bg-clip-text tracking-tight leading-none -mt-4 "
             style={{
               backgroundImage: "url('/assets/cl.jpg')",
               backgroundSize: "cover",
