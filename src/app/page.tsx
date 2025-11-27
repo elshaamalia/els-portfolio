@@ -4,6 +4,7 @@ import { useState } from 'react'
 import HomePage from '@/components/pages/home-page'
 import AboutPage from '@/components/pages/about' 
 import ProjectPage from '@/components/pages/project'  
+import ActivityPage from '@/components/pages/activity'
 import Sidebar from '@/components/sidebar'
 import SocialSidebar from '@/components/social-sidebar'
 // import StatusBar from '@/components/status-bar'
@@ -26,6 +27,7 @@ export default function Page() {
           {currentPage === 'home' && <HomePage />}
           {currentPage === 'about' && <AboutPage />}
           {currentPage === 'project' && <ProjectPage />}
+          {currentPage === 'activity' && <ActivityPage />}
 
           {/* Tambahkan halaman lainnya di sini */}
         </main>
