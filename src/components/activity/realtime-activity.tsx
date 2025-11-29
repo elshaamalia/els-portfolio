@@ -1,6 +1,3 @@
-// Updated components to match screenshot UI
-// Includes WeeklyActivity and CodingLanguages sections
-
 import React from "react";
 
 interface WeeklyData {
@@ -44,7 +41,7 @@ export default function ActivityComponents() {
             <div key={idx} className="flex items-center gap-4 w-full">
               <p className="w-40 text-sm text-gray-300 whitespace-nowrap">{item.day}</p>
 
-              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full overflow-hidden w-full">
+              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full w-full">
                 <div
                   className="h-full rounded-full"
                   style={{ width: `${item.percent}%`, background: "linear-gradient(90deg,#00c6ff,#0072ff)" }}
@@ -65,7 +62,7 @@ export default function ActivityComponents() {
             <div key={idx} className="flex items-center gap-4 w-full">
               <span className="w-40 text-sm text-gray-300">{lang.name}</span>
 
-              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full overflow-hidden">
+              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full ">
                 <div
                   className="h-full rounded-full"
                   style={{ width: `${lang.percent}%`, backgroundColor: lang.color }}
