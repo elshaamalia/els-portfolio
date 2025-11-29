@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import TypingText from "@/components/animations/typing-text"
 import { Montserrat } from "next/font/google"
 import RealtimeActivityFeed from "@/components/activity/realtime-activity"
@@ -11,18 +10,6 @@ const montserrat = Montserrat({
 })
 
 export default function ActivityPage() {
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    // Gunakan setTimeout. Ini memindahkan update state ke antrian berikutnya (event loop).
-    // delay 500ms (0.5 detik) biar Skeleton Loading-nya sempat kelihatan estetik.
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 500)
-
-    // Cleanup timer kalau component di-unmount (good practice)
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <div className="relative w-full h-screen bg-black overflow-hidden flex flex-col justify-center">
@@ -46,15 +33,7 @@ export default function ActivityPage() {
         <div className="px-20">
           {/* Realtime Activity Feed */}
           <div className="bg-black border border-border rounded-lg p-8">
-            {isLoading ? (
-              <div className="space-y-4">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-16 bg-muted rounded animate-pulse" />
-                ))}
-              </div>
-            ) : (
               <RealtimeActivityFeed />
-            )}
           </div>
         </div>
       </div>

@@ -41,8 +41,8 @@ export default function SocialSidebar() {
   ]
 
   return (
-    <aside className="w-64 backdrop-blur-md bg-black border-l border-slate-700/50 flex flex-col items-center py-8 gap-6 relative z-20">
-      <nav className="flex-1 flex flex-col gap-6 justify-center items-start pl-12 w-full">
+    <aside className="w-60 backdrop-blur-md bg-black border-l border-slate-700/50 flex flex-col items-center py-8 gap-6 relative z-20">
+      <nav className="flex-1 flex flex-col gap-6 justify-center items-center w-full">
         {socialLinks.map((item) => {
           const Icon = item.icon
           return (
@@ -54,7 +54,7 @@ export default function SocialSidebar() {
               className={`p-3 rounded transition text-slate-400 ${item.color}`}
               title={item.label}
             >
-              <Icon size={30} />
+              <Icon size={24} />
             </a>
           )
         })}

@@ -13,22 +13,16 @@ export default function ProjectPage() {
   return (
     <div className="relative w-full min-h-screen bg-black overflow-hidden">
       {/* Background gradient overlay */}
-      <div className="fixed inset-0 w-screen h-screen bg-linear-to-b from-black via-black to-black z-0" />
+      <div className="fixed inset-0 w-full h-screen bg-linear-to-b from-black via-black to-black z-0" />
 
-      {/* Main container */}
-      <div className="relative z-10 w-full">
+      {/* Main Container */}
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto">
+        
         {/* Header Section */}
-        <div className="pt-28 px-20">
-          {/* Top subtitle - Japanese and English
-          <div className="text-center mb-12 space-y-2">
-            <p className={`text-blue-400 text-sm tracking-widest font-medium ${montserrat.className}`}>オーバビュー</p>
-            <p className={`text-slate-500 text-xs tracking-widest ${montserrat.className}`}>
-              LIST OF FEATURED PORTFOLIO
-            </p>
-          </div> */}
-
+        <div className="pt-28 px-10 md:px-20">
+          
           {/* Main title */}
-          <div className="text-right  mb-14">
+          <div className="text-right mb-14">
             <p className={`text-slate-400 text-lg tracking-widest leading-relaxed ${montserrat.className}`}>
               FEATURED WORKS
             </p>
@@ -39,7 +33,7 @@ export default function ProjectPage() {
         </div>
 
         {/* Projects Grid Section */}
-        <div className="px-20 pb-20">
+        <div className="px-10 md:px-20 pb-20">
           {/* Featured Project Card */}
           <div className="relative bg-cover bg-center rounded-lg overflow-hidden h-[600px] border border-slate-800">
             {/* Background Image */}
@@ -57,11 +51,11 @@ export default function ProjectPage() {
             {/* Content Container */}
             <div className="relative h-full flex items-center z-10">
               {/* Left Content */}
-              <div className="w-1/2 px-16 space-y-8">
+              <div className="w-1/2 px-12 md:px-16 space-y-8">
                 {/* Project Title */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-2">
-                    <h2 className={`text-white text-4xl font-black tracking-tight ${montserrat.className}`}>
+                    <h2 className={`text-white text-3xl md:text-4xl font-black tracking-tight ${montserrat.className}`}>
                       PT GIKEN PRECISION INDONESIA
                     </h2>
                     <span className="text-blue-400 text-2xl">↗</span>
@@ -74,7 +68,7 @@ export default function ProjectPage() {
                 {/* Role */}
                 <div>
                   <p className={`text-slate-500 text-xs tracking-widest mb-3 ${montserrat.className}`}>FULLSTACK</p>
-                  <h3 className={`text-white text-3xl font-bold leading-tight ${montserrat.className}`}>
+                  <h3 className={`text-white text-2xl md:text-3xl font-bold leading-tight ${montserrat.className}`}>
                     MONITORING SYSTEM
                     <br />
                     CYCLE TIME REALTIME
@@ -98,7 +92,7 @@ export default function ProjectPage() {
               </div>
 
               {/* Right Content - Website Mockup */}
-              <div className="w-1/2 pr-16 h-full flex items-center justify-center">
+              <div className="w-1/2 pr-12 md:pr-16 h-full flex items-center justify-center">
                 <div className="relative w-full max-w-sm h-[450px] bg-black border border-slate-700 rounded overflow-hidden shadow-2xl">
                   {/* Website mockup image */}
                   <Image
