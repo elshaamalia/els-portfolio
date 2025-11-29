@@ -1,107 +1,83 @@
-"use client"
+// Updated components to match screenshot UI
+// Includes WeeklyActivity and CodingLanguages sections
 
-import { useEffect, useState } from "react"
+import React from "react";
 
-interface Activity {
-  id: string
-  type: string
-  repo: string
-  message: string
-  timestamp: string
-  actor: string
+interface WeeklyData {
+  day: string;
+  duration: string;
+  percent: number;
 }
 
-const RealtimeActivityFeed = () => {
-  const [activities, setActivities] = useState<Activity[]>([])
-  const [loading, setLoading] = useState(true)
+const weekly: WeeklyData[] = [
+  { day: "Tue Nov 18th 2025", duration: "2h 55m", percent: 90 },
+  { day: "Mon Nov 17th 2025", duration: "1h 33m", percent: 55 },
+  { day: "Sun Nov 16th 2025", duration: "0h 10m", percent: 5 },
+  { day: "Sat Nov 15th 2025", duration: "2h 42m", percent: 80 },
+  { day: "Fri Nov 14th 2025", duration: "4h 50m", percent: 100 },
+  { day: "Thu Nov 13th 2025", duration: "4h 23m", percent: 95 },
+  { day: "Wed Nov 12th 2025", duration: "3h 36m", percent: 70 },
+];
 
-  useEffect(() => {
-    const fetchActivities = async () => {
-      try {
-        const response = await fetch("/api/github/activities")
-        const data = await response.json()
-        setActivities(data)
-      } catch (error) {
-        console.error("Error fetching activities:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
+interface LanguageData {
+  name: string;
+  percent: number;
+  color: string;
+}
 
-    fetchActivities()
+const languages: LanguageData[] = [
+  { name: "TypeScript", percent: 41.25, color: "#c850c0" },
+  { name: "PHP", percent: 29.12, color: "#8a56e2" },
+  { name: "Python", percent: 22.07, color: "#4c8ed9" },
+  { name: "SQL", percent: 2.72, color: "#677588" },
+  { name: "YAML", percent: 2.61, color: "#677588" },
+];
 
-    // Poll every 30 seconds for realtime updates
-    const interval = setInterval(fetchActivities, 30 * 1000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  const getActivityIcon = (type: string) => {
-    switch (type) {
-      case "PushEvent":
-        return "↗"
-      case "PullRequestEvent":
-        return "⎇"
-      case "CreateEvent":
-        return "+"
-      case "IssuesEvent":
-        return "!"
-      default:
-        return "•"
-    }
-  }
-
-  const getActivityColor = (type: string) => {
-    switch (type) {
-      case "PushEvent":
-        return "text-blue-500"
-      case "PullRequestEvent":
-        return "text-purple-500"
-      case "CreateEvent":
-        return "text-green-500"
-      case "IssuesEvent":
-        return "text-orange-500"
-      default:
-        return "text-gray-500"
-    }
-  }
-
-  if (loading) {
-    return (
-      <div className="space-y-4">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="h-16 bg-muted rounded animate-pulse" />
-        ))}
-      </div>
-    )
-  }
-
+export default function ActivityComponents() {
   return (
-    <div className="space-y-4">
-      {activities.length === 0 ? (
-        <p className="text-muted-foreground text-center py-8">No recent activities</p>
-      ) : (
-        activities.map((activity) => (
-          <div
-            key={activity.id}
-            className="flex items-start gap-4 p-4 bg-muted rounded-lg hover:bg-accent transition-colors"
-          >
-            <div className={`text-2xl ${getActivityColor(activity.type)} flex-shrink-0`}>
-              {getActivityIcon(activity.type)}
+    <div className="space-y-12 text-white bg-black p-6 w-full mx-auto rounded-lg">
+      {/* Weekly Activity */}
+      <div>
+        <h2 className="text-3xl font-bold mb-6">Weekly Activity</h2>
+        <div className="space-y-2">
+          {weekly.map((item, idx) => (
+            <div key={idx} className="flex items-center gap-4 w-full">
+              <p className="w-40 text-sm text-gray-300 whitespace-nowrap">{item.day}</p>
+
+              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full overflow-hidden w-full">
+                <div
+                  className="h-full rounded-full"
+                  style={{ width: `${item.percent}%`, background: "linear-gradient(90deg,#00c6ff,#0072ff)" }}
+                />
+              </div>
+
+              <p className="w-14 text-right text-sm text-gray-300 whitespace-nowrap">{item.duration}</p>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-foreground font-medium truncate">
-                {activity.actor} <span className="text-muted-foreground">{activity.type}</span>
-              </p>
-              <p className="text-muted-foreground text-sm truncate">{activity.repo}</p>
-              <p className="text-muted-foreground text-xs mt-1">{activity.message}</p>
+          ))}
+        </div>
+      </div>
+
+      {/* Coding Languages */}
+      <div>
+        <h2 className="text-3xl font-bold mb-6">Coding Languages</h2>
+        <div className="space-y-2 w-full">
+          {languages.map((lang, idx) => (
+            <div key={idx} className="flex items-center gap-4 w-full">
+              <span className="w-40 text-sm text-gray-300">{lang.name}</span>
+
+              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full overflow-hidden">
+                <div
+                  className="h-full rounded-full"
+                  style={{ width: `${lang.percent}%`, backgroundColor: lang.color }}
+                />
+              </div>
+
+              <span className="w-14 text-right text-sm text-gray-300">{lang.percent}%</span>
             </div>
-            <div className="text-muted-foreground text-xs flex-shrink-0 whitespace-nowrap">{activity.timestamp}</div>
-          </div>
-        ))
-      )}
+          ))}
+        </div>
+      </div>
+      
     </div>
   )
 }
-
-export default RealtimeActivityFeed
