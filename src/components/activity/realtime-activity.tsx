@@ -39,7 +39,7 @@ export default function ActivityComponents() {
         <div className="space-y-2">
           {weekly.map((item, idx) => (
             <div key={idx} className="flex items-center gap-4 w-full">
-              <p className="w-40 text-sm text-gray-300 whitespace-nowrap">{item.day}</p>
+              <p className="w-40 text-m text-gray-300 whitespace-nowrap">{item.day}</p>
 
               <div className="flex-1 bg-[#2c2f36] h-2 rounded-full w-full">
                 <div
@@ -48,7 +48,7 @@ export default function ActivityComponents() {
                 />
               </div>
 
-              <p className="w-14 text-right text-sm text-gray-300 whitespace-nowrap">{item.duration}</p>
+              <p className="w-14 text-right text-m text-gray-300 whitespace-nowrap">{item.duration}</p>
             </div>
           ))}
         </div>
@@ -60,7 +60,7 @@ export default function ActivityComponents() {
         <div className="space-y-2 w-full">
           {languages.map((lang, idx) => (
             <div key={idx} className="flex items-center gap-4 w-full">
-              <span className="w-40 text-sm text-gray-300">{lang.name}</span>
+              <span className="w-40 text-m text-gray-300">{lang.name}</span>
 
               <div className="flex-1 bg-[#2c2f36] h-2 rounded-full ">
                 <div
@@ -69,7 +69,7 @@ export default function ActivityComponents() {
                 />
               </div>
 
-              <span className="w-14 text-right text-sm text-gray-300">{lang.percent}%</span>
+              <span className="w-14 text-right text-m text-gray-300">{lang.percent}%</span>
             </div>
           ))}
         </div>

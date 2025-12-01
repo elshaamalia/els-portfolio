@@ -17,7 +17,7 @@ export default function ActivityPage() {
       {/* Main container */}
       <div className="relative z-10 w-full">
         {/* Header Section */}
-        <div className="px-20 mb-10">
+        <div className="px-24 mb-10">
           {/* Main title */}
           <div className="text-right text-white">
             <p className={`text-lg tracking-widest leading-relaxed ${montserrat.className}`}>
@@ -30,9 +30,9 @@ export default function ActivityPage() {
         </div>
 
         {/* Content Grid */}
-        <div className="px-20">
+        <div className="px-24">
           {/* Realtime Activity Feed */}
-          <div className="bg-black border border-border rounded-lg p-8">
+          <div className="bg-black border border-neutral-800 rounded-lg p-8">
               <RealtimeActivityFeed />
           </div>
         </div>
