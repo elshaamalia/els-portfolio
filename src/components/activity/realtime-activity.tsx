@@ -1,80 +1,138 @@
-import React from "react";
+"use client"
+
+import { useEffect, useState } from "react"
+
+// ======================
+// TYPE DEFINITIONS
+// ======================
 
 interface WeeklyData {
-  day: string;
-  duration: string;
-  percent: number;
+  day: string
+  duration: string
+  percent: number
 }
-
-const weekly: WeeklyData[] = [
-  { day: "Tue Nov 18th 2025", duration: "2h 55m", percent: 90 },
-  { day: "Mon Nov 17th 2025", duration: "1h 33m", percent: 55 },
-  { day: "Sun Nov 16th 2025", duration: "0h 10m", percent: 5 },
-  { day: "Sat Nov 15th 2025", duration: "2h 42m", percent: 80 },
-  { day: "Fri Nov 14th 2025", duration: "4h 50m", percent: 100 },
-  { day: "Thu Nov 13th 2025", duration: "4h 23m", percent: 95 },
-  { day: "Wed Nov 12th 2025", duration: "3h 36m", percent: 70 },
-];
 
 interface LanguageData {
-  name: string;
-  percent: number;
-  color: string;
+  name: string
+  percent: number
+  color: string
 }
 
-const languages: LanguageData[] = [
-  { name: "TypeScript", percent: 41.25, color: "#c850c0" },
-  { name: "PHP", percent: 29.12, color: "#8a56e2" },
-  { name: "Python", percent: 22.07, color: "#4c8ed9" },
-  { name: "SQL", percent: 2.72, color: "#677588" },
-  { name: "YAML", percent: 2.61, color: "#677588" },
-];
+interface WakaDay {
+  range: { date: string }
+  grand_total: {
+    text: string
+    total_seconds: number
+  }
+  languages: {
+    name: string
+    percent: number
+  }[]
+}
 
 export default function ActivityComponents() {
+  const [weekly, setWeekly] = useState<WeeklyData[]>([])
+  const [languages, setLanguages] = useState<LanguageData[]>([])
+
+  const fetchData = async () => {
+    const res = await fetch("/api/waka")
+    const json = await res.json()
+
+    const days: WakaDay[] = json.data || []
+
+    // ======================
+    // WEEKLY ACTIVITY
+    // ======================
+    const weeklyData: WeeklyData[] = days.map((day: WakaDay) => ({
+      day: new Date(day.range.date).toDateString(),
+      duration: day.grand_total.text,
+      percent: Math.min(100, (day.grand_total.total_seconds / 18000) * 100),
+    }))
+
+    // ======================
+    // LANGUAGES (FROM LAST DAY)
+    // ======================
+    const langData: LanguageData[] =
+      (days[days.length - 1]?.languages || []).map((l) => ({
+        name: l.name,
+        percent: l.percent,
+        color: "#0072ff",
+      }))
+
+    // SAFE STATE SET (tidak cascading)
+    setWeekly(weeklyData)
+    setLanguages(langData)
+  }
+
+  useEffect(() => {
+  // bikin wrapper async
+  const load = async () => {
+    await fetchData()
+  }
+
+  load()
+
+  const interval = setInterval(fetchData, 10000)
+  return () => clearInterval(interval)
+}, [])
+
   return (
     <div className="space-y-12 text-white bg-black p-6 w-full mx-auto rounded-lg">
-      {/* Weekly Activity */}
+
+      {/* WEEKLY ACTIVITY */}
       <div>
         <h2 className="text-3xl font-bold mb-6">Weekly Activity</h2>
+
         <div className="space-y-2">
           {weekly.map((item, idx) => (
             <div key={idx} className="flex items-center gap-4 w-full">
               <p className="w-40 text-m text-gray-300 whitespace-nowrap">{item.day}</p>
 
-              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full w-full">
+              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full">
                 <div
                   className="h-full rounded-full"
-                  style={{ width: `${item.percent}%`, background: "linear-gradient(90deg,#00c6ff,#0072ff)" }}
+                  style={{
+                    width: `${item.percent}%`,
+                    background: "linear-gradient(90deg,#00c6ff,#0072ff)",
+                  }}
                 />
               </div>
 
-              <p className="w-14 text-right text-m text-gray-300 whitespace-nowrap">{item.duration}</p>
+              <p className="w-14 text-right text-m text-gray-300 whitespace-nowrap">
+                {item.duration}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Coding Languages */}
+      {/* LANGUAGES */}
       <div>
         <h2 className="text-3xl font-bold mb-6">Coding Languages</h2>
+
         <div className="space-y-2 w-full">
           {languages.map((lang, idx) => (
             <div key={idx} className="flex items-center gap-4 w-full">
               <span className="w-40 text-m text-gray-300">{lang.name}</span>
 
-              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full ">
+              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full">
                 <div
                   className="h-full rounded-full"
-                  style={{ width: `${lang.percent}%`, backgroundColor: lang.color }}
+                  style={{
+                    width: `${lang.percent}%`,
+                    backgroundColor: lang.color,
+                  }}
                 />
               </div>
 
-              <span className="w-14 text-right text-m text-gray-300">{lang.percent}%</span>
+              <span className="w-14 text-right text-m text-gray-300">
+                {lang.percent.toFixed(1)}%
+              </span>
             </div>
           ))}
         </div>
       </div>
-      
+
     </div>
   )
 }
