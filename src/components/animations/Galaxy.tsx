@@ -187,6 +187,7 @@ interface GalaxyProps {
   rotationSpeed?: number;
   repulsionStrength?: number;
   autoCenterRepulsion?: number;
+  animationspeed?: number;
   transparent?: boolean;
 }
 

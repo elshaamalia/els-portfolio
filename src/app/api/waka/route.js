@@ -14,3 +14,6 @@ export async function GET() {
 
   return Response.json(data)
 }
+
+console.log("API KEY:", process.env.WAKATIME_API_KEY)
+
