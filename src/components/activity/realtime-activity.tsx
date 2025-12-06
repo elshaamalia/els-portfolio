@@ -1,10 +1,15 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { Montserrat } from "next/font/google"
 
 // ======================
 // TYPE DEFINITIONS
 // ======================
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+})
 
 interface WeeklyData {
   day: string
@@ -33,106 +38,133 @@ interface WakaDay {
 export default function ActivityComponents() {
   const [weekly, setWeekly] = useState<WeeklyData[]>([])
   const [languages, setLanguages] = useState<LanguageData[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchData = async () => {
-    const res = await fetch("/api/waka")
-    const json = await res.json()
+    try {
+      const res = await fetch("/api/waka")
+      const json = await res.json()
 
-    const days: WakaDay[] = json.data || []
+      const days: WakaDay[] = json.data || []
 
-    // ======================
-    // WEEKLY ACTIVITY
-    // ======================
-    const weeklyData: WeeklyData[] = days.map((day: WakaDay) => ({
-      day: new Date(day.range.date).toDateString(),
-      duration: day.grand_total.text,
-      percent: Math.min(100, (day.grand_total.total_seconds / 18000) * 100),
-    }))
-
-    // ======================
-    // LANGUAGES (FROM LAST DAY)
-    // ======================
-    const langData: LanguageData[] =
-      (days[days.length - 1]?.languages || []).map((l) => ({
-        name: l.name,
-        percent: l.percent,
-        color: "#0072ff",
+      // ======================
+      // WEEKLY DATA PROCESSING
+      // ======================
+      const weeklyData: WeeklyData[] = days.map((day: WakaDay) => ({
+        day: new Date(day.range.date).toDateString(),
+        duration: day.grand_total.text,
+        percent: Math.min(100, (day.grand_total.total_seconds / 18000) * 100),
       }))
 
-    // SAFE STATE SET (tidak cascading)
-    setWeekly(weeklyData)
-    setLanguages(langData)
+      // ======================
+      // LANGUAGES DATA PROCESSING
+      // ======================
+      const langData: LanguageData[] =
+        (days[days.length - 1]?.languages || []).map((l) => ({
+          name: l.name,
+          percent: l.percent,
+          color: "#0072ff",
+        }))
+
+      setWeekly(weeklyData)
+      setLanguages(langData)
+    } catch (error) {
+      console.error("Failed to fetch waka data", error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
-  // bikin wrapper async
-  const load = async () => {
-    await fetchData()
-  }
+    fetchData()
+    const interval = setInterval(fetchData, 10000)
+    return () => clearInterval(interval)
+  }, [])
 
-  load()
-
-  const interval = setInterval(fetchData, 10000)
-  return () => clearInterval(interval)
-}, [])
+  // ======================
+  // SKELETON ROW
+  // ======================
+  const SkeletonRow = () => (
+    <div className="flex items-center gap-4  animate-pulse">
+      <div className="w-40 h-6 bg-gray-800 rounded"></div>
+      
+      {/* Bar Line */}
+      <div className="flex-1 bg-gray-800 h-2 rounded-full"></div>
+      
+      {/* Kanan */}
+      <div className="w-14 h-6 bg-gray-800 rounded text-right"></div>
+    </div>
+  )
 
   return (
     <div className="space-y-12 text-white bg-black p-6 w-full mx-auto rounded-lg">
-
-      {/* WEEKLY ACTIVITY */}
+      
+      {/* ======================
+          WEEKLY ACTIVITY 
+      ====================== */}
       <div>
-        <h2 className="text-3xl font-bold mb-6">Weekly Activity</h2>
+        <h2 className={`text-xl font-bold tracking-wider mb-6 ${montserrat.className}`}>WEEKLY ACTIVITY</h2>
 
-        <div className="space-y-2">
-          {weekly.map((item, idx) => (
-            <div key={idx} className="flex items-center gap-4 w-full">
-              <p className="w-40 text-m text-gray-300 whitespace-nowrap">{item.day}</p>
+        <div className="space-y-2"> 
+          {isLoading
+            ? Array.from({ length: 7 }).map((_, idx) => <SkeletonRow key={idx} />)
+            : weekly.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-4 w-full">
+                  {/* Gunakan 'leading-6' agar tinggi text fix 24px (sama dengan skeleton h-6) */}
+                  <p className="w-40 text-sm md:text-base text-gray-300 whitespace-nowrap leading-6">
+                    {item.day}
+                  </p>
 
-              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full">
-                <div
-                  className="h-full rounded-full"
-                  style={{
-                    width: `${item.percent}%`,
-                    background: "linear-gradient(90deg,#00c6ff,#0072ff)",
-                  }}
-                />
-              </div>
+                  <div className="flex-1 bg-[#2c2f36] h-2 rounded-full">
+                    <div
+                      className="h-full rounded-full text-left"
+                      style={{
+                        width: `${item.percent}%`,
+                        background: "linear-gradient(90deg,#00c6ff,#0072ff)",
+                      }}
+                    />
+                  </div>
 
-              <p className="w-14 text-right text-m text-gray-300 whitespace-nowrap">
-                {item.duration}
-              </p>
-            </div>
-          ))}
+                  <p className="w-14 text-left text-sm md:text-base text-gray-300 whitespace-nowrap leading-6">
+                    {item.duration}
+                  </p>
+                </div>
+              ))}
         </div>
       </div>
 
-      {/* LANGUAGES */}
+      {/* ======================
+          CODING LANGUAGES 
+      ====================== */}
       <div>
-        <h2 className="text-3xl font-bold mb-6">Coding Languages</h2>
+        <h2 className={`text-xl font-bold tracking-wider mb-6 ${montserrat.className}`}>LANGUAGES</h2>
 
         <div className="space-y-2 w-full">
-          {languages.map((lang, idx) => (
-            <div key={idx} className="flex items-center gap-4 w-full">
-              <span className="w-40 text-m text-gray-300">{lang.name}</span>
+          {isLoading
+            ? Array.from({ length: 5 }).map((_, idx) => <SkeletonRow key={idx} />)
+            : languages.map((lang, idx) => (
+                <div key={idx} className="flex items-center gap-4 w-full">
+                  <span className="w-40 text-sm md:text-base text-gray-300 leading-6">
+                    {lang.name}
+                  </span>
 
-              <div className="flex-1 bg-[#2c2f36] h-2 rounded-full">
-                <div
-                  className="h-full rounded-full"
-                  style={{
-                    width: `${lang.percent}%`,
-                    backgroundColor: lang.color,
-                  }}
-                />
-              </div>
+                  <div className="flex-1 bg-[#2c2f36] h-2 rounded-full">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${lang.percent}%`,
+                        backgroundColor: lang.color,
+                      }}
+                    />
+                  </div>
 
-              <span className="w-14 text-right text-m text-gray-300">
-                {lang.percent.toFixed(1)}%
-              </span>
-            </div>
-          ))}
+                  <span className="w-14 text-left text-sm md:text-base text-gray-300 leading-6">
+                    {lang.percent.toFixed(1)}%
+                  </span>
+                </div>
+              ))}
         </div>
       </div>
-
     </div>
   )
 }

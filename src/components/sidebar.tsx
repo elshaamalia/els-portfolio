@@ -1,5 +1,5 @@
 "use client"
-import { Home, User, Briefcase, Activity } from "lucide-react"
+import { Home, User, Briefcase, Activity, Rocket } from "lucide-react"
 
 interface SidebarProps {
   currentPage: string
@@ -10,8 +10,9 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
   const navItems = [
     { id: "home", icon: Home, label: "Home" },
     { id: "about", icon: User, label: "About" },
-    { id: "project", icon: Briefcase, label: "Project" },
+    { id: "project", icon: Rocket, label: "Project" },
     { id: "activity", icon: Activity, label: "Activity" },
+    { id: "experience", icon: Briefcase, label: "Experience" },
   ]
 
   return (

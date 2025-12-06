@@ -5,6 +5,7 @@ import HomePage from '@/components/pages/home-page'
 import AboutPage from '@/components/pages/about' 
 import ProjectPage from '@/components/pages/project'  
 import ActivityPage from '@/components/pages/activity'
+import ExperiencePage from '@/components/pages/experience'
 import Sidebar from '@/components/sidebar'
 import SocialSidebar from '@/components/social-sidebar'
 // import StatusBar from '@/components/status-bar'
@@ -28,6 +29,7 @@ export default function Page() {
           {currentPage === 'about' && <AboutPage />}
           {currentPage === 'project' && <ProjectPage />}
           {currentPage === 'activity' && <ActivityPage />}
+          {currentPage === 'experience' && <ExperiencePage />}
 
           {/* Tambahkan halaman lainnya di sini */}
         </main>
