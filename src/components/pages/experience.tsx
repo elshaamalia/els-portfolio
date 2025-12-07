@@ -2,7 +2,7 @@
 
     import TypingText from "@/components/animations/typing-text"
     import { Montserrat } from "next/font/google"
-    import { FaDatabase, FaMicrochip, FaIndustry } from "react-icons/fa"
+    // import { FaDatabase, FaMicrochip, FaIndustry } from "react-icons/fa"
 
     // IMPORT ICON DARI REACT-ICONS
     import { 
@@ -38,14 +38,14 @@
         <div className="fixed inset-0 w-full h-screen bg-linear-to-b from-black via-black to-black z-0" />
         
         {/* Subtle ambient light */}
-        <div className="fixed top-0 left-1/4 w-96 h-96 bg-blue-500/10 blur-[150px] rounded-full z-0 pointer-events-none" />
-        <div className="fixed bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 blur-[150px] rounded-full z-0 pointer-events-none" />
+        <div className="fixed top-0 left-1/4 w-96 h-96  blur-[150px] rounded-full z-0 pointer-events-none" />
+        <div className="fixed bottom-0 right-1/4 w-96 h-96 blur-[150px] rounded-full z-0 pointer-events-none" />
 
         {/* Main Container */}
         <div className="relative z-10 w-full max-w-[1440px] mx-auto">
             
             {/* Header Section */}
-            <div className="pt-28 px-10 md:px-20">
+            <div className="pt-28 px-10 md:px-36">
             <div className="text-left mb-14">
                 <h1 className={`text-white text-9xl font-black tracking-tight drop-shadow-lg ${montserrat.className}`}>
                 <TypingText text="EXPERIENCE" speed={50} />
@@ -56,9 +56,9 @@
             {/* Experience Section */}
             <div className="px-10 md:px-20 pb-20">
             
-            <div className="relative w-full max-w-7xl mx-auto p-8 md:p-10 rounded-3xl border border-slate-800/60 bg-slate-900/40 backdrop-blur-xl overflow-hidden shadow-2xl shadow-blue-900/10">
+            <div className="relative w-full max-w-6xl mx-auto p-8 md:p-10 rounded-3xl border border-slate-800 bg-black/60 backdrop-blur-xl overflow-hidden shadow-2xl ">
                 
-                <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-500/20 blur-[100px] rounded-full pointer-events-none" />
+                <div className="absolute -top-20 -left-20 w-40 h-40  blur-[100px] rounded-full pointer-events-none" />
 
                 {/* HEADER CARD */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 relative z-10 border-b border-slate-800/50 pb-8">

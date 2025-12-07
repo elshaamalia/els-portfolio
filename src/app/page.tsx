@@ -9,7 +9,7 @@ import ExperiencePage from '@/components/pages/experience'
 import Sidebar from '@/components/sidebar'
 import SocialSidebar from '@/components/social-sidebar'
 // import StatusBar from '@/components/status-bar'
-import SplashCursor from '@/components/animations/SplashCursor'
+// import SplashCursor from '@/components/animations/SplashCursor'
 
 
 export default function Page() {
@@ -17,7 +17,7 @@ export default function Page() {
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
-      <SplashCursor />
+      {/* <SplashCursor /> */}
       <div className="flex flex-1 overflow-hidden">
         <Sidebar 
           currentPage={currentPage} 

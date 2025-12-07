@@ -1,19 +1,30 @@
+import { NextResponse } from "next/server"
+
+export const dynamic = "force-dynamic"
+
 export async function GET() {
-    const apiKey = process.env.WAKATIME_API_KEY
+  try {
+    const API_KEY = process.env.WAKATIME_API_KEY
+    const BASE_URL = "https://wakatime.com/api/v1/users/current"
 
-    const end = new Date().toISOString().split("T")[0]
-    const start = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000)
-      .toISOString()
-      .split("T")[0]
+    // Request 2 data sekaligus (Weekly & All Time)
+    const [summariesRes, statsRes] = await Promise.all([
+      fetch(`${BASE_URL}/summaries?range=last_7_days&api_key=${API_KEY}`),
+      fetch(`${BASE_URL}/stats/all_time?api_key=${API_KEY}`),
+    ])
 
-    const url = `https://wakatime.com/api/v1/users/current/summaries?start=${start}&end=${end}`
+    const summariesJson = await summariesRes.json()
+    const statsJson = await statsRes.json()
 
-    const res = await fetch(url, {
-      headers: {
-        Authorization: "Basic " + Buffer.from(apiKey).toString("base64"),
-      },
+    return NextResponse.json({
+      // Frontend butuh key 'weeklyData' dan 'languageData' ini
+      weeklyData: summariesJson.data || [],
+      languageData: statsJson.data?.languages || [],
     })
-
-    const data = await res.json()
-    return Response.json(data)
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch Wakatime data" },
+      { status: 500 }
+    )
+  }
 }

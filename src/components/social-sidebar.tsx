@@ -1,5 +1,5 @@
 "use client"
-import { Linkedin, Github, Twitter, Instagram, Mail, FileDown, X, Download } from "lucide-react"
+import { Linkedin, Github, Instagram, Mail, FileDown, X, Download } from "lucide-react"
 import { useState } from "react"
 
 export default function SocialSidebar() {
@@ -8,7 +8,7 @@ export default function SocialSidebar() {
   const socialLinks = [
     { id: "linkedin", icon: Linkedin, label: "LinkedIn", url: "https://linkedin.com/in/elshaamalia", color: "hover:text-blue-600" },
     { id: "github", icon: Github, label: "GitHub", url: "https://github.com/elshaamalia", color: "hover:text-gray-400" },
-    { id: "twitter", icon: Twitter, label: "Twitter", url: "https://twitter.com/elshaammalia", color: "hover:text-blue-400" },
+    // { id: "twitter", icon: Twitter, label: "Twitter", url: "https://twitter.com/elshaammalia", color: "hover:text-blue-400" },
     { id: "instagram", icon: Instagram, label: "Instagram", url: "https://instagram.com/abcdelsssss", color: "hover:text-pink-500" },
     { id: "email", icon: Mail, label: "Email", url: "mailto:elshaaml14@gmail.com", color: "hover:text-red-500" },
   ]
@@ -17,7 +17,6 @@ export default function SocialSidebar() {
     <>
       {/* SIDEBAR */}
       <aside className="w-60 backdrop-blur-md bg-black border-l border-slate-700/50 flex flex-col items-center py-8 gap-6 relative z-20">
-
         <nav className="flex-1 flex flex-col gap-6 justify-center items-center w-full">
           {socialLinks.map((item) => {
             const Icon = item.icon
@@ -36,13 +35,17 @@ export default function SocialSidebar() {
           })}
         </nav>
 
-        <button
-          onClick={() => setShowCV(true)}
-          className="mt-4 mb-6 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg flex items-center gap-2 transition"
-        >
-          <FileDown size={20} />
-          <span>Preview CV</span>
-        </button>
+        {/* BUTTON PREVIEW CV */}
+        <div className="absolute bottom-8 w-full flex justify-center">
+          <button
+            onClick={() => setShowCV(true)}
+            className="px-4 py-2 bg-neutral-500/20 hover:bg-neutral-800 text-slate-200 rounded-lg flex items-center gap-2 transition"
+          >
+            <FileDown size={20} />
+            <span>Preview CV</span>
+          </button>
+        </div>
+        
       </aside>
 
       {/* MODAL */}
