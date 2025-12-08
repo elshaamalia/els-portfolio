@@ -20,10 +20,10 @@ export default function ActivityPage() {
         <div className="px-48 mb-10">
           {/* Main title */}
           <div className="text-right text-white">
-            <p className={`text-lg tracking-widest leading-relaxed ${montserrat.className}`}>
+            <p className={`text-sm tracking-widest leading-relaxed ${montserrat.className}`}>
               FEATURED WORKS
             </p>
-            <h1 className={`text-9xl font-black tracking-tight drop-shadow-lg ${montserrat.className}`}>
+            <h1 className={`text-6xl font-black tracking-tight drop-shadow-lg ${montserrat.className}`}>
               <TypingText text="ACTIVITY" speed={50} />
             </h1>
           </div>

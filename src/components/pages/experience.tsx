@@ -47,7 +47,7 @@
             {/* Header Section */}
             <div className="pt-28 px-10 md:px-36">
             <div className="text-left mb-14">
-                <h1 className={`text-white text-9xl font-black tracking-tight drop-shadow-lg ${montserrat.className}`}>
+                <h1 className={`text-white text-6xl font-black tracking-tight drop-shadow-lg ${montserrat.className}`}>
                 <TypingText text="EXPERIENCE" speed={50} />
                 </h1>
             </div>
