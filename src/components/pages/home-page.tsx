@@ -11,16 +11,16 @@ export default function HomePage() {
   return (
     <div className="relative flex items-center justify-center h-full w-full bg-black overflow-hidden">
 
-      {/* 🔥 Background Galaxy (pengganti Particles) */}
+      {/* 🔥 Background Galaxy */}
       <div className="fixed inset-0 w-screen h-screen z-2">
         <Galaxy
           mouseRepulsion={false}
           density={0.8}
           hueShift={200}
           glowIntensity={0.1}
-          twinkleIntensity={0.2}
+          twinkleIntensity={0.1}
           starSpeed={0.5}
-          rotationSpeed={0}      // ⬅ hentikan efek muter
+          rotationSpeed={0}      
           speed={0.3}              // opsional: stop animasi kecil
           transparent={true}
           animationspeed={1}
