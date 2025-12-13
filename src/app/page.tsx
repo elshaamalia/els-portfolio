@@ -25,7 +25,7 @@ export default function Page() {
         })
       },
       {
-        threshold: 0.3, // Kita turunkan sedikit biar deteksi lebih cepat
+        threshold: 0.3,
       }
     )
 
@@ -37,12 +37,12 @@ export default function Page() {
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black text-white">
       
-      {/* --- LAYER 1: BACKGROUND (HOMEPAGE FIXED) --- */}
+      {/* LAYER 1: BACKGROUND */}
       <div className="fixed inset-0 z-0 flex items-center justify-center px-60">
         <HomePage />
       </div>
 
-      {/* --- LAYER 2: INTERFACE (SIDEBARS) --- */}
+      {/* LAYER 2: INTERFACE */}
       <div className="fixed left-0 top-0 h-full z-30 flex flex-col justify-center">
         <Sidebar 
           currentPage={currentPage}
@@ -60,46 +60,39 @@ export default function Page() {
         <SocialSidebar />
       </div>
 
-      {/* --- LAYER 3: SCROLLABLE CONTENT (OVERLAY) --- */}
-      {/* Class 'no-scrollbar' ditambahkan untuk menyembunyikan batang scroll */}
-      <main className="relative z-10 h-full overflow-y-auto scroll-smooth no-scrollbar">
+      {/* LAYER 3: CONTENT */}
+      {/* Hapus no-scrollbar, gunakan overflow-x-hidden untuk mencegah lebar berlebih */}
+      <main className="relative z-10 h-full w-full overflow-y-auto overflow-x-hidden scroll-smooth">
         
-        {/* INJECT CSS: HILANGKAN SCROLLBAR TAPI TETAP BISA SCROLL */}
-        <style jsx global>{`
-          .no-scrollbar::-webkit-scrollbar {
-            display: none;
-          }
-          .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-          }
-        `}</style>
-
-        {/* SECTION 1: TRANSPARANT SPACER */}
+        {/* SPACER HOME */}
         <section id="home" className="min-h-screen w-full bg-transparent pointer-events-none">
-          {/* Kosong */}
         </section>
 
-        <div className=" backdrop-blur-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/5">
+        {/* CONTENT CONTAINER */}
+        <div className="bg-black/40 backdrop-blur-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/5">
             
-            <section id="about" className="min-h-screen flex items-center px-60 py-20">
+            {/* CATATAN: Padding px-60 di sini sudah cukup besar. 
+               Jangan tambahkan padding besar lagi di dalam component (AboutPage, dll) 
+               agar tidak 'meledak' ke samping.
+            */}
+            <section id="about" className="min-h-screen flex items-center px-60 py-20 relative overflow-hidden">
               <AboutPage />
             </section>
 
-            <section id="project" className="min-h-screen flex items-center px-60 py-20">
+            <section id="project" className="min-h-screen flex items-center px-60 py-20 relative overflow-hidden">
               <ProjectPage />
             </section>
 
-            <section id="activity" className="min-h-screen flex items-center px-60 py-20">
+            <section id="activity" className="min-h-screen flex items-center px-60 py-20 relative overflow-hidden">
               <ActivityPage />
             </section>
 
-            <section id="experience" className="min-h-screen flex items-center px-60 py-20">
+            <section id="experience" className="min-h-screen flex items-center px-60 py-20 relative overflow-hidden">
               <ExperiencePage />
             </section>
 
             <div className="py-10 text-center text-gray-500 text-xs tracking-widest">
-              © 2025 ELSHA AMALIA.
+              © 2025 ELSHA AMALIA PUSPONEGORO.
             </div>
         </div>
 
