@@ -61,7 +61,6 @@ export default function Page() {
       </div>
 
       {/* LAYER 3: CONTENT */}
-      {/* Hapus no-scrollbar, gunakan overflow-x-hidden untuk mencegah lebar berlebih */}
       <main className="relative z-10 h-full w-full overflow-y-auto overflow-x-hidden scroll-smooth">
         
         {/* SPACER HOME */}
@@ -69,12 +68,8 @@ export default function Page() {
         </section>
 
         {/* CONTENT CONTAINER */}
-        <div className="bg-black/40 backdrop-blur-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/5">
-            
-            {/* CATATAN: Padding px-60 di sini sudah cukup besar. 
-               Jangan tambahkan padding besar lagi di dalam component (AboutPage, dll) 
-               agar tidak 'meledak' ke samping.
-            */}
+        <div className="bg-black/70 backdrop-blur-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/8 rounded-t-3xl">
+
             <section id="about" className="min-h-screen flex items-center px-60 py-20 relative overflow-hidden">
               <AboutPage />
             </section>
@@ -91,7 +86,7 @@ export default function Page() {
               <ExperiencePage />
             </section>
 
-            <div className="py-10 text-center text-gray-500 text-xs tracking-widest">
+            <div className=" text-center text-gray-500 text-xs tracking-widest">
               © 2025 ELSHA AMALIA PUSPONEGORO.
             </div>
         </div>

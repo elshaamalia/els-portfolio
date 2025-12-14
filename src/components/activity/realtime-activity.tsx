@@ -124,7 +124,7 @@ export default function ActivityComponents() {
   )
 
   return (
-    <div className="space-y-12 text-white bg-black p-6 w-full mx-auto rounded-lg">
+    <div className="space-y-12 text-white  p-6 w-full mx-auto rounded-lg">
       
       {/* WEEKLY ACTIVITY */}
       <div>

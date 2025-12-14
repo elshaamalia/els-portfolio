@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import TypingText from "@/components/animations/typing-text"
+import { useState, useEffect } from "react"
+import { createPortal } from "react-dom"
+// import TypingText from "@/components/animations/typing-text"
 import { Montserrat } from "next/font/google"
 import Image from "next/image"
 import { X, ExternalLink } from "lucide-react"
@@ -11,8 +12,25 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700", "800", "900"],
 })
 
-// --- DATA PROJECTS (Updated with Tech Stack) ---
-const projects = [
+// --- 1. DEFINISI TIPE DATA ---
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  thumbnail: string;
+  description: string;
+  fullDescription: string;
+  year: string;
+  location: string;
+  role: string;
+  bgImage: string;
+  link: string;
+  isNDA: boolean;
+  techStack: string[];
+}
+
+// --- 2. DATA PROJECTS ---
+const projects: Project[] = [
   {
     id: 1,
     title: "CV ROASTED",
@@ -26,7 +44,7 @@ const projects = [
     bgImage: "/images/cv-roasted-bg.jpg",
     link: "https://cvroasted.com",
     isNDA: false,
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "OpenAI API", "Vercel"] // New Data
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "OpenAI API", "Vercel"] 
   },
   {
     id: 2,
@@ -41,7 +59,7 @@ const projects = [
     bgImage: "/images/github-roasted-bg.jpg",
     link: "https://githubroasted.com",
     isNDA: false,
-    techStack: ["React", "Vite", "Tailwind CSS", "GitHub API", "Gemini AI"] // New Data
+    techStack: ["React", "Vite", "Tailwind CSS", "GitHub API", "Gemini AI"]
   },
   {
     id: 3,
@@ -56,27 +74,52 @@ const projects = [
     bgImage: "/airplane-wing-clouds-sky-aerial-view.jpg",
     link: "#",
     isNDA: true,
-    techStack: ["Next.js", "Express.js", "Socket.io", "PostgreSQL", "MQTT", "Docker"] // New Data
+    techStack: ["Next.js", "Express.js", "Socket.io", "PostgreSQL", "MQTT", "Docker"]
   },
 ]
 
 export default function ProjectPage() {
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  // --- FIX PAMUNGKAS: TRIK SETTIMEOUT ---
+  // Error "Synchronous" hilang karena kita membungkusnya dalam setTimeout.
+  // Ini membuat update state menjadi "Asynchronous" (dijadwalkan).
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMounted(true)
+    }, 0)
+    
+    // Bersihkan timer jika component unmount (best practice)
+    return () => clearTimeout(timer)
+  }, []) 
+
+  // --- FIX 2: SCROLL LOCK LOGIC ---
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+
+    return () => { document.body.style.overflow = 'auto' }
+  }, [selectedProject])
+
+  // Cegah render jika belum mounted (mencegah error hydration)
+  if (!mounted) {
+    return null
+  }
 
   return (
-    <div className="relative w-full min-h-screen bg-black overflow-hidden"> 
+    <div className="relative w-full min-h-screen bg-transparent overflow-hidden"> 
       
-      {/* Background Particles/Gradient */}
-      <div className="fixed inset-0 w-screen h-screen bg-linear-to-b from-black via-zinc-950 to-black z-0 pointer-events-none" />
-
-      {/* Main Container */}
-      <div className="relative z-10 w-full  max-w-7xl mx-auto pt-20 pb-20 px-8 md:px-12">
+      <div className="relative z-10 w-full max-w-6xl mx-auto pt-20 pb-20 px-8 md:px-12">
         
         {/* HEADER */}
         <div className="mb-16 mt-14">
            <p className={`text-slate-400 text-sm tracking-widest mb-2 ${montserrat.className}`}>FEATURED WORKS</p>
-           <h1 className={`text-white text-6xl font-black tracking-tight ${montserrat.className}`}>
-             <TypingText text="PROJECTS" speed={50} />
+           <h1 className={`text-white text-6xl font-black tracking-tight ${montserrat.className}`}>PROJECTS
+             {/* <TypingText text="PROJECTS" speed={50} /> */}
            </h1>
         </div>
 
@@ -91,7 +134,6 @@ export default function ProjectPage() {
               {/* Thumbnail Image Area */}
               <div className="relative h-48 w-full overflow-hidden bg-zinc-800">
                 <div className="absolute inset-0 bg-linear-to-br from-zinc-800 to-zinc-950" />
-                
                 {project.thumbnail && (
                   <Image 
                     src={project.thumbnail}
@@ -100,7 +142,6 @@ export default function ProjectPage() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 )}
-                
                 <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
                    <span className={`text-[10px] font-bold text-white tracking-wider ${montserrat.className}`}>
                      {project.category}
@@ -116,7 +157,6 @@ export default function ProjectPage() {
                 <p className={`text-zinc-400 text-sm leading-relaxed line-clamp-2 ${montserrat.className}`}>
                   {project.description}
                 </p>
-                
                 <div className="mt-4 flex items-center text-zinc-500 text-xs font-medium tracking-wide">
                   <span>View Details</span>
                   <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
@@ -127,15 +167,20 @@ export default function ProjectPage() {
         </div>
       </div>
 
-      {/* --- MODAL DETAIL --- */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 pl-64"> 
+      {/* --- MODAL DETAIL (PORTAL) --- */}
+      {selectedProject && createPortal(
+        <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 md:p-8"> 
+          
+          {/* Overlay Gelap */}
           <div 
-            className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/90 backdrop-blur-md"
             onClick={() => setSelectedProject(null)}
           />
 
-          <div className="relative w-full max-w-5xl bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]">
+          {/* Konten Modal */}
+          <div className="relative w-full max-w-5xl bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] animate-in fade-in zoom-in duration-300">
+            
+            {/* Tombol Close */}
             <button 
               onClick={() => setSelectedProject(null)}
               className="absolute top-4 right-4 z-20 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-colors"
@@ -144,7 +189,7 @@ export default function ProjectPage() {
             </button>
 
             {/* Left Side: Image / Visual */}
-            <div className="relative w-full md:w-1/2 h-64 md:h-auto bg-black">
+            <div className="relative w-full md:w-1/2 h-64 md:h-auto bg-black shrink-0">
                {selectedProject.bgImage && (
                  <Image 
                    src={selectedProject.bgImage}
@@ -167,7 +212,7 @@ export default function ProjectPage() {
                      {selectedProject.title}
                    </h2>
                    {!selectedProject.isNDA && (
-                     <a href={selectedProject.link} target="_blank" className="text-zinc-500 hover:text-white transition-colors">
+                     <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors">
                        <ExternalLink size={24} />
                      </a>
                    )}
@@ -219,6 +264,7 @@ export default function ProjectPage() {
                    <a 
                      href={selectedProject.link} 
                      target="_blank"
+                     rel="noopener noreferrer"
                      className={`block w-full py-4 bg-white hover:bg-zinc-200 text-black text-center text-xs font-bold tracking-widest uppercase transition-colors ${montserrat.className}`}
                    >
                      Visit Project
@@ -227,7 +273,8 @@ export default function ProjectPage() {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </div>

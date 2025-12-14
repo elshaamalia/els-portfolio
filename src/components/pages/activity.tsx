@@ -12,30 +12,32 @@ const montserrat = Montserrat({
 export default function ActivityPage() {
 
   return (
-    <div className="relative w-full h-screen bg-black overflow-hidden flex flex-col justify-center">
+    // OUTER WRAPPER 
+    <div className="relative w-full min-h-screen bg-transparent overflow-hidden">
       
-      {/* Main container */}
-      <div className="relative z-10 w-full">
-        {/* Header Section */}
-        <div className="px-48 mb-10">
-          {/* Main title */}
-          <div className="text-right text-white">
-            <p className={`text-sm tracking-widest leading-relaxed ${montserrat.className}`}>
-              FEATURED WORKS
-            </p>
-            <h1 className={`text-6xl font-black tracking-tight drop-shadow-lg ${montserrat.className}`}>
-              <TypingText text="ACTIVITY" speed={50} />
-            </h1>
-          </div>
+      {/* MAIN CONTAINER */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-8 md:px-12">
+        
+        {/* HEADER SECTION */}
+        <div className="mb-16 mt-14">
+           <p className={`text-slate-400 text-sm tracking-widest mb-2 ${montserrat.className}`}>LIVE UPDATES</p>
+           <h1 className={`text-white text-6xl font-black tracking-tight ${montserrat.className}`}>
+             <TypingText text="ACTIVITY" speed={50} />
+           </h1>
         </div>
 
-        {/* Content Grid */}
-        <div className="px-48">
-          {/* Realtime Activity Feed */}
-          <div className="bg-black border border-neutral-800 rounded-lg p-8">
-              <RealtimeActivityFeed />
-          </div>
+        {/* CONTENT AREA */}
+        <div className="relative w-full rounded-3xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-xl overflow-hidden shadow-2xl p-6 md:p-10 group hover:border-zinc-700 transition-all duration-500">
+            
+            <div className="absolute top-0 right-0 w-60 h-60 bg-green-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+            {/* Content Wrapper */}
+            <div className="relative z-10 h-full min-h-[400px]">
+                <RealtimeActivityFeed />
+            </div>
+
         </div>
+
       </div>
     </div>
   )
