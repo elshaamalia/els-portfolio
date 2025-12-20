@@ -16,7 +16,7 @@ export default function ActivityPage() {
     <div className="relative w-full min-h-screen bg-transparent overflow-hidden">
       
       {/* MAIN CONTAINER */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-8 md:px-12">
+      <div className="relative z-10 w-full max-w-6xl mx-auto pt-10 px-8 md:px-12">
         
         {/* HEADER SECTION */}
         <div className="mb-16 mt-14">

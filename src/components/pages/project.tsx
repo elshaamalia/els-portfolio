@@ -33,9 +33,54 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    title: "MONITORING SYSTEM",
+    category: "IOT Dashboard",
+    thumbnail: "/dark-website-ui-aviation-dashboard.jpg", 
+    description: "Realtime Cycle Time Monitoring System IoT Based.",
+    fullDescription: "Assisted and contributed to the 1-to-1 migration of a legacy application to a modern React-based solution, while enhancing feature functionality and improving UI/UX for realtime factory monitoring.",
+    year: "2025",
+    location: "PT Giken Precision Indonesia, Batam",
+    role: "FULLSTACK",
+    bgImage: "",
+    link: "https://github.com/elshaamalia/giken-project-2",
+    isNDA: true,
+    techStack: ["React", "Express.js", "Socket.io", "MySQLL", "MQTT", "Arduino IDE"]
+  },
+  {
+    id: 2,
+    title: "Health & Fitness Evaluator AI",
+    category: "AI Web-Based",
+    thumbnail: "/dark-website-ui-aviation-dashboard.jpg",
+    description: "AI-based web application that evaluates user health and fitness data to provide personalized recommendations.",
+    fullDescription: "Health & Fitness Evaluator AI is a web-based application that analyzes personal health data such as body metrics, activity level, and fitness goals to generate personalized meal and workout recommendations. The system utilizes AI models to evaluate user needs, supports realtime interaction through a modern dashboard, and helps users track their fitness progress effectively. This project focuses on user-centered UI/UX and data-driven health insights.",
+    year: "2025",
+    location: "BATAM, INDONESIA",
+    role: "Frontend & AI Model Trainer",
+    bgImage: "",
+    link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=website-health-fitness-evaluator-ai-&id=MzU1Mw==&ta=Ng==&id_tim=NDE4NQ==",
+    isNDA: true,
+    techStack: ["Laravel", "TailwindCSS", "MySQL", "XGBoost", "NLP", "Google Colab"]
+  },
+  {
+    id: 3,
+    title: "Minutes.ai",
+    category: "AI Web-Based",
+    thumbnail: "",
+    description: "Automated Notulen & Transcription",
+    fullDescription: "A fun and insightful tool that analyzes GitHub profiles to generate witty 'roasts' and constructive criticism about coding habits and repository structures.",
+    year: "2024",
+    location: "Batam, Indonesia",
+    role: "Fullstack & AI Model Trainer",
+    bgImage: "/images/github-roasted-bg.jpg",
+    link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=minutes-ai-automated-meeting-transcription-minutes&id=MjQ0MA==&ta=NQ==&id_tim=MzA5Nw==",
+    isNDA: false,
+    techStack: ["Laravel", "Tailwind CSS", "Google Colab", "Whisper", "Pyannote", "Kaggle"]
+  },
+  {
+    id: 4,
     title: "IKA UNDIP",
-    category: "Study Case",
-    thumbnail: "/images/cv-roasted-thumb.jpg", 
+    category: "Web Development",
+    thumbnail: "", 
     description: "Web-based alumni information system for IKA UNDIP KEPRI.",
     fullDescription: "A comprehensive web platform designed for the UNDIP Alumni Association (Kepri Region). The system manages both public information (events, news) and restricted member data (alumni directory by major and location). It serves as a central hub for alumni networking, event documentation, and organizational updates.",
     year: "2024",
@@ -45,36 +90,6 @@ const projects: Project[] = [
     link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=website-alumni-ika-undip&id=MTc1Ng==&ta=NA==&id_tim=MjE2NA==",
     isNDA: false,
     techStack: ["Tailwind CSS", "Figma", "Canva", "Laravel"] 
-  },
-  {
-    id: 2,
-    title: "Minutes.ai",
-    category: "AI TOOL",
-    thumbnail: "/images/github-roasted-thumb.jpg",
-    description: "Automated Notulen & Transcription",
-    fullDescription: "A fun and insightful tool that analyzes GitHub profiles to generate witty 'roasts' and constructive criticism about coding habits and repository structures.",
-    year: "2024",
-    location: "Batam, Indonesia",
-    role: "FRONTEND ENGINEER",
-    bgImage: "/images/github-roasted-bg.jpg",
-    link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=minutes-ai-automated-meeting-transcription-minutes&id=MjQ0MA==&ta=NQ==&id_tim=MzA5Nw==",
-    isNDA: false,
-    techStack: ["React", "Vite", "Tailwind CSS", "GitHub API", "Gemini AI"]
-  },
-  {
-    id: 3,
-    title: "MONITORING SYSTEM",
-    category: "IOT DASHBOARD",
-    thumbnail: "/dark-website-ui-aviation-dashboard.jpg", 
-    description: "Realtime Cycle Time Monitoring System IoT Based.",
-    fullDescription: "Assisted and contributed to the 1-to-1 migration of a legacy application to a modern React-based solution, while enhancing feature functionality and improving UI/UX for realtime factory monitoring.",
-    year: "2025",
-    location: "BATAM, INDONESIA",
-    role: "FULLSTACK",
-    bgImage: "/airplane-wing-clouds-sky-aerial-view.jpg",
-    link: "#",
-    isNDA: true,
-    techStack: ["Next.js", "Express.js", "Socket.io", "PostgreSQL", "MQTT", "Docker"]
   },
 ]
 
@@ -113,7 +128,7 @@ export default function ProjectPage() {
   return (
     <div className="relative w-full min-h-screen bg-transparent overflow-hidden"> 
       
-      <div className="relative z-10 w-full max-w-6xl mx-auto pt-20 pb-20 px-8 md:px-12">
+      <div className="relative z-10 w-full max-w-6xl mx-auto  pb-20 px-8 md:px-12">
         
         {/* HEADER */}
         <div className="mb-16 mt-14">
