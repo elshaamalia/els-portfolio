@@ -3,13 +3,12 @@
 import { Montserrat } from "next/font/google"
 import TypingText from "@/components/animations/typing-text" 
 import { 
-  SiPython, 
   SiReact, 
   SiNodedotjs, 
-  SiTypescript, 
   SiTailwindcss, 
   SiMqtt, 
-  SiFirebase 
+  SiMysql, 
+  SiArduino,
 } from "react-icons/si"
 
 const montserrat = Montserrat({
@@ -19,13 +18,12 @@ const montserrat = Montserrat({
 
 // --- DEFINISI DATA ---
 const techStack = [
-  { name: "Python", icon: SiPython, color: "hover:text-blue-400 hover:bg-blue-400/10 hover:border-blue-400/50" },
   { name: "React.js", icon: SiReact, color: "hover:text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400/50" },
   { name: "Node.js", icon: SiNodedotjs, color: "hover:text-green-500 hover:bg-green-500/10 hover:border-green-500/50" },
-  { name: "TypeScript", icon: SiTypescript, color: "hover:text-blue-600 hover:bg-blue-600/10 hover:border-blue-600/50" },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "hover:text-cyan-300 hover:bg-cyan-300/10 hover:border-cyan-300/50" },
   { name: "IoT (MQTT)", icon: SiMqtt, color: "hover:text-purple-400 hover:bg-purple-400/10 hover:border-purple-400/50" },
-  { name: "Realtime DB", icon: SiFirebase, color: "hover:text-yellow-400 hover:bg-yellow-400/10 hover:border-yellow-400/50" },
+  { name: "MySQL", icon: SiMysql, color: "hover:text-blue-400 hover:bg-blue-400/10 hover:border-blue-400/50" },
+  { name: "Arduino", icon: SiArduino, color: "hover:text-teal-400 hover:bg-teal-400/10 hover:border-teal-400/50" },
 ]
 
 export default function ExperiencePage() {
@@ -42,23 +40,24 @@ export default function ExperiencePage() {
            <h1 className={`text-white text-6xl font-black tracking-tight ${montserrat.className}`}>
              <TypingText text="EXPERIENCE" speed={50} />
            </h1>
+           <div className="h-1 w-20 bg-pink-500 rounded-full mt-4"></div>
         </div>
 
         {/* CONTENT AREA */}
-        <div className="relative w-full rounded-3xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-xl overflow-hidden shadow-2xl p-8 md:p-12 group hover:border-zinc-700 transition-all duration-500">
+        <div className="relative w-full rounded-3xl border border-zinc-900 backdrop-blur-xs overflow-hidden shadow-2xl p-8 md:p-12 group transition-all duration-500">
             
             
             {/* --- CARD HEADER --- */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 relative z-10 border-b border-zinc-800/50 pb-8">
                 <div className="flex items-center gap-5">
                     {/* Logo Company */}
-                    <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/20 ring-1 ring-white/10 shrink-0">
+                    <div className="w-16 h-16 rounded-2xl  flex items-center justify-center ring-1 ring-white/10 shrink-0">
                        <span className={`text-white text-3xl font-black ${montserrat.className}`}>G</span>
                     </div>
                     
                     <div className="space-y-1">
                         <h2 className={`text-white text-xl md:text-2xl font-bold tracking-tight ${montserrat.className}`}>
-                            PT GIKEN PRECISION
+                            PT GIKEN PRECISION INDONESIA
                         </h2>
 
                         {/* Industry Tag */}
@@ -127,7 +126,7 @@ export default function ExperiencePage() {
                             </div>
 
                             {/* Tooltip */}
-                            <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity duration-200 px-2 py-1 rounded text-[10px] bg-black border border-zinc-800 text-zinc-300 whitespace-nowrap z-20 pointer-events-none">
+                            <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity duration-100 px-2 py-1  text-[12px] text-zinc-300 whitespace-nowrap z-20 pointer-events-none">
                                 {tech.name}
                             </div>
                         </div>

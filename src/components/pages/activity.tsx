@@ -24,10 +24,11 @@ export default function ActivityPage() {
            <h1 className={`text-white text-6xl font-black tracking-tight ${montserrat.className}`}>
              <TypingText text="ACTIVITY" speed={50} />
            </h1>
+           <div className="h-1 w-20 bg-pink-500 rounded-full mt-4"></div>
         </div>
 
         {/* CONTENT AREA */}
-        <div className="relative w-full rounded-3xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-xl overflow-hidden shadow-2xl p-6 md:p-10 group hover:border-zinc-700 transition-all duration-500">
+        <div className="relative w-full rounded-3xl border border-zinc-900  backdrop-blur-sm overflow-hidden shadow-2xl p-6 md:p-10 group transition-all duration-500">
             
             <div className="absolute top-0 right-0 w-60 h-60 bg-green-500/10 blur-[100px] rounded-full pointer-events-none" />
 

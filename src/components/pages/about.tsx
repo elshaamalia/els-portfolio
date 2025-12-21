@@ -19,12 +19,9 @@ import {
   SiExpress,
   SiGithub,
   SiGooglecolab,
-  SiPytorch,
   SiTensorflow,
   SiOpencv,
   SiJupyter,
-  SiPandas,
-  SiNumpy,
   SiScikitlearn
 } from 'react-icons/si'
 
@@ -42,7 +39,6 @@ type SkillItem = {
 }
 
 // DATA SKILLS
-// Saya tambahkan beberapa dummy data agar terlihat penuh (5x5 look)
 const skillsData: { category: string; items: SkillItem[] }[] = [
   {
     category: "Languages",
@@ -65,15 +61,12 @@ const skillsData: { category: string; items: SkillItem[] }[] = [
     ]
   },
   {
-    category: "AI & Data Science", // KATEGORI BARU PALING ATAS (Highlight)
+    category: "AI & Data Science", 
     items: [
       { name: "Google Colab", icon: <SiGooglecolab />, color: "text-orange-400" },
-      { name: "PyTorch", icon: <SiPytorch />, color: "text-red-500" },
       { name: "TensorFlow", icon: <SiTensorflow />, color: "text-orange-500" },
       { name: "OpenCV", icon: <SiOpencv />, color: "text-green-500" },
       { name: "Jupyter", icon: <SiJupyter />, color: "text-orange-500" },
-      { name: "Pandas", icon: <SiPandas />, color: "text-blue-800" },
-      { name: "NumPy", icon: <SiNumpy />, color: "text-blue-400" },
       { name: "Scikit-learn", icon: <SiScikitlearn />, color: "text-orange-300" },
     ]
   },
@@ -93,50 +86,39 @@ export default function AboutPage() {
     <div className="relative w-full min-h-screen bg-transparent overflow-hidden flex items-center justify-center">
       
       {/* MAIN CONTAINER */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto py-20 px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div className="relative z-10 w-full max-w-6xl mx-auto py-20 px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         
         {/* --- KOLOM KIRI: DESKRIPSI DIRI --- */}
         <div className="w-full flex flex-col justify-center space-y-8 order-2 lg:order-1 pt-10">
             <div>
-                <p className={`text-slate-400 text-sm tracking-[0.2em] mb-4 ${montserrat.className}`}>
+                <p className={`text-slate-400 text-sm tracking-[0.2em] mb-2 ${montserrat.className}`}>
                     INTRODUCTION
                 </p>
                 <h1 className={`text-white text-5xl md:text-7xl font-black tracking-tight mb-2 ${montserrat.className}`}>
                     <TypingText text="PROFILE" speed={100} />
                 </h1>
-                <div className="h-1 w-20 bg-blue-500 rounded-full mt-4"></div>
+                <div className="h-1 w-20 bg-pink-500 rounded-full mt-4"></div>
             </div>
 
             <div className="space-y-6">
                 <p className={`text-slate-200 text-xl md:text-2xl font-medium leading-relaxed ${montserrat.className}`}>
-                   My name is <span className="text-blue-400">Elsha Amalia Pusponegoro</span>.
+                   My name is <span className="text-pink-500">Elsha Amalia Pusponegoro</span>.
                    <br/>I&apos;m a Software Engineer.
                 </p>
 
                 <p className={`text-slate-400 text-base leading-loose text-justify ${montserrat.className}`}>
-                   I blend artwork with cutting-edge technology, designing immersive visual and functional user interfaces. With over five years of experience in programming, I specialize in frontend development and IoT integrations, creating dynamic web and mobile applications.
+                  I am an emerging Software Engineer with a knack for blending artwork with cutting-edge technology. During my academic years, I have specialized in <span className="text-white font-bold">Frontend Development</span>  and <span className="text-white font-bold">AI-IoT Integrations</span>, transforming theoretical concepts into functional web applications. I bring practical experience from the manufacturing industry, ready to craft dynamic digital experiences
                 </p>
-                
-                <div className="flex gap-8 pt-4">
-                    <div>
-                        <h3 className="text-3xl font-bold text-white">5+</h3>
-                        <p className="text-xs text-slate-500 tracking-wider">YEARS EXP</p>
-                    </div>
-                    <div>
-                        <h3 className="text-3xl font-bold text-white">10+</h3>
-                        <p className="text-xs text-slate-500 tracking-wider">PROJECTS</p>
-                    </div>
-                </div>
             </div>
         </div>
 
         {/* --- KOLOM KANAN: TECH STACK --- */}
         <div className="w-full flex flex-col justify-center order-1 lg:order-2">
             
-            <div className="bg-transparent border border-slate-800 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
-                <h3 className={`text-white text-xl font-bold mb-6 border-l-4 border-blue-500 pl-4 ${montserrat.className}`}>
-                    Tech Stack
-                </h3>
+            <div className="bg-transparent border border-gray-900 backdrop-blur-xs rounded-3xl p-8 shadow-2xl">
+                {/* <h3 className={`text-white text-xl font-bold mb-6 border-l-4 border-blue-500 pl-4 ${montserrat.className}`}>
+                    TECH STACK
+                </h3> */}
 
                 <div className="space-y-8">
                     {skillsData.map((group, idx) => (
@@ -145,20 +127,24 @@ export default function AboutPage() {
                                 {group.category}
                             </h4>
                             
-                            {/* Grid 5 Kolom (grid-cols-5) */}
-                            <div className="grid grid-cols-5 gap-y-6 gap-x-2">
+                            {/* Grid 5 Kolom */}
+                            <div className="grid grid-cols-5 gap-3">
                                 {group.items.map((skill, sIdx) => (
                                     <div 
                                         key={sIdx} 
-                                        className="group relative flex flex-col items-center justify-center p-1 cursor-pointer"
+                                        // STYLE BLOK 
+                                        className="group relative flex flex-col items-center justify-center p-3 rounded-xl border border-gray-900  transition-all duration-300 aspect-square cursor-pointer"
                                     >
-                                        {/* Icon tanpa background blok */}
-                                        <div className={`text-3xl md:text-4xl ${skill.color} drop-shadow-md transform transition-all duration-300 group-hover:scale-125 group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]`}>
+                                        {/* STYLE GRAYSCALE (Hitam Putih) */}
+                                        {/* grayscale = jadi abu-abu */}
+                                        {/* opacity-60 = agak redup */}
+                                        {/* group-hover:grayscale-0 = warna asli muncul pas di hover */}
+                                        <div className={`text-3xl ${skill.color} grayscale opacity-100 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 drop-shadow-lg`}>
                                             {skill.icon}
                                         </div>
                                         
-                                        {/* Tooltip Nama (Tetap ada biar user tau logo apa) */}
-                                        <span className={`absolute -bottom-6 opacity-0 group-hover:opacity-100 text-[9px] font-bold text-slate-300 transition-opacity duration-300 whitespace-nowrap ${montserrat.className}`}>
+                                        {/* Tooltip Nama */}
+                                        <span className={`absolute -bottom-8 opacity-0 group-hover:opacity-100 z-20 text-[12px] text-white  px-2 py-1  transition-all duration-100 whitespace-nowrap ${montserrat.className}`}>
                                             {skill.name}
                                         </span>
                                     </div>

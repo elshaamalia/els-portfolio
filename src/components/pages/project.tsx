@@ -35,22 +35,22 @@ const projects: Project[] = [
     id: 1,
     title: "MONITORING SYSTEM",
     category: "IOT Dashboard",
-    thumbnail: "/dark-website-ui-aviation-dashboard.jpg", 
+    thumbnail: "/assets/Monitoring Sistem.png", 
     description: "Realtime Cycle Time Monitoring System IoT Based.",
     fullDescription: "Assisted and contributed to the 1-to-1 migration of a legacy application to a modern React-based solution, while enhancing feature functionality and improving UI/UX for realtime factory monitoring.",
     year: "2025",
     location: "PT Giken Precision Indonesia, Batam",
     role: "FULLSTACK",
-    bgImage: "",
+    bgImage: "/assets/Monitoring Sistem.png",
     link: "https://github.com/elshaamalia/giken-project-2",
-    isNDA: true,
+    isNDA: false,
     techStack: ["React", "Express.js", "Socket.io", "MySQLL", "MQTT", "Arduino IDE"]
   },
   {
     id: 2,
     title: "Health & Fitness Evaluator AI",
     category: "AI Web-Based",
-    thumbnail: "/dark-website-ui-aviation-dashboard.jpg",
+    thumbnail: "/assets/Health and Fitness.png",
     description: "AI-based web application that evaluates user health and fitness data to provide personalized recommendations.",
     fullDescription: "Health & Fitness Evaluator AI is a web-based application that analyzes personal health data such as body metrics, activity level, and fitness goals to generate personalized meal and workout recommendations. The system utilizes AI models to evaluate user needs, supports realtime interaction through a modern dashboard, and helps users track their fitness progress effectively. This project focuses on user-centered UI/UX and data-driven health insights.",
     year: "2025",
@@ -58,7 +58,7 @@ const projects: Project[] = [
     role: "Frontend & AI Model Trainer",
     bgImage: "",
     link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=website-health-fitness-evaluator-ai-&id=MzU1Mw==&ta=Ng==&id_tim=NDE4NQ==",
-    isNDA: true,
+    isNDA: false,
     techStack: ["Laravel", "TailwindCSS", "MySQL", "XGBoost", "NLP", "Google Colab"]
   },
   {
@@ -71,7 +71,7 @@ const projects: Project[] = [
     year: "2024",
     location: "Batam, Indonesia",
     role: "Fullstack & AI Model Trainer",
-    bgImage: "/images/github-roasted-bg.jpg",
+    bgImage: "",
     link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=minutes-ai-automated-meeting-transcription-minutes&id=MjQ0MA==&ta=NQ==&id_tim=MzA5Nw==",
     isNDA: false,
     techStack: ["Laravel", "Tailwind CSS", "Google Colab", "Whisper", "Pyannote", "Kaggle"]
@@ -136,6 +136,7 @@ export default function ProjectPage() {
            <h1 className={`text-white text-6xl font-black tracking-tight ${montserrat.className}`}>PROJECTS
              {/* <TypingText text="PROJECTS" speed={50} /> */}
            </h1>
+           <div className="h-1 w-20 bg-pink-500 rounded-full mt-4"></div>
         </div>
 
         {/* GRID LAYOUT */}
@@ -147,17 +148,17 @@ export default function ProjectPage() {
               className="group relative bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden cursor-pointer hover:border-zinc-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10"
             >
               {/* Thumbnail Image Area */}
-              <div className="relative h-48 w-full overflow-hidden bg-zinc-800">
-                <div className="absolute inset-0 bg-linear-to-br from-zinc-800 to-zinc-950" />
+              <div className="relative h-48 w-full overflow-hidden bg-black">
+                {/* <div className="absolute inset-0 bg-linear-to-br from-zinc-800 to-zinc-950" /> */}
                 {project.thumbnail && (
                   <Image 
                     src={project.thumbnail}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-contain transition-transform duration-500 group-hover:scale-105"
                   />
                 )}
-                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 rounded-full border border-white/10">
                    <span className={`text-[10px] font-bold text-white tracking-wider ${montserrat.className}`}>
                      {project.category}
                    </span>
@@ -166,7 +167,7 @@ export default function ProjectPage() {
 
               {/* Card Content */}
               <div className="p-6">
-                <h3 className={`text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors ${montserrat.className}`}>
+                <h3 className={`text-xl font-bold text-white mb-2 transition-colors ${montserrat.className}`}>
                   {project.title}
                 </h3>
                 <p className={`text-zinc-400 text-sm leading-relaxed line-clamp-2 ${montserrat.className}`}>
