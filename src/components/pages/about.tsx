@@ -14,7 +14,6 @@ import {
   SiJavascript,
   SiNodedotjs,
   SiCanva,
-  SiArduino,
   SiMysql,
   SiExpress,
   SiGithub,
@@ -22,7 +21,12 @@ import {
   SiTensorflow,
   SiOpencv,
   SiJupyter,
-  SiScikitlearn
+  SiScikitlearn,
+  // ICON IOT (Tambahkan ini)
+  SiMqtt,       // Wajib buat IoT
+  SiEspressif,  // Chip ESP32/ESP8266
+  SiArduino,    // Platform
+  SiSocketdotio // Komunikasi Realtime
 } from 'react-icons/si'
 
 
@@ -61,13 +65,16 @@ const skillsData: { category: string; items: SkillItem[] }[] = [
     ]
   },
   {
-    category: "AI & Data Science", 
+    category: "AI & IoT Integrations", 
     items: [
       { name: "Google Colab", icon: <SiGooglecolab />, color: "text-orange-400" },
       { name: "TensorFlow", icon: <SiTensorflow />, color: "text-orange-500" },
       { name: "OpenCV", icon: <SiOpencv />, color: "text-green-500" },
       { name: "Jupyter", icon: <SiJupyter />, color: "text-orange-500" },
       { name: "Scikit-learn", icon: <SiScikitlearn />, color: "text-orange-300" },
+      { name: "MQTT", icon: <SiMqtt />, color: "text-yellow-400" },
+      { name: "ESP32/ESP8266", icon: <SiEspressif />, color: "text-blue-400" },
+      { name: "Socket.io", icon: <SiSocketdotio />, color: "text-gray-400" },
     ]
   },
   {

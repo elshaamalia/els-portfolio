@@ -9,7 +9,7 @@ const montserrat = Montserrat({
 
 export default function HomePage() {
   return (
-    <div className="relative flex items-center justify-center h-full w-full bg-black overflow-hidden">
+    <div className="relative flex items-center justify-center h-full w-full overflow-hidden">
 
       {/* 🔥 Background Galaxy */}
       <div className="fixed inset-0 w-screen h-screen z-2">

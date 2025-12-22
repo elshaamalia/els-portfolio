@@ -2,6 +2,7 @@
 
 import { Montserrat } from "next/font/google"
 import TypingText from "@/components/animations/typing-text" 
+import Image from "next/image"
 import { 
   SiReact, 
   SiNodedotjs, 
@@ -9,6 +10,7 @@ import {
   SiMqtt, 
   SiMysql, 
   SiArduino,
+  SiSocketdotio,
 } from "react-icons/si"
 
 const montserrat = Montserrat({
@@ -24,6 +26,7 @@ const techStack = [
   { name: "IoT (MQTT)", icon: SiMqtt, color: "hover:text-purple-400 hover:bg-purple-400/10 hover:border-purple-400/50" },
   { name: "MySQL", icon: SiMysql, color: "hover:text-blue-400 hover:bg-blue-400/10 hover:border-blue-400/50" },
   { name: "Arduino", icon: SiArduino, color: "hover:text-teal-400 hover:bg-teal-400/10 hover:border-teal-400/50" },
+  { name: "Socket.io", icon: SiSocketdotio, color: "hover:text-gray-400 hover:bg-gray-400/10 hover:border-gray-400/50" },
 ]
 
 export default function ExperiencePage() {
@@ -51,8 +54,15 @@ export default function ExperiencePage() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 relative z-10 border-b border-zinc-800/50 pb-8">
                 <div className="flex items-center gap-5">
                     {/* Logo Company */}
-                    <div className="w-16 h-16 rounded-2xl  flex items-center justify-center ring-1 ring-white/10 shrink-0">
-                       <span className={`text-white text-3xl font-black ${montserrat.className}`}>G</span>
+                    <div className="w-24 h-24 rounded-2xl ring-1 ring-white/10 shrink-0 overflow-hidden flex items-center justify-center bg-white p-2">
+                       <Image 
+                            src="/assets/giken.png" 
+                            alt="Giken Precision Indonesia Logo"
+                            width={100} 
+                            height={64} 
+                            // object-contain: gambar utuh, tidak terpotong, pas di kotak
+                            className="object-contain w-full h-full drop-shadow-sm" 
+                        />
                     </div>
                     
                     <div className="space-y-1">
@@ -93,17 +103,21 @@ export default function ExperiencePage() {
                 </h3>
                 
                 <p className={`text-zinc-300 text-base leading-relaxed max-w-4xl ${montserrat.className} opacity-90`}>
-                    Developed a realtime Cycle Time Monitoring System based on IoT infrastructure. Assisted and contributed to the 1-to-1 migration of legacy applications to modern React-based solutions, significantly enhancing feature functionality and improving overall UI/UX efficiency.
+                    Engineered the complete software ecosystem for a real-time Cycle Time Monitoring System. Responsible for the end-to-end data flow—from programming the hardware logic to developing the web-based visualization dashboard.               
                 </p>
 
                 <ul className={`mt-6 space-y-3 text-zinc-400 text-sm ${montserrat.className}`}>
                     <li className="flex items-start gap-3">
                         <span className="text-cyan-400 mt-1">▹</span>
-                        <span>Spearheaded the development of IoT-based realtime monitoring dashboard.</span>
+                        <span>Built a high-performance dashboard to stream live production data, ensuring low-latency updates for real-time monitoring.</span>
                     </li>
                     <li className="flex items-start gap-3">
                         <span className="text-cyan-400 mt-1">▹</span>
-                        <span>Executed legacy system migration using modern React ecosystem.</span>
+                        <span>Developed backend services to process incoming sensor data streams and managed the database for historical logging and reporting.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <span className="text-cyan-400 mt-1">▹</span>
+                        <span>Programmed the microcontroller firmware to capture sensor readings and implemented messaging protocols to bridge hardware with the central server</span>
                     </li>
                 </ul>
             </div>

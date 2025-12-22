@@ -68,25 +68,25 @@ export default function Page() {
         </section>
 
         {/* CONTENT CONTAINER */}
-        <div className="bg-black/70 backdrop-blur-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/8 rounded-t-3xl">
+        <div className="bg-black/60 backdrop-blur-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/8 rounded-t-3xl">
 
-            <section id="about" className="min-h-screen flex items-center px-60 relative overflow-hidden">
+            <section id="about" className="min-h-screen flex items-center px-60 relative overflow-hiddenx ">
               <AboutPage />
             </section>
 
-            <section id="project" className="min-h-screen flex items-center px-60 relative overflow-hidden">
+            <section id="project" className="min-h-screen flex items-center px-60 relative overflow-hidden mt-20">
               <ProjectPage />
             </section>
 
-            <section id="activity" className="min-h-screen flex items-center px-60 relative overflow-hidden">
+            <section id="activity" className="min-h-screen flex items-center px-60 relative overflow-hidden mt-20">
               <ActivityPage />
             </section>
 
-            <section id="experience" className="min-h-screen flex items-center px-60 relative overflow-hidden">
+            <section id="experience" className="min-h-screen flex items-center px-60 relative overflow-hidden mt-20">
               <ExperiencePage />
             </section>
 
-            <div className=" text-center mb-12 text-gray-500 text-xs tracking-widest">
+            <div className=" text-center mb-12 mt-16 text-gray-500 text-xs tracking-widest">
               © 2025 ELSHA AMALIA PUSPONEGORO.
             </div>
         </div>
