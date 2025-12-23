@@ -38,7 +38,7 @@ export default function HomePage() {
           <div className="relative -mt-8 bg-black mix-blend-screen p-4 select-none  outline-4 outline-black">
 
             <h1
-              className={`text-[250px] font-black tracking leading-none text-white bg-black relative z-0 ${montserrat.className}`}
+              className={`text-[280px] font-black tracking-tight leading-none text-white bg-black relative z-0 ${montserrat.className}`}
             >
               ELSHA
             </h1>
@@ -50,7 +50,7 @@ export default function HomePage() {
               muted
               playsInline
             >
-              <source src="/assets/Download.mp4" type="video/mp4" />
+              <source src="/assets/bg-text.mp4" type="video/mp4" />
             </video>
 
           </div>
