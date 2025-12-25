@@ -13,8 +13,9 @@ export default function SectionReveal({ children, delay = 0.2 }: SectionRevealPr
     <motion.div
       initial={{ opacity: 0, y: 50 }} 
       whileInView={{ opacity: 1, y: 0 }} 
-      viewport={{ once: true, amount: 0.3 }} 
+      viewport={{ once: false, amount: 0.3 }}
       transition={{ duration: 0.8, delay: delay, ease: "easeOut" }}
+      className="w-full" // <--- INI WAJIB ADA BIAR GA GESER KE KIRI
     >
       {children}
     </motion.div>

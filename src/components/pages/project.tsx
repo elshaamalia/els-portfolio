@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { createPortal } from "react-dom"
 // import TypingText from "@/components/animations/typing-text"
 import { Montserrat } from "next/font/google"
-import TypingText from "@/components/animations/typing-text"
+// import TypingText from "@/components/animations/typing-text"
 import Image from "next/image"
 import { X, ExternalLink } from "lucide-react"
 
@@ -135,7 +135,7 @@ export default function ProjectPage() {
         <div className="mb-16 mt-14">
            <p className={`text-slate-400 text-sm tracking-widest mb-2 ${montserrat.className}`}>FEATURED WORKS</p>
            <h1 className={`text-white text-6xl font-black tracking-tight ${montserrat.className}`}>PROJECTS
-             <TypingText text="PROJECTS" speed={50} />
+             {/* <TypingText text="PROJECTS" speed={50} /> */}
            </h1>
            <div className="h-1 w-20 bg-pink-500 rounded-full mt-4"></div>
         </div>
@@ -212,10 +212,9 @@ export default function ProjectPage() {
                    src={selectedProject.bgImage}
                    alt={selectedProject.title}
                    fill
-                   className="object-cover opacity-60"
+                   className="object-cover"
                  />
                )}
-               <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-transparent to-transparent md:bg-linear-to-r" />
                <div className="absolute bottom-6 left-6 md:hidden">
                   <h2 className={`text-3xl font-black text-white ${montserrat.className}`}>{selectedProject.title}</h2>
                </div>
