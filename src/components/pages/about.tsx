@@ -22,11 +22,10 @@ import {
   SiOpencv,
   SiJupyter,
   SiScikitlearn,
-  // ICON IOT (Tambahkan ini)
-  SiMqtt,       // Wajib buat IoT
-  SiEspressif,  // Chip ESP32/ESP8266
-  SiArduino,    // Platform
-  SiSocketdotio // Komunikasi Realtime
+  SiMqtt, 
+  SiEspressif, 
+  SiArduino, 
+  SiSocketdotio 
 } from 'react-icons/si'
 
 
@@ -90,68 +89,62 @@ const skillsData: { category: string; items: SkillItem[] }[] = [
 export default function AboutPage() {
   return (
     // OUTER WRAPPER 
-    <div className="relative w-full min-h-screen bg-transparent overflow-hidden flex items-center justify-center">
+    <div className="relative w-full min-h-screen bg-transparent overflow-hidden flex items-center justify-center py-10 lg:py-0">
       
       {/* MAIN CONTAINER */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto py-20 px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div className="relative z-10 w-full max-w-6xl mx-auto py-10 lg:py-20 px-0 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         
         {/* --- KOLOM KIRI: DESKRIPSI DIRI --- */}
-        <div className="w-full flex flex-col justify-center space-y-8 order-2 lg:order-1 pt-10">
+        <div className="w-full flex flex-col justify-center space-y-6 md:space-y-8 order-1 lg:pt-10">
             <div>
-                <p className={`text-slate-400 text-sm tracking-[0.2em] mb-2 ${montserrat.className}`}>
+                <p className={`text-slate-400 text-xs md:text-sm tracking-[0.2em] mb-2 ${montserrat.className}`}>
                     INTRODUCTION
                 </p>
-                <h1 className={`text-white text-5xl md:text-7xl font-black tracking-tight mb-2 ${montserrat.className}`}>
+                <h1 className={`text-white text-4xl md:text-5xl lg:text-7xl font-black tracking-tight mb-2 ${montserrat.className}`}>
                     <TypingText text="PROFILE" speed={100} />
                 </h1>
-                <div className="h-1 w-20 bg-pink-500 rounded-full mt-4"></div>
+                <div className="h-1 w-16 md:w-20 bg-pink-500 rounded-full mt-4"></div>
             </div>
 
-            <div className="space-y-6">
-                <p className={`text-slate-200 text-xl md:text-2xl font-medium leading-relaxed ${montserrat.className}`}>
+            <div className="space-y-4 md:space-y-6">
+                <p className={`text-slate-200 text-lg md:text-2xl font-medium leading-relaxed ${montserrat.className}`}>
                    My name is <span className="text-pink-500">Elsha Amalia Pusponegoro</span>.
                    <br/>I&apos;m a Software Engineer.
                 </p>
 
-                <p className={`text-slate-400 text-base leading-loose text-justify ${montserrat.className}`}>
+                <p className={`text-slate-400 text-sm md:text-base leading-relaxed md:leading-loose text-justify ${montserrat.className}`}>
                   I am an emerging Software Engineer with a knack for blending artwork with cutting-edge technology. During my academic years, I have specialized in <span className="text-white font-bold">Frontend Development</span>  and <span className="text-white font-bold">AI-IoT Integrations</span>, transforming theoretical concepts into functional web applications. I bring practical experience from the manufacturing industry, ready to craft dynamic digital experiences
                 </p>
             </div>
         </div>
 
         {/* --- KOLOM KANAN: TECH STACK --- */}
-        <div className="w-full flex flex-col justify-center order-1 lg:order-2">
+        <div className="w-full flex flex-col justify-center order-2">
             
-            <div className="bg-transparent border border-gray-900 backdrop-blur-xs rounded-3xl p-8 shadow-2xl">
-                {/* <h3 className={`text-white text-xl font-bold mb-6 border-l-4 border-blue-500 pl-4 ${montserrat.className}`}>
-                    TECH STACK
-                </h3> */}
+            <div className="bg-transparent border border-gray-900 backdrop-blur-xs rounded-3xl p-4 md:p-8 shadow-2xl">
 
-                <div className="space-y-8">
+                <div className="space-y-6 md:space-y-8">
                     {skillsData.map((group, idx) => (
                         <div key={idx}>
                             <h4 className={`text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-3 ${montserrat.className}`}>
                                 {group.category}
                             </h4>
                             
-                            {/* Grid 5 Kolom */}
-                            <div className="grid grid-cols-5 gap-3">
+                            {/* GRID CONTAINER */}
+                            <div className="grid grid-cols-5 gap-1.5 md:gap-3">
                                 {group.items.map((skill, sIdx) => (
                                     <div 
                                         key={sIdx} 
-                                        // STYLE BLOK 
-                                        className="group relative flex flex-col items-center justify-center p-3 rounded-xl border border-gray-900  transition-all duration-300 aspect-square cursor-pointer"
+                                        // KOTAK:
+                                        className="group relative flex flex-col items-center justify-center p-1 md:p-3 rounded-lg md:rounded-xl border border-gray-900 transition-all duration-300 aspect-square cursor-pointer"
                                     >
-                                        {/* STYLE GRAYSCALE (Hitam Putih) */}
-                                        {/* grayscale = jadi abu-abu */}
-                                        {/* opacity-60 = agak redup */}
-                                        {/* group-hover:grayscale-0 = warna asli muncul pas di hover */}
-                                        <div className={`text-3xl ${skill.color} grayscale opacity-100 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 drop-shadow-lg`}>
+                                        {/*  ICON: */}
+                                        <div className={`text-3xl md:text-3xl ${skill.color} grayscale opacity-100 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 drop-shadow-lg`}>
                                             {skill.icon}
                                         </div>
                                         
-                                        {/* Tooltip Nama */}
-                                        <span className={`absolute -bottom-8 opacity-0 group-hover:opacity-100 z-20 text-[12px] text-white  px-2 py-1  transition-all duration-100 whitespace-nowrap ${montserrat.className}`}>
+                                        {/* Tooltip */}
+                                        <span className={`absolute -bottom-8 opacity-0 group-hover:opacity-100 z-20 text-[10px] md:text-[12px] text-white px-2 py-1 transition-all duration-100 whitespace-nowrap ${montserrat.className}`}>
                                             {skill.name}
                                         </span>
                                     </div>

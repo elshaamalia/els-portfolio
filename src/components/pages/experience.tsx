@@ -35,52 +35,48 @@ export default function ExperiencePage() {
     <div className="relative w-full min-h-screen bg-transparent overflow-hidden"> 
       
       {/* MAIN CONTAINER */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto  px-8 md:px-12">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-0 md:px-12">
         
         {/* HEADER SECTION */}
-        <div className="mb-16 mt-14">
-           <p className={`text-slate-400 text-sm tracking-widest mb-2 ${montserrat.className}`}>PROFESSIONAL HISTORY</p>
-           <h1 className={`text-white text-6xl font-black tracking-tight ${montserrat.className}`}>
+        <div className="mb-10 md:mb-16 mt-0 md:mt-14">
+           <p className={`text-slate-400 text-xs md:text-sm tracking-widest mb-2 ${montserrat.className}`}>PROFESSIONAL HISTORY</p>
+           {/* Font size responsive */}
+           <h1 className={`text-white text-4xl md:text-6xl font-black tracking-tight ${montserrat.className}`}>
              <TypingText text="EXPERIENCE" speed={50} />
            </h1>
-           <div className="h-1 w-20 bg-pink-500 rounded-full mt-4"></div>
+           <div className="h-1 w-16 md:w-20 bg-pink-500 rounded-full mt-4"></div>
         </div>
 
         {/* CONTENT AREA */}
-        <div className="relative w-full rounded-3xl border border-zinc-900 backdrop-blur-xs overflow-hidden shadow-2xl p-8 md:p-12 group transition-all duration-500">
-            
+        <div className="relative w-full rounded-3xl border border-zinc-900 backdrop-blur-xs overflow-hidden shadow-2xl p-6 md:p-12 group transition-all duration-500">
             
             {/* --- CARD HEADER --- */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 relative z-10 border-b border-zinc-800/50 pb-8">
-                <div className="flex items-center gap-5">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 md:mb-10 gap-6 relative z-10 border-b border-zinc-800/50 pb-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-5">
                     {/* Logo Company */}
-                    <div className="w-24 h-24 rounded-2xl ring-1 ring-white/10 shrink-0 overflow-hidden flex items-center justify-center bg-white p-2">
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl ring-1 ring-white/10 shrink-0 overflow-hidden flex items-center justify-center bg-white p-2">
                        <Image 
                             src="/assets/giken.png" 
                             alt="Giken Precision Indonesia Logo"
                             width={100} 
                             height={64} 
-                            // object-contain: gambar utuh, tidak terpotong, pas di kotak
                             className="object-contain w-full h-full drop-shadow-sm" 
                         />
                     </div>
                     
                     <div className="space-y-1">
-                        <h2 className={`text-white text-xl md:text-2xl font-bold tracking-tight ${montserrat.className}`}>
+                        <h2 className={`text-white text-lg md:text-2xl font-bold tracking-tight ${montserrat.className}`}>
                             PT GIKEN PRECISION INDONESIA
                         </h2>
 
-                        {/* Industry Tag */}
-                        <div className={`flex items-center gap-2 text-zinc-500 text-xs font-bold tracking-widest uppercase ${montserrat.className}`}>
+                        <div className={`flex items-center gap-2 text-zinc-500 text-[10px] md:text-xs font-bold tracking-widest uppercase ${montserrat.className}`}>
                             <span>Manufacturing & Assembly</span>
                         </div>
 
-                        {/* Location */}
                         <div className="flex items-center gap-2 text-zinc-400 pt-1">
-                            <span className="text-sm">📍 Batam, Indonesia</span>
+                            <span className="text-xs md:text-sm">📍 Batam, Indonesia</span>
                         </div>
                         
-                        {/* Badges */}
                         <div className="flex flex-wrap items-center gap-3 pt-3">
                             <div className={`flex items-center gap-2 px-3 py-1 rounded-full border border-blue-800/60 bg-blue-950/30 text-blue-400 text-[10px] font-bold tracking-wide uppercase shadow-inner ${montserrat.className}`}>
                               <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
@@ -91,18 +87,18 @@ export default function ExperiencePage() {
                 </div>
 
                 {/* Date Badge */}
-                <div className={`shrink-0 px-4 py-2 border border-zinc-800 rounded-lg bg-black/20 text-zinc-300 text-sm font-medium tracking-wide ${montserrat.className}`}>
+                <div className={`shrink-0 px-4 py-2 border border-zinc-800 rounded-lg bg-black/20 text-zinc-300 text-xs md:text-sm font-medium tracking-wide ${montserrat.className}`}>
                     March 2025 - Nov 2025
                 </div>
             </div>
 
             {/* --- ROLE & DESCRIPTION --- */}
             <div className="mb-10 relative z-10">
-                <h3 className={`text-3xl font-black mb-4 text-transparent bg-clip-text bg-linear-to-r from-white via-blue-100 to-zinc-400 ${montserrat.className}`}>
+                <h3 className={`text-2xl md:text-3xl font-black mb-4 text-transparent bg-clip-text bg-linear-to-r from-white via-blue-100 to-zinc-400 ${montserrat.className}`}>
                     Fullstack IoT Engineer
                 </h3>
                 
-                <p className={`text-zinc-300 text-base leading-relaxed max-w-4xl ${montserrat.className} opacity-90`}>
+                <p className={`text-zinc-300 text-sm md:text-base leading-relaxed max-w-4xl ${montserrat.className} opacity-90 text-justify`}>
                     Engineered the complete software ecosystem for a real-time Cycle Time Monitoring System. Responsible for the end-to-end data flow—from programming the hardware logic to developing the web-based visualization dashboard.               
                 </p>
 
@@ -128,19 +124,17 @@ export default function ExperiencePage() {
                     Core Technologies
                 </h4>
                 
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap items-center gap-3 md:gap-4">
                     {techStack.map((tech, index) => (
                         <div 
                         key={index}
                         className="group/icon relative flex flex-col items-center"
                         >
-                            {/* Icon Container */}
-                            <div className={`w-12 h-12 rounded-xl bg-zinc-800/40 border border-zinc-700/30 flex items-center justify-center text-zinc-400 text-2xl transition-all duration-300 group-hover/icon:scale-110 shadow-lg ${tech.color}`}>
+                            <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-zinc-800/40 border border-zinc-700/30 flex items-center justify-center text-zinc-400 text-xl md:text-2xl transition-all duration-300 group-hover/icon:scale-110 shadow-lg ${tech.color}`}>
                                 <tech.icon />
                             </div>
 
-                            {/* Tooltip */}
-                            <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity duration-100 px-2 py-1  text-[12px] text-zinc-300 whitespace-nowrap z-20 pointer-events-none">
+                            <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity duration-100 px-2 py-1  text-[10px] md:text-[12px] text-zinc-300 whitespace-nowrap z-20 pointer-events-none">
                                 {tech.name}
                             </div>
                         </div>

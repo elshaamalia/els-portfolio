@@ -11,7 +11,6 @@ export default function HomePage() {
   return (
     <div className="relative flex items-center justify-center h-full w-full overflow-hidden">
 
-      {/* 🔥 Background Galaxy */}
       <div className="fixed inset-0 w-screen h-screen z-2">
         <Galaxy
           mouseRepulsion={false}
@@ -21,24 +20,43 @@ export default function HomePage() {
           twinkleIntensity={0.1}
           starSpeed={0.5}
           rotationSpeed={0}      
-          speed={0.3}              // opsional: stop animasi kecil
+          speed={0.3}              
           transparent={true}
           animationspeed={1}
         />
       </div>
 
       {/* Konten Utama */}
-      <div className="max-w-6xl space-y-6 relative z-10 text-center flex flex-col items-center justify-center">
-        <div className="space-y-0 w-full flex flex-col items-center">
+      <div className="relative z-10 w-full px-4">
+        
+        {/* --- PERBAIKAN: WRAPPER AGAR SEJAJAR --- */}
+        {/* w-fit: lebar mengikuti konten terpanjang (ELSHA) */}
+        {/* mx-auto: agar posisi wrapper tetap di tengah layar */}
+        {/* items-start: agar semua anak (Teks Jepang & ELSHA) rata kiri */}
+        <div className="w-fit mx-auto flex flex-col items-start">
 
-          <p className={`text-slate-300 text-5xl tracking-[0.5em] w-full text-left pl-6 ${montserrat.className}`}>
+          {/* TEKS JEPANG (KATAKANA) */}
+          {/* pl-2 md:pl-4 disamakan dengan padding container ELSHA di bawahnya agar lurus */}
+          <p className={`text-slate-300 text-left 
+            text-xl sm:text-3xl md:text-4xl lg:text-5xl 
+            tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.5em] 
+            pl-2 md:pl-4 
+            ${montserrat.className}`}
+          >
             エルシャ
           </p>
 
-          <div className="relative -mt-8 bg-black mix-blend-screen p-4 select-none  outline-4 outline-black">
+          {/* CONTAINER JUDUL UTAMA */}
+          {/* Padding (p-2 md:p-4) ini yang menjadi patokan alignment */}
+          <div className="relative bg-black mix-blend-screen p-2 md:p-4 select-none outline-4 outline-black
+            -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-8"
+          >
 
+            {/* JUDUL "ELSHA" */}
             <h1
-              className={`text-[280px] font-black tracking-tight leading-none text-white bg-black relative z-0 ${montserrat.className}`}
+              className={`font-black tracking-tight leading-none text-white bg-black relative z-0 
+              text-[70px] sm:text-[140px] md:text-[200px] lg:text-[280px]
+              ${montserrat.className}`}
             >
               ELSHA
             </h1>

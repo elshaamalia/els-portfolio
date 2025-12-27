@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { createPortal } from "react-dom"
-// import TypingText from "@/components/animations/typing-text"
 import { Montserrat } from "next/font/google"
-// import TypingText from "@/components/animations/typing-text"
 import Image from "next/image"
 import { X, ExternalLink } from "lucide-react"
 
@@ -45,7 +43,7 @@ const projects: Project[] = [
     bgImage: "/assets/Monitoring Sistem.png",
     link: "https://github.com/elshaamalia/giken-project-2",
     isNDA: false,
-    techStack: ["React", "Express.js", "Socket.io", "MySQLL", "MQTT", "Arduino IDE"]
+    techStack: ["React", "Express.js", "Socket.io", "MySQL", "MQTT", "Arduino IDE"]
   },
   {
     id: 2,
@@ -99,14 +97,10 @@ export default function ProjectPage() {
   const [mounted, setMounted] = useState(false)
 
   // --- FIX PAMUNGKAS: TRIK SETTIMEOUT ---
-  // Error "Synchronous" hilang karena kita membungkusnya dalam setTimeout.
-  // Ini membuat update state menjadi "Asynchronous" (dijadwalkan).
   useEffect(() => {
     const timer = setTimeout(() => {
       setMounted(true)
     }, 0)
-    
-    // Bersihkan timer jika component unmount (best practice)
     return () => clearTimeout(timer)
   }, []) 
 
@@ -117,11 +111,9 @@ export default function ProjectPage() {
     } else {
       document.body.style.overflow = 'auto'
     }
-
     return () => { document.body.style.overflow = 'auto' }
   }, [selectedProject])
 
-  // Cegah render jika belum mounted (mencegah error hydration)
   if (!mounted) {
     return null
   }
@@ -129,18 +121,21 @@ export default function ProjectPage() {
   return (
     <div className="relative w-full min-h-screen bg-transparent overflow-hidden"> 
       
-      <div className="relative z-10 w-full max-w-6xl mx-auto  pb-20 px-8 md:px-12">
+      {/* RESPONSIVE: px-4 (HP) -> md:px-12 (Laptop) */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto pb-20 px-4 md:px-12">
         
         {/* HEADER */}
-        <div className="mb-16 mt-14">
-           <p className={`text-slate-400 text-sm tracking-widest mb-2 ${montserrat.className}`}>FEATURED WORKS</p>
-           <h1 className={`text-white text-6xl font-black tracking-tight ${montserrat.className}`}>PROJECTS
-             {/* <TypingText text="PROJECTS" speed={50} /> */}
+        {/* RESPONSIVE: mt-4 (HP) -> md:mt-14 (Laptop) | text-4xl (HP) -> text-6xl (Laptop) */}
+        <div className="mb-10 md:mb-16 mt-4 md:mt-14">
+           <p className={`text-slate-400 text-xs md:text-sm tracking-widest mb-2 ${montserrat.className}`}>FEATURED WORKS</p>
+           <h1 className={`text-white text-4xl md:text-6xl font-black tracking-tight ${montserrat.className}`}>
+             PROJECTS
            </h1>
-           <div className="h-1 w-20 bg-pink-500 rounded-full mt-4"></div>
+           <div className="h-1 w-16 md:w-20 bg-pink-500 rounded-full mt-4"></div>
         </div>
 
         {/* GRID LAYOUT */}
+        {/* RESPONSIVE: grid-cols-1 (HP) -> md:grid-cols-2 (Laptop) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {projects.map((project) => (
             <div 
@@ -150,7 +145,6 @@ export default function ProjectPage() {
             >
               {/* Thumbnail Image Area */}
               <div className="relative h-48 w-full overflow-hidden bg-black">
-                {/* <div className="absolute inset-0 bg-linear-to-br from-zinc-800 to-zinc-950" /> */}
                 {project.thumbnail && (
                   <Image 
                     src={project.thumbnail}
@@ -186,6 +180,7 @@ export default function ProjectPage() {
 
       {/* --- MODAL DETAIL (PORTAL) --- */}
       {selectedProject && createPortal(
+        // RESPONSIVE: p-4 (HP) -> md:p-8 (Laptop) untuk padding luar modal
         <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 md:p-8"> 
           
           {/* Overlay Gelap */}
@@ -195,7 +190,8 @@ export default function ProjectPage() {
           />
 
           {/* Konten Modal */}
-          <div className="relative w-full max-w-5xl bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] animate-in fade-in zoom-in duration-300">
+          {/* RESPONSIVE: max-h-[85vh] (HP) agar tidak nabrak address bar */}
+          <div className="relative w-full max-w-5xl bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[85vh] md:max-h-[90vh] animate-in fade-in zoom-in duration-300">
             
             {/* Tombol Close */}
             <button 
@@ -206,7 +202,8 @@ export default function ProjectPage() {
             </button>
 
             {/* Left Side: Image / Visual */}
-            <div className="relative w-full md:w-1/2 h-64 md:h-auto bg-black shrink-0">
+            {/* RESPONSIVE: h-48 (HP) -> md:h-auto (Laptop) agar gambar tidak terlalu tinggi di HP */}
+            <div className="relative w-full md:w-1/2 h-48 md:h-auto bg-black shrink-0">
                {selectedProject.bgImage && (
                  <Image 
                    src={selectedProject.bgImage}
@@ -215,13 +212,17 @@ export default function ProjectPage() {
                    className="object-cover"
                  />
                )}
-               <div className="absolute bottom-6 left-6 md:hidden">
-                  <h2 className={`text-3xl font-black text-white ${montserrat.className}`}>{selectedProject.title}</h2>
+               {/* Mobile Title Overlay (Muncul di HP, Hilang di Laptop) */}
+               <div className="absolute bottom-4 left-4 md:hidden bg-black/60 px-3 py-2 rounded-lg backdrop-blur-sm max-w-[80%]">
+                  <h2 className={`text-xl font-black text-white leading-tight ${montserrat.className}`}>{selectedProject.title}</h2>
                </div>
             </div>
 
             {/* Right Side: Details */}
-            <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col overflow-y-auto bg-zinc-900">
+            {/* RESPONSIVE: p-6 (HP) -> md:p-12 (Laptop) */}
+            <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col overflow-y-auto bg-zinc-900">
+              
+              {/* Desktop Header (Hilang di HP) */}
               <div className="hidden md:block mb-6">
                 <div className="flex items-center gap-3 mb-2">
                    <h2 className={`text-3xl lg:text-4xl font-black text-white ${montserrat.className}`}>
@@ -240,10 +241,17 @@ export default function ProjectPage() {
                 </div>
               </div>
 
+              {/* Mobile Meta Data (Muncul di HP) */}
+              <div className="md:hidden mb-6 flex gap-3 text-[10px] font-bold text-blue-400 tracking-widest">
+                  <span>{selectedProject.year}</span>
+                  <span>•</span>
+                  <span className="truncate">{selectedProject.location}</span>
+              </div>
+
               <div className="space-y-6 flex-1">
                 <div>
                    <h4 className={`text-zinc-500 text-xs font-bold tracking-widest mb-2 ${montserrat.className}`}>ROLE</h4>
-                   <p className="text-white font-medium">{selectedProject.role}</p>
+                   <p className="text-white font-medium text-sm">{selectedProject.role}</p>
                 </div>
                 
                 <div>
@@ -261,7 +269,7 @@ export default function ProjectPage() {
                       {selectedProject.techStack.map((tech, index) => (
                         <span 
                           key={index} 
-                          className={`px-3 py-1 bg-zinc-800 border border-zinc-700 rounded-full text-xs text-zinc-300 font-medium hover:bg-zinc-700 hover:text-white transition-colors ${montserrat.className}`}
+                          className={`px-3 py-1 bg-zinc-800 border border-zinc-700 rounded-full text-[10px] md:text-xs text-zinc-300 font-medium hover:bg-zinc-700 hover:text-white transition-colors ${montserrat.className}`}
                         >
                           {tech}
                         </span>
@@ -271,7 +279,7 @@ export default function ProjectPage() {
                 )}
               </div>
 
-              <div className="mt-8 pt-8 border-t border-zinc-800">
+              <div className="mt-8 pt-8 border-t border-zinc-800 pb-4 md:pb-0">
                 {selectedProject.isNDA ? (
                    <button disabled className={`w-full py-4 border border-zinc-700 text-zinc-500 text-xs font-bold tracking-widest uppercase cursor-not-allowed ${montserrat.className}`}>
                      Under NDA - No Case Study

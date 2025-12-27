@@ -38,8 +38,8 @@ export default function Page() {
         <HomePage />
       </div>
 
-      {/* LAYER 2: INTERFACE */}
-      <div className="fixed left-0 top-0 h-full z-30 flex flex-col justify-center">
+      {/* LAYER 2: INTERFACE (Hidden on Mobile/Tablet < md) */}
+      <div className="hidden lg:flex fixed left-0 top-0 h-full z-30 flex-col justify-center">
         <Sidebar 
           currentPage={currentPage}
           onPageChange={(page) => {
@@ -52,7 +52,7 @@ export default function Page() {
         />
       </div>
 
-      <div className="fixed right-0 top-0 h-full z-30 flex flex-col justify-center">
+      <div className="hidden lg:flex fixed right-0 top-0 h-full z-30 flex-col justify-center">
         <SocialSidebar />
       </div>
 
@@ -64,38 +64,37 @@ export default function Page() {
         </section>
 
         {/* CONTENT CONTAINER */}
-        <div className="bg-black/60 backdrop-blur-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/10 rounded-t-3xl">
+        <div className="bg-black/80 backdrop-blur-md shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/10 rounded-t-3xl">
 
             {/* ABOUT */}
-            {/* Ubah px-60 jadi px-6 md:px-20 agar responsif */}
-            <section id="about" className="min-h-screen flex items-center px-6 md:px-20 lg:px-40 relative overflow-hidden">
+            <section id="about" className="min-h-screen flex items-center px-4 sm:px-8 md:px-20 lg:px-40 relative overflow-hidden py-20 lg:py-0">
               <SectionReveal>
                 <AboutPage />
               </SectionReveal>
             </section>
 
             {/* PROJECT */}
-            <section id="project" className="min-h-screen flex items-center px-6 md:px-20 lg:px-40 relative overflow-hidden mt-20">
+            <section id="project" className="min-h-screen flex items-center px-4 sm:px-8 md:px-20 lg:px-40 relative overflow-hidden py-20 lg:py-0">
               <SectionReveal delay={0.1}>
                 <ProjectPage />
               </SectionReveal>
             </section>
 
             {/* ACTIVITY */}
-            <section id="activity" className="min-h-screen flex items-center px-6 md:px-20 lg:px-40 relative overflow-hidden mt-20">
+            <section id="activity" className="min-h-screen flex items-center px-4 sm:px-8 md:px-20 lg:px-40 relative overflow-hidden py-20 lg:py-0 mt-10 lg:mt-20">
               <SectionReveal delay={0.1}>
                 <ActivityPage />
               </SectionReveal>
             </section>
 
             {/* EXPERIENCE */}
-            <section id="experience" className="min-h-screen flex items-center px-6 md:px-20 lg:px-40 relative overflow-hidden mt-20">
+            <section id="experience" className="min-h-screen flex items-center px-4 sm:px-8 md:px-20 lg:px-40 relative overflow-hidden py-20 lg:py-0 mt-10 lg:mt-20">
               <SectionReveal delay={0.1}>
                 <ExperiencePage />
               </SectionReveal>
             </section>
 
-            <div className="text-center mb-12 mt-16 text-gray-500 text-xs tracking-widest">
+            <div className="text-center mb-12 mt-16 text-gray-500 text-[10px] md:text-xs tracking-widest px-4">
               © 2025 ELSHA AMALIA PUSPONEGORO.
             </div>
         </div>
