@@ -47,7 +47,6 @@ interface LanguageData {
   color: string
 }
 
-// Interface Response API (Sesuai route.ts baru)
 interface ApiResponse {
   weeklyData: {
     range: { date: string }
@@ -63,7 +62,7 @@ interface ApiResponse {
   }[]
 }
 
-export default function ActivityComponents() {
+export default function RealtimeActivityFeed() {
   const [weekly, setWeekly] = useState<WeeklyData[]>([])
   const [languages, setLanguages] = useState<LanguageData[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -73,9 +72,7 @@ export default function ActivityComponents() {
       const res = await fetch("/api/waka")
       const json: ApiResponse = await res.json()
 
-      // ======================
       // 1. WEEKLY DATA
-      // ======================
       const days = json.weeklyData || []
       const weeklyData: WeeklyData[] = days.map((day) => ({
         day: new Date(day.range.date).toDateString(),
@@ -83,18 +80,16 @@ export default function ActivityComponents() {
         percent: Math.min(100, (day.grand_total.total_seconds / 18000) * 100),
       }))
 
-      // ======================
-      // 2. LANGUAGES DATA (ALL TIME & WARNA)
-      // ======================
+      // 2. LANGUAGES DATA
       const rawLanguages = json.languageData || []
       const langData: LanguageData[] = rawLanguages
-        .filter((l) => l.percent > 0.5) // Filter < 0.5%
-        .sort((a, b) => b.percent - a.percent) // Urutkan terbesar
-        .slice(0, 5) // Ambil 5 besar
+        .filter((l) => l.percent > 0.5)
+        .sort((a, b) => b.percent - a.percent)
+        .slice(0, 5)
         .map((l) => ({
           name: l.name,
           percent: l.percent,
-          color: LANGUAGE_COLORS[l.name] || "#0072ff", // Custom Color
+          color: LANGUAGE_COLORS[l.name] || "#0072ff",
         }))
 
       setWeekly(weeklyData)
@@ -113,35 +108,44 @@ export default function ActivityComponents() {
   }, [])
 
   // ======================
-  // SKELETON (LAYOUT ASLI)
+  // SKELETON
   // ======================
   const SkeletonRow = () => (
-    <div className="flex items-center gap-4 animate-pulse">
-      <div className="w-40 h-6 bg-gray-800 rounded"></div>
-      <div className="flex-1 bg-gray-800 h-2 rounded-full"></div>
-      <div className="w-14 h-6 bg-gray-800 rounded text-right"></div>
+    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 animate-pulse w-full">
+      <div className="w-full sm:w-40 h-4 sm:h-6 bg-gray-800 rounded"></div>
+      <div className="flex-1 bg-gray-800 h-2 rounded-full w-full"></div>
+      <div className="hidden sm:block w-14 h-6 bg-gray-800 rounded"></div>
     </div>
   )
 
   return (
-    <div className="space-y-12 text-white p-6 w-full mx-auto rounded-lg">
+    <div className="space-y-10 text-white w-full mx-auto rounded-lg">
       
       {/* WEEKLY ACTIVITY */}
       <div>
-        <h2 className={`text-xl font-bold tracking-wider mb-6 ${montserrat.className}`}>WEEKLY ACTIVITY</h2>
+        <h2 className={`text-lg md:text-xl font-bold tracking-wider mb-4 md:mb-6 ${montserrat.className}`}>WEEKLY ACTIVITY</h2>
 
-        <div className="space-y-2"> 
+        <div className="space-y-4 sm:space-y-2"> 
           {isLoading
             ? Array.from({ length: 7 }).map((_, idx) => <SkeletonRow key={idx} />)
             : weekly.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-4 w-full">
-                  <p className="w-40 text-sm md:text-base text-gray-300 whitespace-nowrap leading-6">
-                    {item.day}
-                  </p>
+                <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 w-full">
+                  
+                  {/* LABEL ROW (Mobile: Date + Duration | Desktop: Date only) */}
+                  <div className="flex justify-between items-center sm:block sm:w-40">
+                    <p className="text-xs sm:text-base text-gray-300 whitespace-nowrap leading-6">
+                      {item.day}
+                    </p>
+                    {/* Duration muncul di kanan atas khusus HP */}
+                    <p className="sm:hidden text-xs font-bold text-gray-400">
+                      {item.duration}
+                    </p>
+                  </div>
 
-                  <div className="flex-1 bg-[#2c2f36] h-2 rounded-full">
+                  {/* BAR ROW */}
+                  <div className="flex-1 bg-[#2c2f36] h-1.5 sm:h-2 rounded-full w-full">
                     <div
-                      className="h-full rounded-full text-left"
+                      className="h-full rounded-full text-left transition-all duration-1000 ease-out"
                       style={{
                         width: `${item.percent}%`,
                         background: "linear-gradient(90deg,#00c6ff,#0072ff)",
@@ -149,7 +153,8 @@ export default function ActivityComponents() {
                     />
                   </div>
 
-                  <p className="w-14 text-left text-sm md:text-base text-gray-300 whitespace-nowrap leading-6">
+                  {/* DURATION (Desktop Only) */}
+                  <p className="hidden sm:block w-20 text-right text-sm md:text-base text-gray-300 whitespace-nowrap leading-6">
                     {item.duration}
                   </p>
                 </div>
@@ -159,29 +164,39 @@ export default function ActivityComponents() {
 
       {/* LANGUAGES */}
       <div>
-        <h2 className={`text-xl font-bold tracking-wider mb-6 ${montserrat.className}`}>LANGUAGES</h2>
+        <h2 className={`text-lg md:text-xl font-bold tracking-wider mb-4 md:mb-6 ${montserrat.className}`}>LANGUAGES</h2>
 
-        <div className="space-y-2 w-full">
+        <div className="space-y-4 sm:space-y-2 w-full">
           {isLoading
             ? Array.from({ length: 5 }).map((_, idx) => <SkeletonRow key={idx} />)
             : languages.map((lang, idx) => (
-                <div key={idx} className="flex items-center gap-4 w-full">
-                  <span className="w-40 text-sm md:text-base text-gray-300 leading-6">
-                    {lang.name}
-                  </span>
+                <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 w-full">
+                  
+                  {/* LABEL ROW */}
+                  <div className="flex justify-between items-center sm:block sm:w-40">
+                    <span className="text-xs sm:text-base text-gray-300 leading-6">
+                      {lang.name}
+                    </span>
+                    {/* Percent muncul di kanan atas khusus HP */}
+                    <span className="sm:hidden text-xs font-bold text-gray-400">
+                      {lang.percent.toFixed(1)}%
+                    </span>
+                  </div>
 
-                  <div className="flex-1 bg-[#2c2f36] h-2 rounded-full">
+                  {/* BAR ROW */}
+                  <div className="flex-1 bg-[#2c2f36] h-1.5 sm:h-2 rounded-full w-full">
                     <div
-                      className="h-full rounded-full"
+                      className="h-full rounded-full transition-all duration-1000 ease-out"
                       style={{
                         width: `${lang.percent}%`,
-                        backgroundColor: lang.color, // Warna dari Variable
-                        boxShadow: `0 0 10px ${lang.color}40` // Glow dikit
+                        backgroundColor: lang.color,
+                        boxShadow: `0 0 10px ${lang.color}40`
                       }}
                     />
                   </div>
 
-                  <span className="w-14 text-left text-sm md:text-base text-gray-300 leading-6">
+                  {/* PERCENT (Desktop Only) */}
+                  <span className="hidden sm:block w-14 text-right text-sm md:text-base text-gray-300 leading-6">
                     {lang.percent.toFixed(1)}%
                   </span>
                 </div>
