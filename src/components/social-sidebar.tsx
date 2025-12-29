@@ -27,7 +27,7 @@ export default function SocialSidebar() {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-3 rounded transition text-slate-400 ${item.color}`}
+                className={`p-3 rounded transition text-slate-200/50 ${item.color}`}
                 title={item.label}
               >
                 <Icon size={24} />

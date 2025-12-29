@@ -52,15 +52,14 @@ const experienceData = [
 ]
 
 export default function ExperiencePage() {
+  const [expandedId, setExpandedId] = useState<number | null>(null)
 
-  const [expandedId, setExpandedId] = useState(null)
-
-  const toggleExpand = (id) => {
+  const toggleExpand = (id: number) => {
     setExpandedId(expandedId === id ? null : id)
   }
 
   return (
-    <div className="relative w-full min-h-screen bg-transparent overflow-hidden"> 
+    <div className="relative w-full min-h-screen bg-transparent overflow-hidden "> 
       
       {/* MAIN CONTAINER */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-12 pb-20">
@@ -75,14 +74,14 @@ export default function ExperiencePage() {
         </div>
 
         {/* LIST EXPERIENCE */}
-        <div className="space-y-6">
+        <div className="space-y-6 backdrop-blur-xl">
             {experienceData.map((exp) => (
                 <div 
                     key={exp.id} 
                     className={`relative w-full rounded-2xl border transition-all duration-300 overflow-hidden group
                         ${expandedId === exp.id 
                             ? "bg-zinc-900/80 border-zinc-700 shadow-xl" 
-                            : "bg-zinc-900/40 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/60"
+                            : "bg-zinc-900/40 border-zinc-800 hover:border-zinc-700/50 hover:bg-zinc-900/60"
                         }
                     `}
                 >
