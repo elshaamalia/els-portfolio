@@ -180,7 +180,6 @@ export default function ProjectPage() {
 
       {/* --- MODAL DETAIL (PORTAL) --- */}
       {selectedProject && createPortal(
-        // RESPONSIVE: p-4 (HP) -> md:p-8 (Laptop) untuk padding luar modal
         <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 md:p-8"> 
           
           {/* Overlay Gelap */}
@@ -190,7 +189,6 @@ export default function ProjectPage() {
           />
 
           {/* Konten Modal */}
-          {/* RESPONSIVE: max-h-[85vh] (HP) agar tidak nabrak address bar */}
           <div className="relative w-full max-w-5xl bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[85vh] md:max-h-[90vh] animate-in fade-in zoom-in duration-300">
             
             {/* Tombol Close */}
@@ -202,7 +200,6 @@ export default function ProjectPage() {
             </button>
 
             {/* Left Side: Image / Visual */}
-            {/* RESPONSIVE: h-48 (HP) -> md:h-auto (Laptop) agar gambar tidak terlalu tinggi di HP */}
             <div className="relative w-full md:w-1/2 h-48 md:h-auto bg-black shrink-0">
                {selectedProject.bgImage && (
                  <Image 
@@ -212,17 +209,16 @@ export default function ProjectPage() {
                    className="object-cover"
                  />
                )}
-               {/* Mobile Title Overlay (Muncul di HP, Hilang di Laptop) */}
+               {/* Mobile Title Overlay */}
                <div className="absolute bottom-4 left-4 md:hidden bg-black/60 px-3 py-2 rounded-lg backdrop-blur-sm max-w-[80%]">
                   <h2 className={`text-xl font-black text-white leading-tight ${montserrat.className}`}>{selectedProject.title}</h2>
                </div>
             </div>
 
             {/* Right Side: Details */}
-            {/* RESPONSIVE: p-6 (HP) -> md:p-12 (Laptop) */}
             <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col overflow-y-auto bg-zinc-900">
               
-              {/* Desktop Header (Hilang di HP) */}
+              {/* Desktop Header */}
               <div className="hidden md:block mb-6">
                 <div className="flex items-center gap-3 mb-2">
                    <h2 className={`text-3xl lg:text-4xl font-black text-white ${montserrat.className}`}>

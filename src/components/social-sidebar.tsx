@@ -8,7 +8,6 @@ export default function SocialSidebar() {
   const socialLinks = [
     { id: "linkedin", icon: Linkedin, label: "LinkedIn", url: "https://linkedin.com/in/elshaamalia", color: "hover:text-blue-600" },
     { id: "github", icon: Github, label: "GitHub", url: "https://github.com/elshaamalia", color: "hover:text-gray-400" },
-    // { id: "twitter", icon: Twitter, label: "Twitter", url: "https://twitter.com/elshaammalia", color: "hover:text-blue-400" },
     { id: "instagram", icon: Instagram, label: "Instagram", url: "https://instagram.com/abcdelsssss", color: "hover:text-pink-500" },
     { id: "email", icon: Mail, label: "Email", url: "mailto:elshaaml14@gmail.com", color: "hover:text-red-500" },
   ]
