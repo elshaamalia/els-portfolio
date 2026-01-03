@@ -74,7 +74,7 @@ export default function Page() {
             </section>
 
             {/* PROJECT */}
-            <section id="project" className="min-h-screen flex items-center px-4 sm:px-8 md:px-20 lg:px-40 relative overflow-hidden py-20 lg:py-0">
+            <section id="project" className="min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-16 lg:px-24 relative py-20 lg:py-0">
               <SectionReveal delay={0.1}>
                 <ProjectPage />
               </SectionReveal>
