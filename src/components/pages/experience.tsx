@@ -21,7 +21,6 @@ const montserrat = Montserrat({
 })
 
 // --- DATA EXPERIENCE ---
-// Kita pisah datanya biar codingan di bawah lebih bersih
 const experienceData = [
   {
     id: 1,
