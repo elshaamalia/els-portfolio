@@ -27,7 +27,7 @@ const experienceData = [
     id: 1,
     role: "Fullstack IoT Engineer",
     company: "PT GIKEN PRECISION INDONESIA",
-    logo: "/assets/giken.png",
+    logo: "/assets/logo_giken.png",
     location: "Batam, Indonesia",
     period: "March 2025 - Nov 2025",
     duration: "9 Months",

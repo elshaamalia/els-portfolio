@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { createPortal } from "react-dom"
 import { Montserrat } from "next/font/google"
 import Image from "next/image"
-import { X, ExternalLink, ArrowRight } from "lucide-react"
+import { X, ArrowRight, Play, Info } from "lucide-react"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -119,10 +119,12 @@ export default function ProjectPage() {
   }
 
   return (
-    <div className="relative w-full min-h-screen bg-transparent overflow-hidden"> 
+    // FIX: Hapus 'min-h-screen' dan 'overflow-hidden' agar konten bisa discroll penuh di HP
+    <div className="relative w-full h-full bg-transparent"> 
       
       {/* CONTAINER */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto pb-20 px-4 md:px-12">
+      {/* FIX: Tambah pb-32 di mobile biar bagian bawah tidak ketutup */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto pb-32 px-4 md:px-12">
         
         {/* HEADER */}
         <div className="mb-16 mt-4 md:mt-14">
@@ -133,14 +135,10 @@ export default function ProjectPage() {
            <div className="h-1 w-20 bg-pink-500 rounded-full mt-4"></div>
         </div>
 
-        {/* --- LIST LAYOUT  --- */}
+        {/* LIST LAYOUT (ZIGZAG) */}
         <div className="flex flex-col gap-16 md:gap-24">
           {projects.map((project, index) => {
-            // Cek apakah index genap (0, 2, dst).
             const isEvenIndex = index % 2 === 0;
-            
-            // Jika genap: Teks di Kiri (order-1), Gambar di Kanan (order-2)
-            // Jika ganjil: Teks di Kanan (order-2), Gambar di Kiri (order-1)
             const textOrderDesktop = isEvenIndex ? "md:order-1" : "md:order-2";
             const imageOrderDesktop = isEvenIndex ? "md:order-2" : "md:order-1";
 
@@ -148,15 +146,11 @@ export default function ProjectPage() {
             <div 
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              // Flex row di desktop, flex col di mobile
               className="group relative flex flex-col md:flex-row items-center gap-8 md:gap-16 cursor-pointer"
             >
               
-              {/* KOLOM TEKS & INFO */}
-              {/* Mobile: order-2 */}
+              {/* KOLOM TEKS */}
               <div className={`w-full md:w-5/12 order-2 ${textOrderDesktop} flex flex-col gap-4`}>
-                 
-                 {/* NOMOR INDEX BESAR */}
                  <div className={`text-6xl md:text-8xl font-black text-zinc-800 group-hover:text-zinc-700 transition-colors duration-500 select-none ${montserrat.className}`}>
                     0{index + 1}
                  </div>
@@ -174,7 +168,6 @@ export default function ProjectPage() {
                     {project.description}
                  </p>
 
-                 {/* Tech Stack Mini */}
                  <div className="flex flex-wrap gap-2 pt-2">
                     {project.techStack.slice(0, 3).map((tech, i) => (
                         <span key={i} className="text-[10px] text-zinc-500 border border-zinc-800 px-2 py-1 rounded-full uppercase tracking-wider">
@@ -186,7 +179,6 @@ export default function ProjectPage() {
                     )}
                  </div>
 
-                 {/* Button View */}
                  <div className="flex items-center gap-2 text-white text-xs font-bold mt-4 group/btn">
                      <span className="border-b border-transparent group-hover/btn:border-white transition-all pb-0.5">VIEW PROJECT</span>
                      <ArrowRight size={16} className="group-hover/btn:translate-x-2 transition-transform duration-300"/>
@@ -194,7 +186,6 @@ export default function ProjectPage() {
               </div>
 
               {/* KOLOM GAMBAR */}
-              {/* Mobile: order-1 */}
               <div className={`w-full md:w-7/12 order-1 ${imageOrderDesktop}`}>
                  <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 group-hover:border-zinc-600 transition-all duration-500 shadow-2xl shadow-black/50">
                     {project.thumbnail ? (
@@ -218,112 +209,119 @@ export default function ProjectPage() {
         </div>
       </div>
 
-      {/* --- MODAL DETAIL (POPUP) --- */}
+      {/* --- NETFLIX STYLE MODAL --- */}
       {selectedProject && createPortal(
-        <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 md:p-8"> 
+        <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 md:p-6 animate-in fade-in duration-300"> 
           
           <div 
-            className="absolute inset-0 bg-black/90 backdrop-blur-md"
+            className="absolute inset-0 bg-black/90 backdrop-blur-xl"
             onClick={() => setSelectedProject(null)}
           />
 
-          <div className="relative w-full max-w-5xl bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[85vh] md:max-h-[90vh] animate-in fade-in zoom-in duration-300">
+          <div className="relative w-full max-w-4xl bg-[#141414] rounded-xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh] md:max-h-[95vh]">
             
-            <button 
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 z-20 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-colors"
-            >
-              <X size={20} />
-            </button>
-
-            {/* Modal Image */}
-            <div className="relative w-full md:w-1/2 h-48 md:h-auto bg-black shrink-0">
-               {selectedProject.bgImage && (
-                 <Image 
-                   src={selectedProject.bgImage}
-                   alt={selectedProject.title}
-                   fill
-                   className="object-cover"
-                 />
-               )}
-               <div className="absolute bottom-4 left-4 md:hidden bg-black/60 px-3 py-2 rounded-lg backdrop-blur-sm max-w-[80%]">
-                  <h2 className={`text-xl font-black text-white leading-tight ${montserrat.className}`}>{selectedProject.title}</h2>
-               </div>
-            </div>
-
-            {/* Modal Details */}
-            <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col overflow-y-auto bg-zinc-900">
-              <div className="hidden md:block mb-6">
-                <div className="flex items-center gap-3 mb-2">
-                   <h2 className={`text-3xl lg:text-4xl font-black text-white ${montserrat.className}`}>
-                     {selectedProject.title}
-                   </h2>
-                   {!selectedProject.isNDA && (
-                     <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors">
-                       <ExternalLink size={24} />
-                     </a>
-                   )}
-                </div>
-                <div className="flex gap-4 text-xs font-bold text-blue-400 tracking-widest">
-                  <span>{selectedProject.year}</span>
-                  <span>•</span>
-                  <span>{selectedProject.location}</span>
-                </div>
-              </div>
-
-              <div className="md:hidden mb-6 flex gap-3 text-[10px] font-bold text-blue-400 tracking-widest">
-                  <span>{selectedProject.year}</span>
-                  <span>•</span>
-                  <span className="truncate">{selectedProject.location}</span>
-              </div>
-
-              <div className="space-y-6 flex-1">
-                <div>
-                   <h4 className={`text-zinc-500 text-xs font-bold tracking-widest mb-2 ${montserrat.className}`}>ROLE</h4>
-                   <p className="text-white font-medium text-sm">{selectedProject.role}</p>
-                </div>
-                
-                <div>
-                   <h4 className={`text-zinc-500 text-xs font-bold tracking-widest mb-2 ${montserrat.className}`}>ABOUT</h4>
-                   <p className={`text-zinc-300 leading-relaxed text-sm ${montserrat.className}`}>
-                     {selectedProject.fullDescription}
-                   </p>
-                </div>
-
-                {selectedProject.techStack && (
-                  <div>
-                    <h4 className={`text-zinc-500 text-xs font-bold tracking-widest mb-3 ${montserrat.className}`}>TECH STACK</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.techStack.map((tech, index) => (
-                        <span 
-                          key={index} 
-                          className={`px-3 py-1 bg-zinc-800 border border-zinc-700 rounded-full text-[10px] md:text-xs text-zinc-300 font-medium ${montserrat.className}`}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="mt-8 pt-8 border-t border-zinc-800 pb-4 md:pb-0">
-                {selectedProject.isNDA ? (
-                   <button disabled className={`w-full py-4 border border-zinc-700 text-zinc-500 text-xs font-bold tracking-widest uppercase cursor-not-allowed ${montserrat.className}`}>
-                     Under NDA - No Case Study
-                   </button>
+            {/* HERO SECTION */}
+            <div className="relative w-full h-[40vh] md:h-[55vh] shrink-0 bg-black group">
+                {selectedProject.bgImage ? (
+                  <Image 
+                    src={selectedProject.bgImage}
+                    alt={selectedProject.title}
+                    fill
+                    className="object-cover opacity-80"
+                  />
                 ) : (
-                   <a 
-                     href={selectedProject.link} 
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className={`block w-full py-4 bg-white hover:bg-zinc-200 text-black text-center text-xs font-bold tracking-widest uppercase transition-colors ${montserrat.className}`}
-                   >
-                     Visit Project
-                   </a>
+                  <div className="w-full h-full bg-linear-to-br from-zinc-800 to-black" />
                 )}
-              </div>
+
+                <div className="absolute inset-0 bg-linear-to-t from-[#141414] via-[#141414]/20 to-transparent" />
+
+                <button 
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 z-50 p-2 bg-[#181818] hover:bg-[#2a2a2a] text-white rounded-full transition-colors border border-white/10"
+                >
+                  <X size={20} />
+                </button>
+
+                <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 z-20">
+                    <div className="flex flex-col gap-4">
+                        <h1 className={`text-4xl md:text-6xl font-black text-white drop-shadow-lg leading-tight ${montserrat.className}`}>
+                           {selectedProject.title}
+                        </h1>
+
+                        <div className="flex flex-wrap items-center gap-4 text-xs md:text-sm font-bold tracking-wide">
+                            <span className="text-green-400">98% Match</span>
+                            <span className="text-zinc-300">{selectedProject.year}</span>
+                            <span className="border border-zinc-500 px-1.5 py-0.5 rounded text-[10px] text-zinc-300">HD</span>
+                            <span className="text-zinc-300">{selectedProject.category}</span>
+                        </div>
+
+                        <div className="flex gap-3 mt-2">
+                             {!selectedProject.isNDA ? (
+                               <a 
+                                 href={selectedProject.link} 
+                                 target="_blank" 
+                                 rel="noopener noreferrer"
+                                 className="flex items-center gap-2 bg-white text-black hover:bg-zinc-200 px-6 py-2 rounded font-bold transition-colors"
+                               >
+                                 <Play size={20} fill="black" />
+                                 <span>Visit</span>
+                               </a>
+                             ) : (
+                                <button disabled className="flex items-center gap-2 bg-zinc-500/50 text-white/50 px-6 py-2 rounded font-bold cursor-not-allowed">
+                                   <Play size={20} />
+                                   <span>NDA</span>
+                                </button>
+                             )}
+                             
+                             <button className="flex items-center gap-2 bg-[rgba(109,109,110,0.7)] hover:bg-[rgba(109,109,110,0.4)] text-white px-6 py-2 rounded font-bold transition-colors backdrop-blur-sm">
+                                <Info size={20} />
+                                <span>More Info</span>
+                             </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            {/* DETAILS SECTION */}
+            <div className="flex-1 overflow-y-auto bg-[#141414] p-6 md:p-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <div className="md:col-span-2 space-y-6">
+                        <div className="flex items-center gap-2 text-green-400 font-bold text-sm">
+                           <span>New</span>
+                           <span className="text-zinc-400 font-normal">Project for</span>
+                           <span className="text-white">{selectedProject.location}</span>
+                        </div>
+
+                        <p className={`text-white text-sm md:text-base leading-relaxed ${montserrat.className}`}>
+                           {selectedProject.fullDescription}
+                        </p>
+                    </div>
+
+                    <div className="md:col-span-1 space-y-4 text-sm">
+                        <div>
+                            <span className="text-zinc-500 block text-xs mb-1">Role:</span>
+                            <span className="text-zinc-200 hover:underline cursor-pointer">{selectedProject.role}</span>
+                        </div>
+                        <div>
+                            <span className="text-zinc-500 block text-xs mb-1">Tech Stack:</span>
+                            <div className="flex flex-wrap gap-1">
+                                {selectedProject.techStack.map((tech, idx) => (
+                                    <span key={idx} className="text-zinc-200 hover:underline cursor-pointer">
+                                        {tech}{idx < selectedProject.techStack.length - 1 ? ", " : ""}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                        <div>
+                            <span className="text-zinc-500 block text-xs mb-1">Year:</span>
+                            <span className="text-zinc-200">{selectedProject.year}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
           </div>
         </div>,
         document.body
