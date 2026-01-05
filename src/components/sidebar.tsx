@@ -16,9 +16,9 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
   ]
 
   return (
-    <aside className="w-55 h-full backdrop-blur-md bg-black border-r border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
+    <aside className="w-45 h-full backdrop-blur-md bg-black border-r border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
 
-      <nav className="flex-1 flex flex-col gap-6 justify-center items-center w-full">
+      <nav className="flex-1 flex flex-col gap-3 justify-center items-center w-full">
         {navItems.map((item) => {
           const Icon = item.icon
           return (
@@ -32,7 +32,7 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
               }`}
               title={item.label}
             >
-              <Icon size={24} />
+              <Icon size={18} />
             </button>
           )
         })}

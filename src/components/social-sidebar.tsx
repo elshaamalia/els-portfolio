@@ -15,9 +15,9 @@ export default function SocialSidebar() {
   return (
     <>
       {/* SIDEBAR */}
-      <aside className="w-55 h-full backdrop-blur-md bg-black border-l border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
+      <aside className="w-45 h-full backdrop-blur-md bg-black border-l border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
         
-        <nav className="flex-1 flex flex-col gap-6 justify-center items-center w-full">
+        <nav className="flex-1 flex flex-col gap-3 justify-center items-center w-full">
           {socialLinks.map((item) => {
             const Icon = item.icon
             return (
@@ -29,7 +29,7 @@ export default function SocialSidebar() {
                 className={`p-3 rounded transition text-slate-200/50 ${item.color}`}
                 title={item.label}
               >
-                <Icon size={24} />
+                <Icon size={18} />
               </a>
             )
           })}
@@ -41,8 +41,8 @@ export default function SocialSidebar() {
             onClick={() => setShowCV(true)}
             className="px-4 py-2 bg-neutral-500/20 hover:bg-neutral-800 text-slate-200 rounded-lg flex items-center gap-2 transition"
           >
-            <FileDown size={20} />
-            <span>Preview CV</span>
+            <FileDown size={18} />
+            <span className="text-xs">Preview CV</span>
           </button>
         </div>
         

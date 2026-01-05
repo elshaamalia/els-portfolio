@@ -30,16 +30,13 @@ export default function HomePage() {
       <div className="relative z-10 w-full px-4">
         
         {/* --- WRAPPER SEJAJAR --- */}
-        {/* w-fit: lebar mengikuti konten terpanjang (ELSHA) */}
-        {/* mx-auto: agar posisi wrapper tetap di tengah layar */}
-        {/* items-start: agar semua anak rata kiri */}
         <div className="w-fit mx-auto flex flex-col items-start">
 
-
+          {/* 1. TEKS JEPANG */}
           <p className={`text-slate-300 text-left 
-            text-xl sm:text-3xl md:text-4xl lg:text-5xl 
-            tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.5em] 
-            pl-2 md:pl-4 
+            text-xl sm:text-2xl md:text-3xl lg:text-4xl 
+            tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] 
+            pl-2 md:pl-5 
             ${montserrat.className}`}
           >
             エルシャ
@@ -47,12 +44,11 @@ export default function HomePage() {
 
           {/* CONTAINER JUDUL UTAMA */}
           <div className="relative bg-black mix-blend-screen p-2 md:p-4 select-none outline-4 outline-black
-            -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-8"
+            -mt-1 sm:-mt-3 md:-mt-5 lg:-mt-6"
           >
-
             <h1
               className={`font-black tracking-tight leading-none text-white bg-black relative z-0 
-              text-[70px] sm:text-[140px] md:text-[200px] lg:text-[280px]
+              text-[60px] sm:text-[110px] md:text-[170px] lg:text-[230px]
               ${montserrat.className}`}
             >
               ELSHA
