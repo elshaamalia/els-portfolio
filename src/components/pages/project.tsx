@@ -121,7 +121,7 @@ export default function ProjectPage() {
   return (
     <div className="relative w-full min-h-screen bg-transparent overflow-hidden">
       
-      <div className="relative z-10 w-full max-w-6xl mx-auto pb-20 px-4 md:px-12">
+      <div className="relative z-10 w-full max-w-4xl mx-auto pb-20 px-4 md:px-12">
         
         {/* HEADER */}
         <div className="mb-10 md:mb-16 mt-4 md:mt-14">

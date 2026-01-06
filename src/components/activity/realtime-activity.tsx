@@ -112,38 +112,37 @@ export default function RealtimeActivityFeed() {
   // ======================
   const SkeletonRow = () => (
     <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 animate-pulse w-full">
-      <div className="w-full sm:w-40 h-4 sm:h-6 bg-gray-800 rounded"></div>
-      <div className="flex-1 bg-gray-800 h-2 rounded-full w-full"></div>
-      <div className="hidden sm:block w-14 h-6 bg-gray-800 rounded"></div>
+      <div className="w-full sm:w-32 h-3 sm:h-4 bg-gray-800 rounded"></div>
+      <div className="flex-1 bg-gray-800 h-1.5 rounded-full w-full"></div>
+      <div className="hidden sm:block w-12 h-4 bg-gray-800 rounded"></div>
     </div>
   )
 
   return (
-    <div className="space-y-10 text-white w-full mx-auto rounded-lg">
+    <div className="space-y-8 text-white w-full mx-auto rounded-lg">
       
       {/* WEEKLY ACTIVITY */}
       <div>
-        <h2 className={`text-lg md:text-xl font-bold tracking-wider mb-4 md:mb-6 ${montserrat.className}`}>WEEKLY ACTIVITY</h2>
+        <h2 className={`text-base md:text-base font-bold tracking-wider mb-4 md:mb-5 text-gray-200 ${montserrat.className}`}>WEEKLY ACTIVITY</h2>
 
-        <div className="space-y-4 sm:space-y-2"> 
+        <div className="space-y-0 flex flex-col gap-3 sm:gap-0 sm:space-y-2"> 
           {isLoading
             ? Array.from({ length: 7 }).map((_, idx) => <SkeletonRow key={idx} />)
             : weekly.map((item, idx) => (
-                <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 w-full">
+                <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full">
                   
-                  {/* LABEL ROW (Mobile: Date + Duration | Desktop: Date only) */}
-                  <div className="flex justify-between items-center sm:block sm:w-40">
-                    <p className="text-xs sm:text-base text-gray-300 whitespace-nowrap leading-6">
+                  {/* LABEL ROW */}
+                  <div className="flex justify-between items-center sm:block sm:w-32">
+                    <p className="text-xs sm:text-xs text-gray-400 whitespace-nowrap leading-tight">
                       {item.day}
                     </p>
-                    {/* Duration muncul di kanan atas khusus HP */}
-                    <p className="sm:hidden text-xs font-bold text-gray-400">
+                    <p className="sm:hidden text-[10px] font-bold text-gray-500">
                       {item.duration}
                     </p>
                   </div>
 
                   {/* BAR ROW */}
-                  <div className="flex-1 bg-[#2c2f36] h-1.5 sm:h-2 rounded-full w-full">
+                  <div className="flex-1 bg-[#2c2f36] h-1.5 rounded-full w-full">
                     <div
                       className="h-full rounded-full text-left transition-all duration-1000 ease-out"
                       style={{
@@ -153,8 +152,7 @@ export default function RealtimeActivityFeed() {
                     />
                   </div>
 
-                  {/* DURATION (Desktop Only) */}
-                  <p className="hidden sm:block w-20 text-right text-sm md:text-base text-gray-300 whitespace-nowrap leading-6">
+                  <p className="hidden sm:block w-20 text-right text-xs sm:text-xs text-gray-400 whitespace-nowrap leading-tight">
                     {item.duration}
                   </p>
                 </div>
@@ -164,27 +162,26 @@ export default function RealtimeActivityFeed() {
 
       {/* LANGUAGES */}
       <div>
-        <h2 className={`text-lg md:text-xl font-bold tracking-wider mb-4 md:mb-6 ${montserrat.className}`}>LANGUAGES</h2>
+        <h2 className={`text-base md:text-base font-bold tracking-wider mb-4 md:mb-5 text-gray-200 ${montserrat.className}`}>LANGUAGES</h2>
 
-        <div className="space-y-4 sm:space-y-2 w-full">
+        <div className="w-full flex flex-col gap-3 sm:gap-0 ">
           {isLoading
             ? Array.from({ length: 5 }).map((_, idx) => <SkeletonRow key={idx} />)
             : languages.map((lang, idx) => (
-                <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 w-full">
+                <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full">
                   
                   {/* LABEL ROW */}
-                  <div className="flex justify-between items-center sm:block sm:w-40">
-                    <span className="text-xs sm:text-base text-gray-300 leading-6">
+                  <div className="flex justify-between items-center sm:block sm:w-32">
+                    <span className="text-xs sm:text-xs text-gray-400 leading-tight">
                       {lang.name}
                     </span>
-                    {/* Percent muncul di kanan atas khusus HP */}
-                    <span className="sm:hidden text-xs font-bold text-gray-400">
+                    <span className="sm:hidden text-[10px] font-bold text-gray-500">
                       {lang.percent.toFixed(1)}%
                     </span>
                   </div>
 
                   {/* BAR ROW */}
-                  <div className="flex-1 bg-[#2c2f36] h-1.5 sm:h-2 rounded-full w-full">
+                  <div className="flex-1 bg-[#2c2f36] h-1.5 rounded-full w-full">
                     <div
                       className="h-full rounded-full transition-all duration-1000 ease-out"
                       style={{
@@ -195,8 +192,8 @@ export default function RealtimeActivityFeed() {
                     />
                   </div>
 
-                  {/* PERCENT (Desktop Only) */}
-                  <span className="hidden sm:block w-14 text-right text-sm md:text-base text-gray-300 leading-6">
+                  {/* PERCENT (Desktop) */}
+                  <span className="hidden sm:block w-14 text-right text-xs sm:text-xs text-gray-400 leading-tight">
                     {lang.percent.toFixed(1)}%
                   </span>
                 </div>

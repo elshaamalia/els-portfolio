@@ -61,12 +61,12 @@ export default function ExperiencePage() {
     <div className="relative w-full min-h-screen bg-transparent overflow-hidden "> 
       
       {/* MAIN CONTAINER */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-12 pb-20">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-12 pb-20">
         
         {/* HEADER SECTION */}
         <div className="mb-10 md:mb-16 mt-0 md:mt-14">
            <p className={`text-slate-400 text-xs md:text-sm tracking-widest mb-2 ${montserrat.className}`}>PROFESSIONAL HISTORY</p>
-           <h1 className={`text-white text-4xl md:text-6xl font-black tracking-tight ${montserrat.className}`}>
+           <h1 className={`text-white text-3xl md:text-6xl font-black tracking-tight ${montserrat.className}`}>
              <TypingText text="EXPERIENCE" speed={50} />
            </h1>
            <div className="h-1 w-16 md:w-20 bg-pink-500 rounded-full mt-4"></div>

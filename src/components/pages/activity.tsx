@@ -14,12 +14,12 @@ export default function ActivityPage() {
   return (
     <div className="relative w-full min-h-screen bg-transparent overflow-hidden">
       
-      <div className="relative z-10 w-full max-w-6xl mx-auto pt-0 md:pt-10 px-0 md:px-12">
+      <div className="relative z-10 w-full max-w-4xl mx-auto pt-4 md:pt-10 px-6 md:px-12">
         
         {/* HEADER SECTION */}
-        <div className="mb-10 md:mb-16 mt-0 md:mt-14">
+        <div className="mb-10 md:mb-12 mt-4 md:mt-14">
            <p className={`text-slate-400 text-xs md:text-sm tracking-widest mb-2 ${montserrat.className}`}>LIVE UPDATES</p>
-           <h1 className={`text-white text-4xl md:text-6xl font-black tracking-tight ${montserrat.className}`}>
+           <h1 className={`text-white text-3xl md:text-6xl font-black tracking-tight ${montserrat.className}`}>
              <TypingText text="ACTIVITY" speed={50} />
            </h1>
            <div className="h-1 w-16 md:w-20 bg-pink-500 rounded-full mt-4"></div>
