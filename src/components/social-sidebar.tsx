@@ -15,7 +15,7 @@ export default function SocialSidebar() {
   return (
     <>
       {/* SIDEBAR */}
-      <aside className="w-45 h-full backdrop-blur-md bg-black border-l border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
+      <aside className="w-50 h-full backdrop-blur-md bg-black border-l border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
         
         <nav className="flex-1 flex flex-col gap-3 justify-center items-center w-full">
           {socialLinks.map((item) => {

@@ -58,26 +58,26 @@ export default function ExperiencePage() {
   }
 
   return (
-    <div className="relative w-full min-h-screen bg-transparent overflow-hidden "> 
+    <div className="relative w-full min-h-screen bg-overflow-hidden"> 
       
       {/* MAIN CONTAINER */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-12 pb-20">
+      <div className="relative z-10 w-full max-w-3xl mx-auto px-6 md:px-8 pb-20">
         
         {/* HEADER SECTION */}
-        <div className="mb-10 md:mb-16 mt-0 md:mt-14">
-           <p className={`text-slate-400 text-xs md:text-sm tracking-widest mb-2 ${montserrat.className}`}>PROFESSIONAL HISTORY</p>
-           <h1 className={`text-white text-3xl md:text-6xl font-black tracking-tight ${montserrat.className}`}>
+        <div className="mb-8 md:mb-12 mt-4 md:mt-12">
+           <p className={`text-slate-400 text-[10px] md:text-xs tracking-widest mb-2 ${montserrat.className}`}>PROFESSIONAL HISTORY</p>
+           <h1 className={`text-white text-2xl md:text-5xl font-black tracking-tight ${montserrat.className}`}>
              <TypingText text="EXPERIENCE" speed={50} />
            </h1>
-           <div className="h-1 w-16 md:w-20 bg-pink-500 rounded-full mt-4"></div>
+           <div className="h-1 w-12 md:w-16 bg-pink-500 rounded-full mt-3"></div>
         </div>
 
         {/* LIST EXPERIENCE */}
-        <div className="space-y-6 backdrop-blur-xl">
+        <div className="space-y-4 md:space-y-5 backdrop-blur-xl">
             {experienceData.map((exp) => (
                 <div 
                     key={exp.id} 
-                    className={`relative w-full rounded-2xl border transition-all duration-300 overflow-hidden group
+                    className={`relative w-full rounded-xl border transition-all duration-300 overflow-hidden group 
                         ${expandedId === exp.id 
                             ? "bg-zinc-900/80 border-zinc-700 shadow-xl" 
                             : "bg-zinc-900/40 border-zinc-800 hover:border-zinc-700/50 hover:bg-zinc-900/60"
@@ -88,96 +88,92 @@ export default function ExperiencePage() {
                     {/* --- CLICKABLE HEADER AREA --- */}
                     <div 
                         onClick={() => toggleExpand(exp.id)}
-                        className="p-5 md:p-6 cursor-pointer"
+                        className="p-4 md:p-5 cursor-pointer"
                     >
-                        <div className="flex gap-4 md:gap-6 items-start">
+                        <div className="flex gap-3 md:gap-5 items-start">
                             
                             {/* Logo */}
-                            <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-white p-1.5 shrink-0 shadow-sm">
+                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-white p-1 shrink-0 shadow-sm mt-0.5">
                                 <Image 
                                     src={exp.logo} 
                                     alt={exp.company} 
-                                    width={64} 
-                                    height={64} 
+                                    width={48} 
+                                    height={48} 
                                     className="object-contain w-full h-full" 
                                 />
                             </div>
 
                             {/* Main Info */}
                             <div className="flex-1 min-w-0">
-                                <h3 className={`text-white text-lg md:text-xl font-bold truncate ${montserrat.className}`}>
+                                {/* Role: */}
+                                <h3 className={`text-white text-sm md:text-base font-bold truncate ${montserrat.className}`}>
                                     {exp.role}
                                 </h3>
-                                <p className={`text-zinc-400 text-sm md:text-base font-medium mb-2 ${montserrat.className}`}>
+                                {/* Company */}
+                                <p className={`text-zinc-400 text-xs font-medium mb-1.5 ${montserrat.className}`}>
                                     {exp.company}
                                 </p>
 
-                                {/* Meta Data Row (Date, Duration, Type) */}
-                                <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] md:text-xs text-zinc-500 font-medium tracking-wide ${montserrat.className}`}>
-                                    <span className="flex items-center gap-1">
-                                        <Calendar size={12} /> {exp.period}
+                                {/* Meta Data Row*/}
+                                <div className={`flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-zinc-500 font-medium tracking-wide ${montserrat.className}`}>
+                                    <span className="flex items-center gap-1 bg-zinc-800/50 px-1.5 py-0.5 rounded">
+                                        <Calendar size={10} /> {exp.period}
                                     </span>
-                                    <span className="hidden sm:inline text-zinc-700">•</span>
-                                    <span className="flex items-center gap-1">
-                                        <Clock size={12} /> {exp.duration}
+                                    <span className="flex items-center gap-1 bg-zinc-800/50 px-1.5 py-0.5 rounded">
+                                        <Clock size={10} /> {exp.duration}
                                     </span>
-                                    <span className="hidden sm:inline text-zinc-700">•</span>
-                                    <span className="flex items-center gap-1 text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full">
-                                        <Briefcase size={12} /> {exp.type}
+                                    <span className="flex items-center gap-1 text-blue-400 bg-blue-400/10 px-1.5 py-0.5 rounded border border-blue-400/20">
+                                        <Briefcase size={10} /> {exp.type}
                                     </span>
                                     <span className="flex items-center gap-1">
-                                        <MapPin size={12} /> {exp.location}
+                                        <MapPin size={10} /> {exp.location}
                                     </span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Toggle Button */}
-                        <div className="mt-5 flex items-center gap-2 text-xs md:text-sm font-semibold text-zinc-400 group-hover:text-white transition-colors select-none">
-                            {expandedId === exp.id ? (
-                                <ChevronDown size={16} />
-                            ) : (
-                                <ChevronRight size={16} />
-                            )}
-                            <span>{expandedId === exp.id ? "Hide Details" : "Show Responsibilities"}</span>
+                        <div className="mt-3 md:mt-0 md:absolute md:top-5 md:right-5 flex items-center justify-end gap-1 text-[10px] font-semibold text-zinc-500 group-hover:text-white transition-colors select-none">
+                            <span>{expandedId === exp.id ? "Close" : "Details"}</span>
+                            {expandedId === exp.id ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                         </div>
                     </div>
 
                     {/* --- EXPANDABLE CONTENT --- */}
                     <div 
                         className={`overflow-hidden transition-all duration-500 ease-in-out border-t border-zinc-800/50 bg-black/20
-                            ${expandedId === exp.id ? "max-h-250 opacity-100" : "max-h-0 opacity-0"}
+                            ${expandedId === exp.id ? "max-h-125 opacity-100" : "max-h-0 opacity-0"}
                         `}
                     >
-                        <div className="p-5 md:p-8 pt-6">
+                        <div className="p-4 md:p-5 pt-4">
                             
-                            {/* Description */}
-                            <p className={`text-zinc-300 text-sm leading-relaxed mb-6 ${montserrat.className}`}>
+                            {/* Description*/}
+                            <p className={`text-zinc-300 text-xs leading-relaxed mb-4 ${montserrat.className}`}>
                                 {exp.description}
                             </p>
 
-                            {/* Bullet Points */}
-                            <ul className="space-y-3 mb-8">
+                            {/* Bullet Points*/}
+                            <ul className="space-y-2 mb-5">
                                 {exp.responsibilities.map((item, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-zinc-400 text-sm">
-                                        <span className="text-pink-500 mt-1.5 text-[10px]">▹</span>
-                                        <span className={montserrat.className}>{item}</span>
+                                    <li key={idx} className="flex items-start gap-2.5 text-zinc-400 text-xs">
+                                        <span className="text-pink-500 mt-1 text-[9px]">▹</span>
+                                        <span className={`leading-relaxed ${montserrat.className}`}>{item}</span>
                                     </li>
                                 ))}
                             </ul>
 
                             {/* Tech Stack */}
                             <div>
-                                <h4 className={`text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-4 ${montserrat.className}`}>
-                                    Technology Used
+                                <h4 className={`text-zinc-500 text-[9px] font-bold tracking-widest uppercase mb-2 ${montserrat.className}`}>
+                                    Tech Stack
                                 </h4>
-                                <div className="flex flex-wrap gap-3">
+                                <div className="flex flex-wrap gap-2">
                                     {exp.techStack.map((tech, tIdx) => (
                                         <div 
                                             key={tIdx} 
-                                            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-zinc-800/50 border border-zinc-700/50 text-zinc-300 text-xs hover:bg-zinc-800 transition-colors"
+                                            className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-zinc-800/50 border border-zinc-700/50 text-zinc-300 text-[10px] hover:bg-zinc-800 transition-colors"
                                         >
-                                            <div className={`text-base ${tech.color}`}>
+                                            <div className={`text-sm ${tech.color}`}>
                                                 <tech.icon />
                                             </div>
                                             <span className={montserrat.className}>{tech.name}</span>

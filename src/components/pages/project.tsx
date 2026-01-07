@@ -51,7 +51,7 @@ const projects: Project[] = [
     category: "AI Web-Based",
     thumbnail: "/assets/Health and Fitness.png",
     description: "AI-based web application that evaluates user health and fitness data to provide personalized recommendations.",
-    fullDescription: "Health & Fitness Evaluator AI is a web-based application that analyzes personal health data such as body metrics, activity level, and fitness goals to generate personalized meal and workout recommendations. The system utilizes AI models to evaluate user needs, supports realtime interaction through a modern dashboard, and helps users track their fitness progress effectively. This project focuses on user-centered UI/UX and data-driven health insights.",
+    fullDescription: "Health & Fitness Evaluator AI is a web-based application that analyzes personal health data such as body metrics, activity level, and fitness goals to generate personalized meal and workout recommendations.",
     year: "2025",
     location: "BATAM, INDONESIA",
     role: "Frontend & AI Model Trainer",
@@ -81,7 +81,7 @@ const projects: Project[] = [
     category: "Web Development",
     thumbnail: "",
     description: "Web-based alumni information system for IKA UNDIP KEPRI.",
-    fullDescription: "A comprehensive web platform designed for the UNDIP Alumni Association (Kepri Region). The system manages both public information (events, news) and restricted member data (alumni directory by major and location). It serves as a central hub for alumni networking, event documentation, and organizational updates.",
+    fullDescription: "A comprehensive web platform designed for the UNDIP Alumni Association (Kepri Region). The system manages both public information (events, news) and restricted member data.",
     year: "2024",
     location: "Batam, Indonesia",
     role: "UI Design & Frontend Developer",
@@ -96,7 +96,6 @@ export default function ProjectPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [mounted, setMounted] = useState(false)
 
-  // --- FIX PAMUNGKAS: TRIK SETTIMEOUT ---
   useEffect(() => {
     const timer = setTimeout(() => {
       setMounted(true)
@@ -104,7 +103,6 @@ export default function ProjectPage() {
     return () => clearTimeout(timer)
   }, [])
 
-  // --- FIX 2: SCROLL LOCK LOGIC ---
   useEffect(() => {
     if (selectedProject) {
       document.body.style.overflow = 'hidden'
@@ -114,60 +112,46 @@ export default function ProjectPage() {
     return () => { document.body.style.overflow = 'auto' }
   }, [selectedProject])
 
-  if (!mounted) {
-    return null
-  }
+  if (!mounted) return null
 
   return (
     <div className="relative w-full min-h-screen bg-transparent overflow-hidden">
       
-      <div className="relative z-10 w-full max-w-4xl mx-auto pb-20 px-4 md:px-12">
+      {/* 1. CONTAINER */}
+      <div className="relative z-10 w-full max-w-3xl mx-auto pb-20 px-6 md:px-8">
         
         {/* HEADER */}
-        <div className="mb-10 md:mb-16 mt-4 md:mt-14">
-           <p className={`text-slate-400 text-xs md:text-sm tracking-widest mb-2 ${montserrat.className}`}>FEATURED WORKS</p>
-           <h1 className={`text-white text-4xl md:text-6xl font-black tracking-tight ${montserrat.className}`}>
-             PROJECTS
-           </h1>
-           <div className="h-1 w-16 md:w-20 bg-pink-500 rounded-full mt-4"></div>
+        <div className="mb-8 md:mb-12 mt-4 md:mt-12">
+           <p className={`text-slate-400 text-[10px] md:text-xs tracking-widest mb-2 ${montserrat.className}`}>FEATURED WORKS</p>
+           <h1 className={`text-white text-2xl md:text-5xl font-black tracking-tight ${montserrat.className}`}>PROJECTS</h1>
+           <div className="h-1 w-12 md:w-16 bg-pink-500 rounded-full mt-3"></div>
         </div>
 
         {/* GRID LAYOUT */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {projects.map((project) => (
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
               className="group relative bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden cursor-pointer hover:border-zinc-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10"
             >
-              {/* Thumbnail Image Area */}
-              <div className="relative h-48 w-full overflow-hidden bg-black">
+              {/* Thumbnail Image  */}
+              <div className="relative h-36 w-full overflow-hidden bg-black">
                 {project.thumbnail && (
-                  <Image
-                    src={project.thumbnail}
-                    alt={project.title}
-                    fill
-                    className="object-contain transition-transform duration-500 group-hover:scale-105"
-                  />
+                  <Image src={project.thumbnail} alt={project.title} fill className="object-contain transition-transform duration-500 group-hover:scale-105" />
                 )}
-                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 rounded-full border border-white/10">
-                   <span className={`text-[10px] font-bold text-white tracking-wider ${montserrat.className}`}>
-                     {project.category}
-                   </span>
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10">
+                   <span className={`text-[9px] font-semibold text-white tracking-wider -mt-3 ${montserrat.className}`}>{project.category}</span>
                 </div>
               </div>
 
               {/* Card Content */}
-              <div className="p-6">
-                <h3 className={`text-xl font-bold text-white mb-2 transition-colors ${montserrat.className}`}>
-                  {project.title}
-                </h3>
-                <p className={`text-zinc-400 text-sm leading-relaxed line-clamp-2 ${montserrat.className}`}>
-                  {project.description}
-                </p>
-                <div className="mt-4 flex items-center text-zinc-500 text-xs font-medium tracking-wide">
+              <div className="p-5">
+                <h3 className={`text-sm md:text-base font-bold text-white mb-1.5 transition-colors ${montserrat.className}`}>{project.title}</h3>
+                <p className={`text-zinc-400 text-xs leading-relaxed line-clamp-2 ${montserrat.className}`}>{project.description}</p>
+                <div className="mt-3 flex items-center text-zinc-500 text-[10px] font-medium tracking-wide">
                   <span>View Details</span>
-                  <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="ml-1.5 transform group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             </div>
@@ -175,94 +159,76 @@ export default function ProjectPage() {
         </div>
       </div>
 
-      {/* --- MODAL DETAIL (PORTAL) --- */}
+      {/* --- MODAL DETAIL  --- */}
       {selectedProject && createPortal(
-        <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 md:p-8">
+        <div className="fixed inset-0 z-9999 flex items-center justify-center p-4">
           
-          {/* Overlay Gelap */}
-          <div
-            className="absolute inset-0 bg-black/90 backdrop-blur-md"
-            onClick={() => setSelectedProject(null)}
-          />
+          <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" onClick={() => setSelectedProject(null)} />
 
-          {/* Konten Modal */}
-          <div className="relative w-full max-w-5xl bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[85vh] md:max-h-[90vh] animate-in fade-in zoom-in duration-300">
+          <div className="relative w-full max-w-2xl bg-[#111] border border-zinc-800 rounded-xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] md:max-h-[80vh] animate-in fade-in zoom-in duration-300">
             
-            {/* Tombol Close */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 z-20 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-colors"
+              className="absolute top-3 right-3 z-50 p-1.5 bg-black/50 hover:bg-zinc-700 text-white rounded-full transition-colors"
             >
-              <X size={20} />
+              <X size={16} />
             </button>
 
-            {/* Left Side: Image / Visual */}
-            <div className="relative w-full md:w-1/2 h-48 md:h-auto bg-black shrink-0">
+            {/* Left Side: Image */}
+            <div className="relative w-full md:w-1/2 h-36 md:h-auto bg-zinc-900 shrink-0 border-r border-zinc-800">
                {selectedProject.bgImage && (
                  <Image
                    src={selectedProject.bgImage}
                    alt={selectedProject.title}
                    fill
-                   className="object-cover"
+                   className="object-contain p-4" 
                  />
                )}
-               {/* Mobile Title Overlay */}
-               <div className="absolute bottom-4 left-4 md:hidden bg-black/60 px-3 py-2 rounded-lg backdrop-blur-sm max-w-[80%]">
-                  <h2 className={`text-xl font-black text-white leading-tight ${montserrat.className}`}>{selectedProject.title}</h2>
-               </div>
             </div>
 
             {/* Right Side: Details */}
-            <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col overflow-y-auto bg-zinc-900">
+            <div className="w-full md:w-1/2 p-5 md:p-6 flex flex-col overflow-y-auto bg-[#111]">
               
-              {/* Desktop Header (Hilang di HP) */}
-              <div className="hidden md:block mb-6">
-                <div className="flex items-center gap-3 mb-2">
-                   <h2 className={`text-3xl lg:text-4xl font-black text-white ${montserrat.className}`}>
+              <div className="mb-4">
+                <div className="flex items-center gap-2 mb-1">
+                   {/* Title Font: text-xl / text-2xl */}
+                   <h2 className={`text-xl md:text-2xl font-black text-white uppercase leading-none ${montserrat.className}`}>
                      {selectedProject.title}
                    </h2>
                    {!selectedProject.isNDA && (
-                     <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors">
-                       <ExternalLink size={24} />
+                     <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors ml-1">
+                       <ExternalLink size={16} />
                      </a>
                    )}
                 </div>
-                <div className="flex gap-4 text-xs font-bold text-blue-400 tracking-widest">
+                <div className="flex gap-2 text-[10px] font-bold text-blue-500 tracking-widest mt-1.5">
                   <span>{selectedProject.year}</span>
                   <span>•</span>
                   <span>{selectedProject.location}</span>
                 </div>
               </div>
 
-              {/* Mobile Meta Data*/}
-              <div className="md:hidden mb-6 flex gap-3 text-[10px] font-bold text-blue-400 tracking-widest">
-                  <span>{selectedProject.year}</span>
-                  <span>•</span>
-                  <span className="truncate">{selectedProject.location}</span>
-              </div>
-
-              <div className="space-y-6 flex-1">
+              <div className="space-y-4 flex-1">
                 <div>
-                   <h4 className={`text-zinc-500 text-xs font-bold tracking-widest mb-2 ${montserrat.className}`}>ROLE</h4>
-                   <p className="text-white font-medium text-sm">{selectedProject.role}</p>
+                   <h4 className={`text-zinc-500 text-[9px] font-bold tracking-widest mb-1 uppercase ${montserrat.className}`}>ROLE</h4>
+                   <p className="text-white font-bold text-xs">{selectedProject.role}</p>
                 </div>
                 
                 <div>
-                   <h4 className={`text-zinc-500 text-xs font-bold tracking-widest mb-2 ${montserrat.className}`}>ABOUT</h4>
-                   <p className={`text-zinc-300 leading-relaxed text-sm ${montserrat.className}`}>
+                   <h4 className={`text-zinc-500 text-[9px] font-semibold tracking-widest mb-1 uppercase ${montserrat.className}`}>ABOUT</h4>
+                   <p className={`text-zinc-400 leading-relaxed text-xs ${montserrat.className}`}>
                      {selectedProject.fullDescription}
                    </p>
                 </div>
 
-                {/* --- TECH STACK SECTION --- */}
                 {selectedProject.techStack && (
                   <div>
-                    <h4 className={`text-zinc-500 text-xs font-bold tracking-widest mb-3 ${montserrat.className}`}>TECH STACK</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <h4 className={`text-zinc-500 text-[9px] font-bold tracking-widest mb-2 uppercase ${montserrat.className}`}>TECH STACK</h4>
+                    <div className="flex flex-wrap gap-1.5">
                       {selectedProject.techStack.map((tech, index) => (
                         <span
                           key={index}
-                          className={`px-3 py-1 bg-zinc-800 border border-zinc-700 rounded-full text-[10px] md:text-xs text-zinc-300 font-medium hover:bg-zinc-700 hover:text-white transition-colors ${montserrat.className}`}
+                          className={`px-2.5 py-0.5 bg-zinc-800 rounded-full text-[9px] text-zinc-300 font-medium ${montserrat.className}`}
                         >
                           {tech}
                         </span>
@@ -272,17 +238,17 @@ export default function ProjectPage() {
                 )}
               </div>
 
-              <div className="mt-8 pt-8 border-t border-zinc-800 pb-4 md:pb-0">
+              <div className="mt-6 pt-3 border-t border-zinc-800">
                 {selectedProject.isNDA ? (
-                   <button disabled className={`w-full py-4 border border-zinc-700 text-zinc-500 text-xs font-bold tracking-widest uppercase cursor-not-allowed ${montserrat.className}`}>
-                     Under NDA - No Case Study
+                   <button disabled className={`w-full py-2.5 bg-zinc-800 text-zinc-500 text-[10px] font-bold tracking-widest uppercase cursor-not-allowed rounded ${montserrat.className}`}>
+                     Under NDA
                    </button>
                 ) : (
                    <a
                      href={selectedProject.link}
                      target="_blank"
                      rel="noopener noreferrer"
-                     className={`block w-full py-4 bg-white hover:bg-zinc-200 text-black text-center text-xs font-bold tracking-widest uppercase transition-colors ${montserrat.className}`}
+                     className={`block w-full py-2.5 bg-white hover:bg-gray-200 text-black text-center text-[10px] font-bold tracking-widest uppercase transition-colors rounded ${montserrat.className}`}
                    >
                      Visit Project
                    </a>

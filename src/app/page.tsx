@@ -64,7 +64,7 @@ export default function Page() {
         </section>
 
         {/* CONTENT CONTAINER */}
-        <div className="bg-black/60 backdrop-blur-md shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/10 rounded-t-3xl">
+        <div className="bg-black/50 backdrop-blur-md shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/10 rounded-t-3xl">
 
             {/* ABOUT */}
             <section id="about" className="min-h-screen flex items-center px-4 sm:px-8 md:px-20 lg:px-40 relative overflow-hidden py-20 lg:py-0">
@@ -94,7 +94,7 @@ export default function Page() {
               </SectionReveal>
             </section>
 
-            <div className="text-center mb-12 mt-16 text-gray-500 text-[10px] md:text-xs tracking-widest px-4">
+            <div className="text-center mb-6  text-gray-500 text-[10px] md:text-xs tracking-widest px-4">
               © 2025 ELSHA AMALIA PUSPONEGORO.
             </div>
         </div>
