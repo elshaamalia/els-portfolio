@@ -73,7 +73,7 @@ export default function ExperiencePage() {
         </div>
 
         {/* LIST EXPERIENCE */}
-        <div className="space-y-4 md:space-y-5 backdrop-blur-xl">
+        <div className="space-y-4 md:space-y-5 backdrop-blur-xl rounded-xl">
             {experienceData.map((exp) => (
                 <div 
                     key={exp.id} 

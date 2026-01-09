@@ -44,7 +44,7 @@ export default function HomePage() {
 
           {/* CONTAINER JUDUL UTAMA */}
           <div className="relative bg-black mix-blend-screen p-2 md:p-4 select-none outline-4 outline-black
-            -mt-1 sm:-mt-3 md:-mt-5 lg:-mt-6"
+            -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-8"
           >
             <h1
               className={`font-black tracking-tight leading-none text-white bg-black relative z-0 

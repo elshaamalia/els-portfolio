@@ -91,7 +91,7 @@ export default function AboutPage() {
                 {/* Subtitle */}
                 <h2 className={`text-gray-100 text-sm md:text-base font-normal leading-relaxed ${montserrat.className}`}>
                    <span className="block sm:inline">My name is </span>
-                   <span className="text-pink-500 font-semibold block sm:inline">Elsha Amalia Pusponegoro</span>.
+                   <span className="text-pink-500 font-semibold block sm:inline">Elsha Amalia Pusponegoro.</span>
                    <br className="hidden sm:block"/>I&apos;m a Software Engineer.
                 </h2>
 
@@ -116,17 +116,17 @@ export default function AboutPage() {
                             </h4>
                             
                             {/* Grid */}
-                            <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
+                            <div className="grid grid-cols-5 gap-1.5">
                                 {group.items.map((skill, sIdx) => (
                                     <div 
                                         key={sIdx} 
-                                        className="group relative flex items-center justify-center aspect-square p-1.5 rounded-lg bg-black/50 border border-zinc-900 transition-all duration-300 cursor-pointer"
+                                        className="group relative flex items-center justify-center aspect-square p-1 rounded-lg bg-black/50 border border-zinc-900 transition-all duration-300 cursor-pointer"
                                     >
                                         <div className={`text-lg md:text-xl ${skill.color} grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300`}>
                                             {skill.icon}
                                         </div>
                                         
-                                        <span className={`absolute -bottom-3 opacity-0 group-hover:opacity-100 z-20 text-[9px] text-white px-2 py-0.5 rounded shadow-lg transition-all duration-100 whitespace-nowrap pointer-events-none ${montserrat.className}`}>
+                                        <span className={`absolute -bottom-4 opacity-0 group-hover:opacity-100 z-20 text-[9px] bg-zinc-800 text-white px-2 py-0.5 rounded shadow-lg transition-all duration-100 whitespace-nowrap pointer-events-none ${montserrat.className}`}>
                                             {skill.name}
                                         </span>
                                     </div>
