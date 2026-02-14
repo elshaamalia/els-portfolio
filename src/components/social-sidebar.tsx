@@ -59,7 +59,7 @@ export default function SocialSidebar() {
 
               {/* DOWNLOAD BUTTON */}
               <a
-                href="/CV - Elsha Amalia P.pdf"
+                href="/CV - Elsha Amalia Pusponegoro.pdf"
                 download
                 className="px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-md flex items-center gap-2 text-slate-100 transition"
               >
@@ -78,7 +78,7 @@ export default function SocialSidebar() {
 
             {/* PDF PREVIEW */}
             <iframe
-              src="/CV - Elsha Amalia P.pdf"
+              src="/CV - Elsha Amalia Pusponegoro.pdf"
               className="w-full h-full bg-slate-900"
             ></iframe>
 

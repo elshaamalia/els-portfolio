@@ -59,7 +59,7 @@ const projects: Project[] = [
     link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=website-health-fitness-evaluator-ai-&id=MzU1Mw==&ta=Ng==&id_tim=NDE4NQ==",
     isNDA: false,
     techStack: ["Laravel", "TailwindCSS", "MySQL", "XGBoost", "NLP", "Google Colab"],
-    screenshots: ["/assets/Health and Fitness.png", "/assets/ai2.png", "/assets/ai4.png", "/assets/ai5.png", "/assets/ai1.png", "/assets/ai3.png", "/assets/ai7.png"]
+    screenshots: ["/assets/Health and Fitness.png", "/assets/ai2.png", "/assets/ai4.png", "/assets/ai5.png", "/assets/ai1.png", "/assets/Health_Fitness_AI/ai3.png", "/assets/Health_Fitness_AI/ai7.png"]
   },
   {
     id: 3,
@@ -75,7 +75,7 @@ const projects: Project[] = [
     link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=minutes-ai-automated-meeting-transcription-minutes&id=MjQ0MA==&ta=NQ==&id_tim=MzA5Nw==",
     isNDA: false,
     techStack: ["Laravel", "Tailwind CSS", "Google Colab", "Whisper", "Pyannote", "Kaggle"],
-    screenshots: ["/assets/minutes.png", "/assets/minutes1.png", "/assets/minutes2.png", "/assets/minutes3.png", "/assets/minutes4.png", "/assets/minutes5.png", "/assets/minutes6.png", "/assets/minutes7.png", "/assets/minutes8.png", "/assets/minutes9.png", "/assets/minutes10.png"]
+    screenshots: ["/assets/Minutes_AI/minutes.png", "/assets/Minutes_AI/minutes1.png", "/assets/Minutes_AI/convonotes3.png", "/assets/Minutes_AI/convonotes4.png", "/assets/Minutes_AI/minutes6.png", "/assets/Minutes_AI/convonotes7.png", "/assets/Minutes_AI/convonotes8.png", "/assets/Minutes_AI/minutes9.png", "/assets/Minutes_AI/convonotes10.png"]
   },
   {
     id: 4,
@@ -181,7 +181,7 @@ export default function ProjectPage() {
       {/* 2. MODAL DETAIL */}
       {selectedProject && createPortal(
         <div className="fixed inset-0 z-9999 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/95 backdrop-blur-md" onClick={() => setSelectedProject(null)} />
+          <div className="absolute inset-0  backdrop-blur-md" onClick={() => setSelectedProject(null)} />
 
           <div className="relative w-full max-w-5xl bg-[#0a0a0a] border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row h-auto max-h-[95vh] md:max-h-[85vh] animate-in fade-in zoom-in duration-300">
             
