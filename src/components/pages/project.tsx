@@ -33,7 +33,7 @@ const projects: Project[] = [
     id: 1,
     title: "MONITORING SYSTEM",
     category: "IOT Dashboard",
-    thumbnail: "/assets/Monitoring Sistem.png",
+    thumbnail: "/assets/Monitoring_Sistem/Monitoring Sistem.png",
     description: "Realtime Cycle Time Monitoring System IoT Based.",
     fullDescription: "Assisted and contributed to the 1-to-1 migration of a legacy application to a modern React-based solution, while enhancing feature functionality and improving UI/UX for realtime factory monitoring.",
     year: "2025",
@@ -43,13 +43,13 @@ const projects: Project[] = [
     link: "https://github.com/elshaamalia/giken-project-2",
     isNDA: false,
     techStack: ["React", "Express.js", "Socket.io", "MySQL", "MQTT", "Arduino IDE"],
-    screenshots: ["/assets/Monitoring Sistem.png", "/assets/history.png"]
+    screenshots: ["/assets/Monitoring_Sistem/Monitoring Sistem.png", "/assets/Monitoring_Sistem/history.png"]
   },
   {
     id: 2,
     title: "Health & Fitness Evaluator AI",
     category: "AI Web-Based",
-    thumbnail: "/assets/Health and Fitness.png",
+    thumbnail: "/assets/Health_Fitness_AI/Health and Fitness.png",
     description: "AI-based web application that evaluates user health and fitness data to provide personalized recommendations.",
     fullDescription: "Health & Fitness Evaluator AI is a web-based application that analyzes personal health data such as body metrics, activity level, and fitness goals to generate personalized meal and workout recommendations.",
     year: "2025",
@@ -59,13 +59,13 @@ const projects: Project[] = [
     link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=website-health-fitness-evaluator-ai-&id=MzU1Mw==&ta=Ng==&id_tim=NDE4NQ==",
     isNDA: false,
     techStack: ["Laravel", "TailwindCSS", "MySQL", "XGBoost", "NLP", "Google Colab"],
-    screenshots: ["/assets/Health and Fitness.png", "/assets/ai2.png", "/assets/ai4.png", "/assets/ai5.png", "/assets/ai1.png", "/assets/Health_Fitness_AI/ai3.png", "/assets/Health_Fitness_AI/ai7.png"]
+    screenshots: ["/assets/Health_Fitness_AI/Health and Fitness.png", "/assets/Health_Fitness_AI/ai2.png", "/assets/Health_Fitness_AI/ai4.png", "/assets/Health_Fitness_AI/ai5.png", "/assets/Health_Fitness_AI/ai1.png", "/assets/Health_Fitness_AI/ai3.png", "/assets/Health_Fitness_AI/ai7.png"]
   },
   {
     id: 3,
     title: "Minutes.ai",
     category: "AI Web-Based",
-    thumbnail: "/assets/minutes.png",
+    thumbnail: "/assets/Minutes_AI/minutes.png",
     description: "Automated Notulen & Transcription",
     fullDescription: "An AI-powered tool designed to automate meeting transcriptions and generate concise minutes of meeting, helping teams stay productive.",
     year: "2024",
@@ -81,7 +81,7 @@ const projects: Project[] = [
     id: 4,
     title: "IKA UNDIP",
     category: "Web Development",
-    thumbnail: "/assets/ika1.png",
+    thumbnail: "/assets/IKA UNDIP/ika1.png",
     description: "Web-based alumni information system for IKA UNDIP KEPRI.",
     fullDescription: "A comprehensive web platform designed for the UNDIP Alumni Association (Kepri Region). The system manages both public information and restricted member data.",
     year: "2024",
@@ -91,7 +91,7 @@ const projects: Project[] = [
     link: "https://pbl.polibatam.ac.id/pamerin/detail.php?title=website-alumni-ika-undip&id=MTc1Ng==&ta=NA==&id_tim=MjE2NA==",
     isNDA: false,
     techStack: ["Tailwind CSS", "Figma", "Canva", "Laravel"],
-    screenshots: ["/assets/ika1.png", "/assets/ika2.png", "/assets/ika3.png", "/assets/ika4.png", "/assets/ika5.png", "/assets/ika6.png", "/assets/ika7.png"]
+    screenshots: ["/assets/IKA UNDIP/ika1.png", "/assets/IKA UNDIP/ika2.png", "/assets/IKA UNDIP/ika3.png", "/assets/IKA UNDIP/ika4.png", "/assets/IKA UNDIP/ika5.png", "/assets/IKA UNDIP/ika6.png", "/assets/IKA UNDIP/ika7.png"]
   }
 ]
 

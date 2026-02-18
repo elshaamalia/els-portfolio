@@ -134,7 +134,7 @@ export default function ExperiencePage() {
 
                         {/* Toggle Button */}
                         <div className="mt-3 md:mt-0 md:absolute md:top-5 md:right-5 flex items-center justify-end gap-1 text-[10px] font-semibold text-zinc-500 group-hover:text-white transition-colors select-none">
-                            <span>{expandedId === exp.id ? "Close" : "Details"}</span>
+                            <span>{expandedId === exp.id ? "" : "Details"}</span>
                             {expandedId === exp.id ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                         </div>
                     </div>
