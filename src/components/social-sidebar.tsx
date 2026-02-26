@@ -15,8 +15,8 @@ export default function SocialSidebar() {
   return (
     <>
       {/* SIDEBAR */}
-      <aside className="w-50 h-full backdrop-blur-md bg-black border-l border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
-        
+      <aside className="w-45 h-full backdrop-blur-md bg-black border-l border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
+
         <nav className="flex-1 flex flex-col gap-3 justify-center items-center w-full">
           {socialLinks.map((item) => {
             const Icon = item.icon
@@ -29,7 +29,7 @@ export default function SocialSidebar() {
                 className={`p-3 rounded transition text-slate-200/50 ${item.color}`}
                 title={item.label}
               >
-                <Icon size={18} />
+                <Icon size={15} />
               </a>
             )
           })}
@@ -45,13 +45,13 @@ export default function SocialSidebar() {
             <span className="text-xs">Preview CV</span>
           </button>
         </div>
-        
+
       </aside>
 
       {/* MODAL */}
       {showCV && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-999">
-          
+
           <div className="bg-slate-900 rounded-xl shadow-xl w-[90%] h-[90%] max-w-4xl relative overflow-hidden flex flex-col">
 
             {/* TOP BAR */}

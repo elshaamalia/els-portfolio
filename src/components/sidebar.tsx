@@ -16,7 +16,7 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
   ]
 
   return (
-    <aside className="w-50 h-full backdrop-blur-md bg-black border-r border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
+    <aside className="w-45 h-full backdrop-blur-md bg-black border-r border-slate-800/50 flex flex-col items-center py-8 gap-6 relative z-20">
 
       <nav className="flex-1 flex flex-col gap-3 justify-center items-center w-full">
         {navItems.map((item) => {
@@ -25,14 +25,13 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
             <button
               key={item.id}
               onClick={() => onPageChange(item.id)}
-              className={`p-3 rounded transition ${
-                currentPage === item.id
-                  ? "bg-neutral-500/20 text-white"
-                  : "text-slate-200/50 hover:text-white hover:bg-neutral-500/20"
-              }`}
+              className={`p-3 rounded transition ${currentPage === item.id
+                ? "bg-neutral-500/20 text-white"
+                : "text-slate-200/50 hover:text-white hover:bg-neutral-500/20"
+                }`}
               title={item.label}
             >
-              <Icon size={18} />
+              <Icon size={15} />
             </button>
           )
         })}
